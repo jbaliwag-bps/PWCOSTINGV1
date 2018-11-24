@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PWCOSTINGV1.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="blnIsTrusted" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="strUserID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sa</Value>
+    </Setting>
+    <Setting Name="strDBName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">PWCOSTINGDB</Value>
+    </Setting>
+    <Setting Name="strUpdateSource" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="frmListWidth" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">800</Value>
+    </Setting>
+    <Setting Name="frmListHeight" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">600</Value>
+    </Setting>
+    <Setting Name="intUsernameLenght" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="intPasswordLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="cnString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Data Source=10.0.0.126\MSSQL2008R2;Initial Catalog=PWCOSTINGDB;Integrated Security=True;</Value>
+    </Setting>
+    <Setting Name="strServerName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">10.0.0.126\MSSQL2008R2</Value>
+    </Setting>
+    <Setting Name="strPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">123BPs0lutions</Value>
+    </Setting>
+    <Setting Name="intToLoginYear" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2018</Value>
+    </Setting>
+    <Setting Name="strToLoginUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">administrator</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

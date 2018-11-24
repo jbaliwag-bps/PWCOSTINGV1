@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CAE16047-69D3-4E77-B24E-2CC63D304E51}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PWCOSTING.BO</RootNamespace>
+    <AssemblyName>PWCOSTING.BO</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BPSolutionsTools, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\BPSolutionsTools.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="000\tbl_000_COMPANY.cs" />
+    <Compile Include="000\tbl_000_FXSP.cs" />
+    <Compile Include="000\tbl_000_H_ASSY.cs" />
+    <Compile Include="000\tbl_000_H_CATEGORY.cs" />
+    <Compile Include="000\tbl_000_H_ITEM.cs" />
+    <Compile Include="000\tbl_000_H_ITEM_FDC.cs" />
+    <Compile Include="000\tbl_000_H_ITEM_MPT.cs" />
+    <Compile Include="000\tbl_000_H_ITEM_PART.cs" />
+    <Compile Include="000\tbl_000_H_ITEM_TABULATION.cs" />
+    <Compile Include="000\tbl_000_H_ITEM_TABULATION_ASSY.cs" />
+    <Compile Include="000\tbl_000_H_ITEM_TABULATION_VP.cs" />
+    <Compile Include="000\tbl_000_H_PART.cs" />
+    <Compile Include="000\tbl_000_H_PI.cs" />
+    <Compile Include="000\tbl_000_H_VP.cs" />
+    <Compile Include="000\tbl_000_PROCESS.cs" />
+    <Compile Include="000\tbl_000_SECTION.cs" />
+    <Compile Include="000\tbl_000_USERGROUP.cs" />
+    <Compile Include="000\tbl_000_USER.cs" />
+    <Compile Include="000\tbl_000_USERGROUP_MENUS.cs" />
+    <Compile Include="000\tbl_DEFAULT.cs" />
+    <Compile Include="000\tbl_SIGNATORY.cs" />
+    <Compile Include="000\tbl_tmp_300_H_STANDARD_COSTING_Q01_SUMMARY.cs" />
+    <Compile Include="000\tbl_tmp_H_ITEM_PART.cs" />
+    <Compile Include="100\tbl_100_WIP_COST.cs" />
+    <Compile Include="100\tbl_100_WIP_COSTING_CC.cs" />
+    <Compile Include="100\tbl_100_WIP_COSTING_ITEM.cs" />
+    <Compile Include="100\tbl_100_WIP_COSTING_LABOR_ASSY.cs" />
+    <Compile Include="100\tbl_100_WIP_COSTING_LABOR_BAGG.cs" />
+    <Compile Include="100\tbl_100_WIP_COSTING_LABOR_PI.cs" />
+    <Compile Include="100\tbl_100_WIP_COSTING_LABOR_PLATED.cs" />
+    <Compile Include="100\tbl_100_WIP_COSTING_MATERIALS.cs" />
+    <Compile Include="BaseStatusClass.cs" />
+    <Compile Include="Default\tbl_YEAR.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Default\tbl_MENU.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="200\" />
+    <Folder Include="300\" />
+    <Folder Include="400\" />
+    <Folder Include="500\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libraries\BPSolutionsTools.dll" />
+    <Content Include="Libraries\ExtendedErrorProviderCSharp.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

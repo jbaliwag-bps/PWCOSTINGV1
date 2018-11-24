@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E4EB1A81-1451-441F-B533-44D085219FFE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PWCOSTING.BAL</RootNamespace>
+    <AssemblyName>PWCOSTING.BAL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="000\AssymblyBAL.cs" />
+    <Compile Include="000\CategoryBAL.cs" />
+    <Compile Include="000\ComponentBAL.cs" />
+    <Compile Include="000\DefaultBAL.cs" />
+    <Compile Include="000\ItemCompositionBAL.cs" />
+    <Compile Include="000\FXSPBAL.cs" />
+    <Compile Include="000\ItemBAL.cs" />
+    <Compile Include="000\ItemFDCBAL.cs" />
+    <Compile Include="000\ItemMPTBAL.cs" />
+    <Compile Include="000\ItemTabulationAssyBAL.cs" />
+    <Compile Include="000\ItemTabulationPIBAL.cs" />
+    <Compile Include="000\ItemTabulationVPBAL.cs" />
+    <Compile Include="000\PlasticInjectionBAL.cs" />
+    <Compile Include="000\ProcessSetupBAL.cs" />
+    <Compile Include="000\SignatoryBAL.cs" />
+    <Compile Include="000\tmp_CompositionBAL.cs" />
+    <Compile Include="000\tmp_StndrdCostngSummBAL.cs" />
+    <Compile Include="000\VacuumPlatingBAL.cs" />
+    <Compile Include="100\WIPCCodeBAL.cs" />
+    <Compile Include="100\WIPCostingBAL.cs" />
+    <Compile Include="100\WIPCostingItemBAL.cs" />
+    <Compile Include="100\WIPLabAssyBAL.cs" />
+    <Compile Include="100\WIPLabBaggingBAL.cs" />
+    <Compile Include="100\WIPLabPIBAL.cs" />
+    <Compile Include="100\WIPLabPlatingBAL.cs" />
+    <Compile Include="100\WIPMatBAL.cs" />
+    <Compile Include="Default\YearBAL.cs" />
+    <Compile Include="000\SectionBAL.cs" />
+    <Compile Include="Default\MenuBAL.cs" />
+    <Compile Include="000\UserGroupBAL.cs" />
+    <Compile Include="000\UserBAL.cs" />
+    <Compile Include="000\CompanyBAL.cs" />
+    <Compile Include="SetConnection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="200\" />
+    <Folder Include="300\" />
+    <Folder Include="400\" />
+    <Folder Include="500\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PWCOSTING.BO\PWCOSTING.BO.csproj">
+      <Project>{cae16047-69d3-4e77-b24e-2cc63d304e51}</Project>
+      <Name>PWCOSTING.BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PWCOSTING.DAL\PWCOSTING.DAL.csproj">
+      <Project>{3e35b5a6-2dae-44eb-934a-5d04446eb125}</Project>
+      <Name>PWCOSTING.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
