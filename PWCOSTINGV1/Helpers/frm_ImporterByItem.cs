@@ -93,7 +93,13 @@ namespace PWCOSTINGV1.Forms
             string Bagging = "";
             if (itemaddress.Length > 1)
                 {
-                    string prefx = itemaddress.Substring(0, 1);
+                    int prefixcountstart = 0;
+                    int prefixcountstop = 1; 
+                    if (itemaddress.Length >= 5)
+                    {
+                        prefixcountstop = 2;
+                    }
+                    string prefx = itemaddress.Substring(prefixcountstart, prefixcountstop);
                     var parentrow = tmpdatalist.Where(w => w.ItemAddress == prefx).FirstOrDefault();
                     if (parentrow == null)
                         throw new Exception("Child row have no Parent row!");
@@ -190,7 +196,6 @@ namespace PWCOSTINGV1.Forms
             write_itm.YEARUSED = UserSettings.LogInYear;
             write_itm.ItemNo = dttemp.Rows[0][1].ToString();
             write_itm.Description = dttemp.Rows[1][1].ToString();
-            write_itm.Type = 0;
             write_itm.CatCode = "";
             write_itm.CatDesc = "";
             write_itm.CreatedDate = DateTime.Now;

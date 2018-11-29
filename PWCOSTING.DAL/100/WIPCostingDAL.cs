@@ -51,17 +51,25 @@ namespace PWCOSTING.DAL._100
                 throw ex;
             }
         }
-        public Boolean Save(List<tbl_100_WIP_COST> records)
+        public List<tbl_100_WIP_COST> GetByItem(int yearused, string itemno)
+        {
+            try
+            {
+                return GetAll().Where(w => w.YEARUSED == yearused && w.ItemNo == itemno).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Boolean Save(tbl_100_WIP_COST record)
         {
             using (var dbContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    foreach (tbl_100_WIP_COST record in records)
-                    {
-                        db.WIPCostingList.Add(record);
-                        db.SaveChanges();
-                    }
+                    db.WIPCostingList.Add(record);
+                    db.SaveChanges();
                     dbContextTransaction.Commit();
                     return true;
                 }
@@ -72,16 +80,20 @@ namespace PWCOSTING.DAL._100
                 }
             }
         }
-        public Boolean Update(List<tbl_100_WIP_COST> records)
+        public Boolean Update(tbl_100_WIP_COST record)
         {
             using (var dbContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    foreach (tbl_100_WIP_COST record in records)
+                    if (record.state == "update")
                     {
-                        db.WIPCostingList.Attach(record);
                         db.Entry(record).State = EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    else if (record.state == "add")
+                    {
+                        db.WIPCostingList.Add(record);
                         db.SaveChanges();
                     }
                     dbContextTransaction.Commit();

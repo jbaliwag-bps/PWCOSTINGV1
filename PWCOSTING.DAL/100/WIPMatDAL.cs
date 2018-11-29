@@ -80,9 +80,16 @@ namespace PWCOSTING.DAL._100
                 {
                     foreach (tbl_100_WIP_COSTING_MATERIALS record in records)
                     {
-                        db.WIPMaterialList.Attach(record);
-                        db.Entry(record).State = EntityState.Modified;
-                        db.SaveChanges();
+                        if (record.state == "update")
+                        {
+                            db.Entry(record).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                        else if (record.state == "add")
+                        {
+                            db.WIPMaterialList.Add(record);
+                            db.SaveChanges();
+                        }
                     }
                     dbContextTransaction.Commit();
                     return true;

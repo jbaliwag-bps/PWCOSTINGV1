@@ -178,9 +178,10 @@ namespace PWCOSTINGV1.Forms
                             FormHelpers.ShowDialog(frm2);
                             break;
                         case "quote":
-                            if (MessageHelpers.ShowQuestion("Generate Quotation?") == System.Windows.Forms.DialogResult.Yes)
+                            var itemno = mgridList.SelectedRows[0].Cells["colItemNo"].Value.ToString();
+                            if (MessageHelpers.ShowQuestion("Quote item " + itemno +"?") == System.Windows.Forms.DialogResult.Yes)
                             {
-                                QuoteItem();
+                                QuoteItem(itemno);
                             }
                             break;
                     }
@@ -189,12 +190,11 @@ namespace PWCOSTINGV1.Forms
 
             }
         }
-        private void QuoteItem()
+        private void QuoteItem(string itemno)
         {
             try
             {
                 FormHelpers.CursorWait(true);
-                var itemno = mgridList.SelectedRows[0].Cells["colItemNo"].Value.ToString();
                 if (itembal.QuoteItem(yused, itemno))
                 {
                     MessageHelpers.ShowInfo("Quotation Successful!");

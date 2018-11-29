@@ -19,11 +19,13 @@ namespace PWCOSTING.BO._000
         [Required]
         public string MoldNo { get; set; }
         public string MoldName { get; set; }
-        public string Oz { get; set; }
-        public Decimal PurgePerG { get; set; }
         public Decimal SPH { get; set; }
         public Decimal Cavity { get; set; }
         public Decimal PPH { get; set; }
+        public Decimal Usage { get; set; }
+        public Decimal MolSetUpTime { get; set; }
+        public string Oz { get; set; }
+        public Decimal PurgePerG { get; set; }
         public Boolean IsLocked { get; set; }
         [Browsable(false)]
         public DateTime CreatedDate { get; set; }

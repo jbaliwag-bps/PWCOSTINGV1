@@ -420,52 +420,29 @@ namespace PWCOSTINGV1.Forms
             {
                 foreach (tbl_000_H_ITEM i in todelete_list)
                 {
-                    switch ((ItemComposition)i.Type)
+                    foreach (tbl_000_H_ITEM_PART ic in i.itemCom)
                     {
-                        case ItemComposition.Components:
-                            foreach (tbl_000_H_ITEM_PART ic in i.itemCom)
-                            {
-                                itmcombal.Delete(ic);
-                            }
-                            break;
-                        case ItemComposition.PlasticInjection:
-                            DsubPI(i);
-                            break;
-                        case ItemComposition.VacuumPlating:
-                            DsubVP(i);
-                            break;
-                        case ItemComposition.Assembly:
-                            DsubAssy(i);
-                            break;
-                        case ItemComposition.PlasticInjection_VacuumPlating:
-                            DsubPI(i);
-                            DsubVP(i);
-                            break;
-                        case ItemComposition.PlasticInjection_Assembly:
-                            DsubPI(i);
-                            DsubAssy(i);
-                            break;
-                        case ItemComposition.VacuumPlating_Assembly:
-                            DsubVP(i);
-                            DsubAssy(i);
-                            break;
-                        case ItemComposition.AllTabulation:
-                            DsubPI(i);
-                            DsubVP(i);
-                            DsubAssy(i);
-                            break;
-                        case ItemComposition.ManufacturingProcessTIME:
-                            foreach (tbl_000_H_ITEM_MPT impt in i.itemMPT)
-                            {
-                                itmmptbal.Delete(impt);
-                            }
-                            break;
-                        case ItemComposition.FilmDepreciationCost:
-                            foreach (tbl_000_H_ITEM_FDC impt in i.itemFDC)
-                            {
-                                itmfdcbal.Delete(impt);
-                            }
-                            break;
+                        itmcombal.Delete(ic);
+                    }
+                    DsubPI(i);
+                    DsubVP(i);
+                    DsubAssy(i);
+                    DsubPI(i);
+                    DsubVP(i);
+                    DsubPI(i);
+                    DsubAssy(i);
+                    DsubVP(i);
+                    DsubAssy(i);
+                    DsubPI(i);
+                    DsubVP(i);
+                    DsubAssy(i);
+                    foreach (tbl_000_H_ITEM_MPT impt in i.itemMPT)
+                    {
+                        itmmptbal.Delete(impt);
+                    }
+                    foreach (tbl_000_H_ITEM_FDC impt in i.itemFDC)
+                    {
+                        itmfdcbal.Delete(impt);
                     }
                 }
             }
@@ -482,39 +459,21 @@ namespace PWCOSTINGV1.Forms
             {
                 if (i != null)
                 {
-                    switch ((ItemComposition)i.Type)
-                    {
-                        case ItemComposition.Components:
                             itmcomlist = itmcombal.GetAll().Where(w => w.YEARUSED == i.YEARUSED && w.ItemNo == i.ItemNo).ToList();
-
                             i.itemCom = itmcomlist;
-                            break;
-                        case ItemComposition.PlasticInjection:
-                        case ItemComposition.VacuumPlating:
-                        case ItemComposition.Assembly:
-                        case ItemComposition.PlasticInjection_VacuumPlating:
-                        case ItemComposition.PlasticInjection_Assembly:
-                        case ItemComposition.VacuumPlating_Assembly:
-                        case ItemComposition.AllTabulation:
+
                             itmpilist = itmpibal.GetAll().Where(w => w.YEARUSED == i.YEARUSED && w.ItemNo == i.ItemNo).ToList();
                             itmassylist = itmassybal.GetAll().Where(w => w.YEARUSED == i.YEARUSED && w.ItemNo == i.ItemNo).ToList();
                             itmvplist = itmvpbal.GetAll().Where(w => w.YEARUSED == i.YEARUSED && w.ItemNo == i.ItemNo).ToList();
-
                             i.itemPI = itmpilist;
                             i.itemVP = itmvplist;
                             i.itemAssy = itmassylist;
-                            break;
-                        case ItemComposition.ManufacturingProcessTIME:
+
                             itmmptlist = itmmptbal.GetAll().Where(w => w.YEARUSED == i.YEARUSED && w.ItemNo == i.ItemNo).ToList();
-
                             i.itemMPT = itmmptlist;
-                            break;
-                        case ItemComposition.FilmDepreciationCost:
-                            itmfdclist = itmfdcbal.GetAll().Where(w => w.YEARUSED == i.YEARUSED && w.ItemNo == i.ItemNo).ToList();
 
+                            itmfdclist = itmfdcbal.GetAll().Where(w => w.YEARUSED == i.YEARUSED && w.ItemNo == i.ItemNo).ToList();
                             i.itemFDC = itmfdclist;
-                            break;
-                    }
                 }
             }
             //

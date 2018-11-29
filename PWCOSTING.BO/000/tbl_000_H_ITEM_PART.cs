@@ -9,6 +9,10 @@ namespace PWCOSTING.BO._000
     [Table("tbl_000_H_ITEM_PART")]
     public class tbl_000_H_ITEM_PART
     {
+        [NotMapped]
+        [Browsable(false)]
+        public string state { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Int64 DocID { get; set; }

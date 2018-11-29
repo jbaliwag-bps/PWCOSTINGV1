@@ -9,6 +9,10 @@ namespace PWCOSTING.BO._100
     [Table("tbl_100_WIP_COSTING_MATERIALS")]
     public class tbl_100_WIP_COSTING_MATERIALS
     {
+        [NotMapped]
+        [Browsable(false)]
+        public string state { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Int64 RecID { get; set; }

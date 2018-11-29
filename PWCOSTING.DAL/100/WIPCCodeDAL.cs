@@ -80,9 +80,16 @@ namespace PWCOSTING.DAL._100
                 {
                     foreach (tbl_100_WIP_COSTING_CC record in records)
                     {
-                        db.WIPLaborColorCodeList.Attach(record);
-                        db.Entry(record).State = EntityState.Modified;
-                        db.SaveChanges();
+                        if (record.state == "update")
+                        {
+                            db.Entry(record).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                        else if (record.state == "add")
+                        {
+                            db.WIPLaborColorCodeList.Add(record);
+                            db.SaveChanges();
+                        }
                     }
                     dbContextTransaction.Commit();
                     return true;

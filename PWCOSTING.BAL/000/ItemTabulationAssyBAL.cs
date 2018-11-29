@@ -31,10 +31,6 @@ namespace PWCOSTING.BAL._000
             try
             {
                 var exist = itassydal.GetByID(docid);
-                if (exist == null)
-                {
-                    throw new Exception("Record does not exist!");
-                }
                 return exist;
             }
             catch (Exception ex)

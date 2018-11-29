@@ -41,6 +41,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -66,9 +69,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mgridPartNos = new MetroFramework.Controls.MetroGrid();
             this.colPartNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -101,6 +101,13 @@
             this.label25 = new System.Windows.Forms.Label();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.mgridColorCode = new MetroFramework.Controls.MetroGrid();
+            this.colRecIDCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMatCodeCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMatDescriptionCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUsageCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitTypeCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUnitPriceCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mtpLabor = new MetroFramework.Controls.MetroTabPage();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
@@ -130,12 +137,41 @@
             this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this._tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblPLO4 = new System.Windows.Forms.Label();
+            this.lblPLO3 = new System.Windows.Forms.Label();
+            this.lblPLO2 = new System.Windows.Forms.Label();
+            this.lblPLO1 = new System.Windows.Forms.Label();
+            this.lblAllwPlating = new System.Windows.Forms.Label();
+            this.lblAllwAssembled = new System.Windows.Forms.Label();
+            this.lblAllwBagging = new System.Windows.Forms.Label();
+            this.lblAllwPLInjec = new System.Windows.Forms.Label();
+            this.lblSPPlating = new System.Windows.Forms.Label();
+            this.lblSPAssembled = new System.Windows.Forms.Label();
+            this.lblSPBagging = new System.Windows.Forms.Label();
+            this.lblSPPInjec = new System.Windows.Forms.Label();
+            this.lblLLabor4 = new System.Windows.Forms.Label();
+            this.lblLLabor3 = new System.Windows.Forms.Label();
+            this.lblLLabor2 = new System.Windows.Forms.Label();
+            this.lblLLabor1 = new System.Windows.Forms.Label();
+            this.lblSPL4 = new System.Windows.Forms.Label();
+            this.lblSPL3 = new System.Windows.Forms.Label();
+            this.lblSPL2 = new System.Windows.Forms.Label();
+            this.lblSPL1 = new System.Windows.Forms.Label();
+            this.lblTPlating = new System.Windows.Forms.Label();
+            this.lblTAssembled = new System.Windows.Forms.Label();
+            this.lblTBagging = new System.Windows.Forms.Label();
+            this.lblTPInjec = new System.Windows.Forms.Label();
             this.mgridLabPlated = new MetroFramework.Controls.MetroGrid();
             this.colRecIDPP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colProcessNamePP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPlatingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label18 = new System.Windows.Forms.Label();
             this.mgridLabAssy = new MetroFramework.Controls.MetroGrid();
+            this.colRecIDAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colProcessNameAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHCAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQtyAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTTimeAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.mgridLabBagg = new MetroFramework.Controls.MetroGrid();
@@ -192,18 +228,6 @@
             this.colCompTUsage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCompAllowance = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCompTotalTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRecIDAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProcessNameAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHCAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQtyAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTTimeAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRecIDCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMatCodeCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMatDescriptionCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUsageCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnitTypeCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUnitPriceCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotalCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.mgridPartNos)).BeginInit();
             this.mtpColorCode.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -217,6 +241,7 @@
             this.panel7.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            this._tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mgridLabPlated)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mgridLabAssy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mgridLabBagg)).BeginInit();
@@ -456,7 +481,7 @@
             this._mtxtProcess1.CustomButton.Visible = false;
             this._mtxtProcess1.Lines = new string[0];
             this._mtxtProcess1.Location = new System.Drawing.Point(438, 94);
-            this._mtxtProcess1.MaxLength = 10;
+            this._mtxtProcess1.MaxLength = 25;
             this._mtxtProcess1.Name = "_mtxtProcess1";
             this._mtxtProcess1.PasswordChar = '\0';
             this._mtxtProcess1.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -822,6 +847,52 @@
             this.mgridColorCode.TabIndex = 174;
             this.mgridColorCode.Tag = "";
             // 
+            // colRecIDCC
+            // 
+            this.colRecIDCC.DataPropertyName = "RecID";
+            this.colRecIDCC.HeaderText = "RecID";
+            this.colRecIDCC.Name = "colRecIDCC";
+            this.colRecIDCC.Visible = false;
+            // 
+            // colMatCodeCC
+            // 
+            this.colMatCodeCC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colMatCodeCC.DataPropertyName = "MatCode";
+            this.colMatCodeCC.HeaderText = "Part Code";
+            this.colMatCodeCC.MinimumWidth = 100;
+            this.colMatCodeCC.Name = "colMatCodeCC";
+            // 
+            // colMatDescriptionCC
+            // 
+            this.colMatDescriptionCC.DataPropertyName = "MatDescription";
+            this.colMatDescriptionCC.HeaderText = "Description";
+            this.colMatDescriptionCC.Name = "colMatDescriptionCC";
+            // 
+            // colUsageCC
+            // 
+            this.colUsageCC.DataPropertyName = "Usage";
+            this.colUsageCC.HeaderText = "Usage";
+            this.colUsageCC.Name = "colUsageCC";
+            // 
+            // colUnitTypeCC
+            // 
+            this.colUnitTypeCC.DataPropertyName = "UnitType";
+            this.colUnitTypeCC.HeaderText = "";
+            this.colUnitTypeCC.Name = "colUnitTypeCC";
+            this.colUnitTypeCC.Width = 20;
+            // 
+            // colUnitPriceCC
+            // 
+            this.colUnitPriceCC.DataPropertyName = "UnitPrice";
+            this.colUnitPriceCC.HeaderText = "Unit Price";
+            this.colUnitPriceCC.Name = "colUnitPriceCC";
+            // 
+            // colTotalCC
+            // 
+            this.colTotalCC.DataPropertyName = "Total";
+            this.colTotalCC.HeaderText = "Total";
+            this.colTotalCC.Name = "colTotalCC";
+            // 
             // mtpLabor
             // 
             this.mtpLabor.AutoScroll = true;
@@ -1131,6 +1202,30 @@
             this._tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this._tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this._tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this._tableLayoutPanel3.Controls.Add(this.lblPLO4, 3, 2);
+            this._tableLayoutPanel3.Controls.Add(this.lblPLO3, 2, 2);
+            this._tableLayoutPanel3.Controls.Add(this.lblPLO2, 1, 2);
+            this._tableLayoutPanel3.Controls.Add(this.lblPLO1, 0, 2);
+            this._tableLayoutPanel3.Controls.Add(this.lblAllwPlating, 3, 1);
+            this._tableLayoutPanel3.Controls.Add(this.lblAllwAssembled, 2, 1);
+            this._tableLayoutPanel3.Controls.Add(this.lblAllwBagging, 1, 1);
+            this._tableLayoutPanel3.Controls.Add(this.lblAllwPLInjec, 0, 1);
+            this._tableLayoutPanel3.Controls.Add(this.lblSPPlating, 3, 5);
+            this._tableLayoutPanel3.Controls.Add(this.lblSPAssembled, 2, 5);
+            this._tableLayoutPanel3.Controls.Add(this.lblSPBagging, 1, 5);
+            this._tableLayoutPanel3.Controls.Add(this.lblSPPInjec, 0, 5);
+            this._tableLayoutPanel3.Controls.Add(this.lblLLabor4, 3, 4);
+            this._tableLayoutPanel3.Controls.Add(this.lblLLabor3, 2, 4);
+            this._tableLayoutPanel3.Controls.Add(this.lblLLabor2, 1, 4);
+            this._tableLayoutPanel3.Controls.Add(this.lblLLabor1, 0, 4);
+            this._tableLayoutPanel3.Controls.Add(this.lblSPL4, 3, 3);
+            this._tableLayoutPanel3.Controls.Add(this.lblSPL3, 2, 3);
+            this._tableLayoutPanel3.Controls.Add(this.lblSPL2, 1, 3);
+            this._tableLayoutPanel3.Controls.Add(this.lblSPL1, 0, 3);
+            this._tableLayoutPanel3.Controls.Add(this.lblTPlating, 3, 0);
+            this._tableLayoutPanel3.Controls.Add(this.lblTAssembled, 2, 0);
+            this._tableLayoutPanel3.Controls.Add(this.lblTBagging, 1, 0);
+            this._tableLayoutPanel3.Controls.Add(this.lblTPInjec, 0, 0);
             this._tableLayoutPanel3.Location = new System.Drawing.Point(206, 590);
             this._tableLayoutPanel3.Name = "_tableLayoutPanel3";
             this._tableLayoutPanel3.RowCount = 6;
@@ -1140,8 +1235,328 @@
             this._tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this._tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this._tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this._tableLayoutPanel3.Size = new System.Drawing.Size(374, 129);
+            this._tableLayoutPanel3.Size = new System.Drawing.Size(374, 171);
             this._tableLayoutPanel3.TabIndex = 174;
+            // 
+            // lblPLO4
+            // 
+            this.lblPLO4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPLO4.AutoSize = true;
+            this.lblPLO4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPLO4.Location = new System.Drawing.Point(283, 57);
+            this.lblPLO4.Name = "lblPLO4";
+            this.lblPLO4.Size = new System.Drawing.Size(87, 27);
+            this.lblPLO4.TabIndex = 32;
+            this.lblPLO4.Text = "0.0000";
+            this.lblPLO4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblPLO3
+            // 
+            this.lblPLO3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPLO3.AutoSize = true;
+            this.lblPLO3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPLO3.Location = new System.Drawing.Point(190, 57);
+            this.lblPLO3.Name = "lblPLO3";
+            this.lblPLO3.Size = new System.Drawing.Size(86, 27);
+            this.lblPLO3.TabIndex = 31;
+            this.lblPLO3.Text = "0.0000";
+            this.lblPLO3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblPLO2
+            // 
+            this.lblPLO2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPLO2.AutoSize = true;
+            this.lblPLO2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPLO2.Location = new System.Drawing.Point(97, 57);
+            this.lblPLO2.Name = "lblPLO2";
+            this.lblPLO2.Size = new System.Drawing.Size(86, 27);
+            this.lblPLO2.TabIndex = 30;
+            this.lblPLO2.Text = "0.0000";
+            this.lblPLO2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblPLO1
+            // 
+            this.lblPLO1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPLO1.AutoSize = true;
+            this.lblPLO1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblPLO1.Location = new System.Drawing.Point(4, 57);
+            this.lblPLO1.Name = "lblPLO1";
+            this.lblPLO1.Size = new System.Drawing.Size(86, 27);
+            this.lblPLO1.TabIndex = 29;
+            this.lblPLO1.Text = "0.0000";
+            this.lblPLO1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblAllwPlating
+            // 
+            this.lblAllwPlating.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAllwPlating.AutoSize = true;
+            this.lblAllwPlating.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblAllwPlating.Location = new System.Drawing.Point(283, 29);
+            this.lblAllwPlating.Name = "lblAllwPlating";
+            this.lblAllwPlating.Size = new System.Drawing.Size(87, 27);
+            this.lblAllwPlating.TabIndex = 28;
+            this.lblAllwPlating.Text = "0.0000";
+            this.lblAllwPlating.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblAllwAssembled
+            // 
+            this.lblAllwAssembled.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAllwAssembled.AutoSize = true;
+            this.lblAllwAssembled.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblAllwAssembled.Location = new System.Drawing.Point(190, 29);
+            this.lblAllwAssembled.Name = "lblAllwAssembled";
+            this.lblAllwAssembled.Size = new System.Drawing.Size(86, 27);
+            this.lblAllwAssembled.TabIndex = 27;
+            this.lblAllwAssembled.Text = "0.0000";
+            this.lblAllwAssembled.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblAllwBagging
+            // 
+            this.lblAllwBagging.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAllwBagging.AutoSize = true;
+            this.lblAllwBagging.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblAllwBagging.Location = new System.Drawing.Point(97, 29);
+            this.lblAllwBagging.Name = "lblAllwBagging";
+            this.lblAllwBagging.Size = new System.Drawing.Size(86, 27);
+            this.lblAllwBagging.TabIndex = 26;
+            this.lblAllwBagging.Text = "0.0000";
+            this.lblAllwBagging.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblAllwPLInjec
+            // 
+            this.lblAllwPLInjec.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAllwPLInjec.AutoSize = true;
+            this.lblAllwPLInjec.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblAllwPLInjec.Location = new System.Drawing.Point(4, 29);
+            this.lblAllwPLInjec.Name = "lblAllwPLInjec";
+            this.lblAllwPLInjec.Size = new System.Drawing.Size(86, 27);
+            this.lblAllwPLInjec.TabIndex = 25;
+            this.lblAllwPLInjec.Text = "0.0000";
+            this.lblAllwPLInjec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSPPlating
+            // 
+            this.lblSPPlating.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSPPlating.AutoSize = true;
+            this.lblSPPlating.Location = new System.Drawing.Point(283, 141);
+            this.lblSPPlating.Name = "lblSPPlating";
+            this.lblSPPlating.Size = new System.Drawing.Size(87, 29);
+            this.lblSPPlating.TabIndex = 24;
+            this.lblSPPlating.Text = "0.0000";
+            this.lblSPPlating.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSPAssembled
+            // 
+            this.lblSPAssembled.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSPAssembled.AutoSize = true;
+            this.lblSPAssembled.Location = new System.Drawing.Point(190, 141);
+            this.lblSPAssembled.Name = "lblSPAssembled";
+            this.lblSPAssembled.Size = new System.Drawing.Size(86, 29);
+            this.lblSPAssembled.TabIndex = 23;
+            this.lblSPAssembled.Text = "0.0000";
+            this.lblSPAssembled.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSPBagging
+            // 
+            this.lblSPBagging.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSPBagging.AutoSize = true;
+            this.lblSPBagging.Location = new System.Drawing.Point(97, 141);
+            this.lblSPBagging.Name = "lblSPBagging";
+            this.lblSPBagging.Size = new System.Drawing.Size(86, 29);
+            this.lblSPBagging.TabIndex = 22;
+            this.lblSPBagging.Text = "0.0000";
+            this.lblSPBagging.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSPPInjec
+            // 
+            this.lblSPPInjec.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSPPInjec.AutoSize = true;
+            this.lblSPPInjec.Location = new System.Drawing.Point(4, 141);
+            this.lblSPPInjec.Name = "lblSPPInjec";
+            this.lblSPPInjec.Size = new System.Drawing.Size(86, 29);
+            this.lblSPPInjec.TabIndex = 21;
+            this.lblSPPInjec.Text = "0.0000";
+            this.lblSPPInjec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblLLabor4
+            // 
+            this.lblLLabor4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLLabor4.AutoSize = true;
+            this.lblLLabor4.Location = new System.Drawing.Point(283, 113);
+            this.lblLLabor4.Name = "lblLLabor4";
+            this.lblLLabor4.Size = new System.Drawing.Size(87, 27);
+            this.lblLLabor4.TabIndex = 20;
+            this.lblLLabor4.Text = "0.0000";
+            this.lblLLabor4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblLLabor3
+            // 
+            this.lblLLabor3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLLabor3.AutoSize = true;
+            this.lblLLabor3.Location = new System.Drawing.Point(190, 113);
+            this.lblLLabor3.Name = "lblLLabor3";
+            this.lblLLabor3.Size = new System.Drawing.Size(86, 27);
+            this.lblLLabor3.TabIndex = 19;
+            this.lblLLabor3.Text = "0.0000";
+            this.lblLLabor3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblLLabor2
+            // 
+            this.lblLLabor2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLLabor2.AutoSize = true;
+            this.lblLLabor2.Location = new System.Drawing.Point(97, 113);
+            this.lblLLabor2.Name = "lblLLabor2";
+            this.lblLLabor2.Size = new System.Drawing.Size(86, 27);
+            this.lblLLabor2.TabIndex = 18;
+            this.lblLLabor2.Text = "0.0000";
+            this.lblLLabor2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblLLabor1
+            // 
+            this.lblLLabor1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLLabor1.AutoSize = true;
+            this.lblLLabor1.Location = new System.Drawing.Point(4, 113);
+            this.lblLLabor1.Name = "lblLLabor1";
+            this.lblLLabor1.Size = new System.Drawing.Size(86, 27);
+            this.lblLLabor1.TabIndex = 17;
+            this.lblLLabor1.Text = "0.0000";
+            this.lblLLabor1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSPL4
+            // 
+            this.lblSPL4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSPL4.AutoSize = true;
+            this.lblSPL4.Location = new System.Drawing.Point(283, 85);
+            this.lblSPL4.Name = "lblSPL4";
+            this.lblSPL4.Size = new System.Drawing.Size(87, 27);
+            this.lblSPL4.TabIndex = 16;
+            this.lblSPL4.Text = "0.0000";
+            this.lblSPL4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSPL3
+            // 
+            this.lblSPL3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSPL3.AutoSize = true;
+            this.lblSPL3.Location = new System.Drawing.Point(190, 85);
+            this.lblSPL3.Name = "lblSPL3";
+            this.lblSPL3.Size = new System.Drawing.Size(86, 27);
+            this.lblSPL3.TabIndex = 15;
+            this.lblSPL3.Text = "0.0000";
+            this.lblSPL3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSPL2
+            // 
+            this.lblSPL2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSPL2.AutoSize = true;
+            this.lblSPL2.Location = new System.Drawing.Point(97, 85);
+            this.lblSPL2.Name = "lblSPL2";
+            this.lblSPL2.Size = new System.Drawing.Size(86, 27);
+            this.lblSPL2.TabIndex = 14;
+            this.lblSPL2.Text = "0.0000";
+            this.lblSPL2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblSPL1
+            // 
+            this.lblSPL1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSPL1.AutoSize = true;
+            this.lblSPL1.Location = new System.Drawing.Point(4, 85);
+            this.lblSPL1.Name = "lblSPL1";
+            this.lblSPL1.Size = new System.Drawing.Size(86, 27);
+            this.lblSPL1.TabIndex = 13;
+            this.lblSPL1.Text = "0.0000";
+            this.lblSPL1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTPlating
+            // 
+            this.lblTPlating.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTPlating.AutoSize = true;
+            this.lblTPlating.Location = new System.Drawing.Point(283, 1);
+            this.lblTPlating.Name = "lblTPlating";
+            this.lblTPlating.Size = new System.Drawing.Size(87, 27);
+            this.lblTPlating.TabIndex = 12;
+            this.lblTPlating.Text = "0.0000";
+            this.lblTPlating.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTAssembled
+            // 
+            this.lblTAssembled.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTAssembled.AutoSize = true;
+            this.lblTAssembled.Location = new System.Drawing.Point(190, 1);
+            this.lblTAssembled.Name = "lblTAssembled";
+            this.lblTAssembled.Size = new System.Drawing.Size(86, 27);
+            this.lblTAssembled.TabIndex = 11;
+            this.lblTAssembled.Text = "0.0000";
+            this.lblTAssembled.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTBagging
+            // 
+            this.lblTBagging.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTBagging.AutoSize = true;
+            this.lblTBagging.Location = new System.Drawing.Point(97, 1);
+            this.lblTBagging.Name = "lblTBagging";
+            this.lblTBagging.Size = new System.Drawing.Size(86, 27);
+            this.lblTBagging.TabIndex = 10;
+            this.lblTBagging.Text = "0.0000";
+            this.lblTBagging.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTPInjec
+            // 
+            this.lblTPInjec.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTPInjec.AutoSize = true;
+            this.lblTPInjec.Location = new System.Drawing.Point(4, 1);
+            this.lblTPInjec.Name = "lblTPInjec";
+            this.lblTPInjec.Size = new System.Drawing.Size(86, 27);
+            this.lblTPInjec.TabIndex = 9;
+            this.lblTPInjec.Text = "0.0000";
+            this.lblTPInjec.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // mgridLabPlated
             // 
@@ -1286,6 +1701,45 @@
             this.mgridLabAssy.Size = new System.Drawing.Size(625, 87);
             this.mgridLabAssy.TabIndex = 166;
             this.mgridLabAssy.Tag = "";
+            // 
+            // colRecIDAssy
+            // 
+            this.colRecIDAssy.DataPropertyName = "RecID";
+            this.colRecIDAssy.HeaderText = "RecID";
+            this.colRecIDAssy.Name = "colRecIDAssy";
+            this.colRecIDAssy.Visible = false;
+            // 
+            // colProcessNameAssy
+            // 
+            this.colProcessNameAssy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colProcessNameAssy.DataPropertyName = "ProcessName";
+            this.colProcessNameAssy.HeaderText = "Process Name";
+            this.colProcessNameAssy.MinimumWidth = 100;
+            this.colProcessNameAssy.Name = "colProcessNameAssy";
+            // 
+            // colHCAssy
+            // 
+            this.colHCAssy.DataPropertyName = "HC";
+            dataGridViewCellStyle12.Format = "N4";
+            this.colHCAssy.DefaultCellStyle = dataGridViewCellStyle12;
+            this.colHCAssy.HeaderText = "H/C";
+            this.colHCAssy.Name = "colHCAssy";
+            // 
+            // colQtyAssy
+            // 
+            this.colQtyAssy.DataPropertyName = "QTY";
+            dataGridViewCellStyle13.Format = "N0";
+            this.colQtyAssy.DefaultCellStyle = dataGridViewCellStyle13;
+            this.colQtyAssy.HeaderText = "Qty";
+            this.colQtyAssy.Name = "colQtyAssy";
+            // 
+            // colTTimeAssy
+            // 
+            this.colTTimeAssy.DataPropertyName = "T_Time";
+            dataGridViewCellStyle14.Format = "N4";
+            this.colTTimeAssy.DefaultCellStyle = dataGridViewCellStyle14;
+            this.colTTimeAssy.HeaderText = "T Time";
+            this.colTTimeAssy.Name = "colTTimeAssy";
             // 
             // label9
             // 
@@ -1650,7 +2104,7 @@
             this.mgridLabPI.RowHeadersDefaultCellStyle = dataGridViewCellStyle34;
             this.mgridLabPI.RowHeadersWidth = 25;
             this.mgridLabPI.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.mgridLabPI.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.mgridLabPI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.mgridLabPI.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mgridLabPI.Size = new System.Drawing.Size(622, 103);
             this.mgridLabPI.TabIndex = 22;
@@ -1861,7 +2315,7 @@
             this.mtcforGrids.Controls.Add(this.mtpColorCode);
             this.mtcforGrids.Location = new System.Drawing.Point(315, 254);
             this.mtcforGrids.Name = "mtcforGrids";
-            this.mtcforGrids.SelectedIndex = 2;
+            this.mtcforGrids.SelectedIndex = 1;
             this.mtcforGrids.Size = new System.Drawing.Size(644, 320);
             this.mtcforGrids.TabIndex = 157;
             this.mtcforGrids.UseSelectable = true;
@@ -1951,7 +2405,6 @@
             this.colSPH.HeaderText = "SPH";
             this.colSPH.MinimumWidth = 65;
             this.colSPH.Name = "colSPH";
-            this.colSPH.ReadOnly = true;
             this.colSPH.Width = 65;
             // 
             // colCavity
@@ -2023,91 +2476,6 @@
             this.colCompTotalTime.Name = "colCompTotalTime";
             this.colCompTotalTime.Width = 65;
             // 
-            // colRecIDAssy
-            // 
-            this.colRecIDAssy.DataPropertyName = "RecID";
-            this.colRecIDAssy.HeaderText = "RecID";
-            this.colRecIDAssy.Name = "colRecIDAssy";
-            this.colRecIDAssy.Visible = false;
-            // 
-            // colProcessNameAssy
-            // 
-            this.colProcessNameAssy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colProcessNameAssy.DataPropertyName = "ProcessName";
-            this.colProcessNameAssy.HeaderText = "Process Name";
-            this.colProcessNameAssy.MinimumWidth = 100;
-            this.colProcessNameAssy.Name = "colProcessNameAssy";
-            // 
-            // colHCAssy
-            // 
-            this.colHCAssy.DataPropertyName = "HC";
-            dataGridViewCellStyle12.Format = "N4";
-            this.colHCAssy.DefaultCellStyle = dataGridViewCellStyle12;
-            this.colHCAssy.HeaderText = "H/C";
-            this.colHCAssy.Name = "colHCAssy";
-            // 
-            // colQtyAssy
-            // 
-            this.colQtyAssy.DataPropertyName = "QTY";
-            dataGridViewCellStyle13.Format = "N0";
-            this.colQtyAssy.DefaultCellStyle = dataGridViewCellStyle13;
-            this.colQtyAssy.HeaderText = "Qty";
-            this.colQtyAssy.Name = "colQtyAssy";
-            // 
-            // colTTimeAssy
-            // 
-            this.colTTimeAssy.DataPropertyName = "T_Time";
-            dataGridViewCellStyle14.Format = "N4";
-            this.colTTimeAssy.DefaultCellStyle = dataGridViewCellStyle14;
-            this.colTTimeAssy.HeaderText = "T Time";
-            this.colTTimeAssy.Name = "colTTimeAssy";
-            // 
-            // colRecIDCC
-            // 
-            this.colRecIDCC.DataPropertyName = "RecID";
-            this.colRecIDCC.HeaderText = "RecID";
-            this.colRecIDCC.Name = "colRecIDCC";
-            this.colRecIDCC.Visible = false;
-            // 
-            // colMatCodeCC
-            // 
-            this.colMatCodeCC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colMatCodeCC.DataPropertyName = "MatCode";
-            this.colMatCodeCC.HeaderText = "Part Code";
-            this.colMatCodeCC.MinimumWidth = 100;
-            this.colMatCodeCC.Name = "colMatCodeCC";
-            // 
-            // colMatDescriptionCC
-            // 
-            this.colMatDescriptionCC.DataPropertyName = "MatDescription";
-            this.colMatDescriptionCC.HeaderText = "Description";
-            this.colMatDescriptionCC.Name = "colMatDescriptionCC";
-            // 
-            // colUsageCC
-            // 
-            this.colUsageCC.DataPropertyName = "Usage";
-            this.colUsageCC.HeaderText = "Usage";
-            this.colUsageCC.Name = "colUsageCC";
-            // 
-            // colUnitTypeCC
-            // 
-            this.colUnitTypeCC.DataPropertyName = "UnitType";
-            this.colUnitTypeCC.HeaderText = "";
-            this.colUnitTypeCC.Name = "colUnitTypeCC";
-            this.colUnitTypeCC.Width = 20;
-            // 
-            // colUnitPriceCC
-            // 
-            this.colUnitPriceCC.DataPropertyName = "UnitPrice";
-            this.colUnitPriceCC.HeaderText = "Unit Price";
-            this.colUnitPriceCC.Name = "colUnitPriceCC";
-            // 
-            // colTotalCC
-            // 
-            this.colTotalCC.DataPropertyName = "Total";
-            this.colTotalCC.HeaderText = "Total";
-            this.colTotalCC.Name = "colTotalCC";
-            // 
             // frmWIPCosting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2163,6 +2531,8 @@
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this._tableLayoutPanel3.ResumeLayout(false);
+            this._tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mgridLabPlated)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mgridLabAssy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mgridLabBagg)).EndInit();
@@ -2294,6 +2664,42 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colRecIDPP;
         private System.Windows.Forms.DataGridViewTextBoxColumn colProcessNamePP;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPlatingTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRecIDAssy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProcessNameAssy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colHCAssy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQtyAssy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTTimeAssy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRecIDCC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMatCodeCC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMatDescriptionCC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUsageCC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitTypeCC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitPriceCC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalCC;
+        private System.Windows.Forms.Label lblTPInjec;
+        private System.Windows.Forms.Label lblSPPlating;
+        private System.Windows.Forms.Label lblSPAssembled;
+        private System.Windows.Forms.Label lblSPBagging;
+        private System.Windows.Forms.Label lblSPPInjec;
+        private System.Windows.Forms.Label lblLLabor4;
+        private System.Windows.Forms.Label lblLLabor3;
+        private System.Windows.Forms.Label lblLLabor2;
+        private System.Windows.Forms.Label lblLLabor1;
+        private System.Windows.Forms.Label lblSPL4;
+        private System.Windows.Forms.Label lblSPL3;
+        private System.Windows.Forms.Label lblSPL2;
+        private System.Windows.Forms.Label lblSPL1;
+        private System.Windows.Forms.Label lblTPlating;
+        private System.Windows.Forms.Label lblTAssembled;
+        private System.Windows.Forms.Label lblTBagging;
+        private System.Windows.Forms.Label lblPLO4;
+        private System.Windows.Forms.Label lblPLO3;
+        private System.Windows.Forms.Label lblPLO2;
+        private System.Windows.Forms.Label lblPLO1;
+        private System.Windows.Forms.Label lblAllwPlating;
+        private System.Windows.Forms.Label lblAllwAssembled;
+        private System.Windows.Forms.Label lblAllwBagging;
+        private System.Windows.Forms.Label lblAllwPLInjec;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRecIDMat;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMatCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMatDescription;
@@ -2311,17 +2717,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCompTUsage;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCompAllowance;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCompTotalTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRecIDAssy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colProcessNameAssy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colHCAssy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colQtyAssy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTTimeAssy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRecIDCC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMatCodeCC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMatDescriptionCC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colUsageCC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitTypeCC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colUnitPriceCC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalCC;
     }
 }

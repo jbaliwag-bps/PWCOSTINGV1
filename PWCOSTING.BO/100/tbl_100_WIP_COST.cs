@@ -10,6 +10,10 @@ namespace PWCOSTING.BO._100
     [Table("tbl_100_WIP_COST")]
    public class tbl_100_WIP_COST
     {
+        [NotMapped]
+        [Browsable(false)]
+        public string state { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Int64 RecID { get; set; }
@@ -22,7 +26,7 @@ namespace PWCOSTING.BO._100
         public Decimal SellingPrice { get; set; }
         public Decimal Forex { get; set; }
         public string Ref_Add { get; set; }
-        public Decimal TPInject { get; set; }
+        public Decimal TPInjec { get; set; }
         public Decimal TBagging { get; set; }
         public Decimal TAssembled { get; set; }
         public Decimal TPlating { get; set; }

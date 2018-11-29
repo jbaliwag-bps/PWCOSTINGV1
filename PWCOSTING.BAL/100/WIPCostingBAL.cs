@@ -52,30 +52,41 @@ namespace PWCOSTING.BAL._100
                 throw ex;
             }
         }
-        public Boolean Save(List<tbl_100_WIP_COST> records)
+        public List<tbl_100_WIP_COST> GetByItem(int yearused, string itemno)
         {
             try
             {
-                if (records == null)
-                {
-                    throw new Exception("Invalid Parameter!");
-                }
-                return wipcostdal.Save(records);
+                return wipcostdal.GetByItem(yearused, itemno);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public Boolean Update(List<tbl_100_WIP_COST> records)
+        public Boolean Save(tbl_100_WIP_COST record)
         {
             try
             {
-                if (records == null)
+                if (record == null)
                 {
                     throw new Exception("Invalid Parameter!");
                 }
-                return wipcostdal.Update(records);
+                return wipcostdal.Save(record);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Boolean Update(tbl_100_WIP_COST record)
+        {
+            try
+            {
+                if (record == null)
+                {
+                    throw new Exception("Invalid Parameter!");
+                }
+                return wipcostdal.Update(record);
             }
             catch (Exception ex)
             {

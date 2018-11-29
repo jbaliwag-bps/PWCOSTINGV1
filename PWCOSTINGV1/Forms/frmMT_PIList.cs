@@ -39,11 +39,13 @@ namespace PWCOSTINGV1.Forms
                 "DocID",
                 "MoldNo", 
                 "MoldName",
-                "Oz",
-                "PurgePerG",
                 "SPH",
                 "Cavity",
                 "PPH",
+                "Usage",
+                "MolSetUpTime",
+                "Oz",
+                "PurgePerG",
                 "UpdatedDate",
                 "UpdatedBy"
                 ))

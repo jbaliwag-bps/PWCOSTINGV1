@@ -36,10 +36,6 @@ namespace PWCOSTING.BAL._000
                     throw new Exception("Invalid Parameter!");
                 }
                 var exist = compdal.GetByID(sectioncode);
-                if (exist == null)
-                {
-                    throw new Exception("Record does not exist!");
-                }
                 return exist;
             }
             catch (Exception ex)

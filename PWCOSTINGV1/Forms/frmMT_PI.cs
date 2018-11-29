@@ -81,11 +81,12 @@ namespace PWCOSTINGV1.Forms
             mtxtMoldNo.ReadOnly = IsLocked;
             mtxtMoldName.ReadOnly = IsLocked;
             mcbLocked.Enabled = !IsLocked;
+            mtxtMoldSetupTime.ReadOnly = IsLocked;
+            mtxtCavity.ReadOnly = IsLocked;
             mtxtOz.ReadOnly = IsLocked;
             mtxtPPG.ReadOnly = IsLocked;
             mtxtSPH.ReadOnly = IsLocked;
             mtxtCavity.ReadOnly = IsLocked;
-            mtxtPPH.ReadOnly = IsLocked;
         }
         private void AssignRecord(Boolean IsSave)
         {
@@ -98,7 +99,6 @@ namespace PWCOSTINGV1.Forms
                     if (existpi == null)
                     {
                         pi.YEARUSED = UserSettings.LogInYear;
-                        pi.MoldNo = mtxtMoldNo.Text;
                         pi.CreatedDate = DateTime.Now;
                         pi.CreatedBy = UserSettings.Username;
                         pi.IsCopied = false;
@@ -107,12 +107,16 @@ namespace PWCOSTINGV1.Forms
                         pi.ImportDate = DateTime.Now;
                         pi.ImportBy = UserSettings.Username;
                     }
+                  pi.MoldNo = mtxtMoldNo.Text;
                   pi.MoldName = mtxtMoldName.Text;
                   pi.Oz = mtxtOz.Text;
+                  pi.Cavity = Convert.ToDecimal(mtxtCavity.Text);
                   pi.PurgePerG = Convert.ToDecimal(mtxtPPG.Text);
                   pi.SPH = Convert.ToDecimal(mtxtSPH.Text);
                   pi.Cavity = Convert.ToDecimal(mtxtCavity.Text);
                   pi.PPH = Convert.ToDecimal(mtxtPPH.Text);
+                  pi.MolSetUpTime = Convert.ToDecimal(mtxtMoldSetupTime.Text);
+                  pi.Usage = Convert.ToDecimal(mtxtUsage.Text);
                   pi.IsLocked = mcbLocked.Checked;
                   pi.UpdatedDate = DateTime.Now;
                   pi.UpdatedBy = UserSettings.Username;
@@ -127,9 +131,11 @@ namespace PWCOSTINGV1.Forms
                         mtxtMoldName.Text = pi.MoldName;
                         mtxtOz.Text = pi.Oz;
                         mtxtPPG.Text = pi.PurgePerG.ToString();
-                        mtxtSPH.Text = pi.SPH.ToString();
-                        mtxtCavity.Text = pi.Cavity.ToString();
-                        mtxtPPH.Text = pi.PPH.ToString();
+                        mtxtSPH.Text = Convert.ToInt32(pi.SPH).ToString();
+                        mtxtCavity.Text = Convert.ToInt32(pi.Cavity).ToString();
+                        mtxtPPH.Text = Convert.ToInt32(pi.PPH).ToString();
+                        mtxtMoldSetupTime.Text = pi.MolSetUpTime.ToString();
+                        mtxtUsage.Text = Convert.ToInt32(pi.Usage).ToString();
                         mcbLocked.Checked = pi.IsLocked;
                         pi.UpdatedDate = DateTime.Now;
                         pi.UpdatedBy = UserSettings.Username;
@@ -284,6 +290,36 @@ namespace PWCOSTINGV1.Forms
         }
 
         private void mtxtPPH_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumbersOnly._KeyPress(sender, e);
+        }
+        private void metroTextBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void CalculatePPH()
+        {
+            double sph = Convert.ToDouble(BPSolutionsTools.BPSUtilitiesV1.NZ(mtxtSPH.Text, 0));
+            double cavity = Convert.ToDouble(BPSolutionsTools.BPSUtilitiesV1.NZ(mtxtCavity.Text, 1));
+            double pph = (double)(sph * cavity);
+            mtxtPPH.Text = Math.Round(pph, 4).ToString();
+        }
+        private void mtxtCavity_TextChanged(object sender, EventArgs e)
+        {
+            CalculatePPH();
+        }
+
+        private void mtxtSPH_TextChanged(object sender, EventArgs e)
+        {
+            CalculatePPH();
+        }
+
+        private void mtxtMoldSetupTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumbersOnly._KeyPress(sender, e);
+        }
+
+        private void mtxtUsage_KeyPress(object sender, KeyPressEventArgs e)
         {
             NumbersOnly._KeyPress(sender, e);
         }

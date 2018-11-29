@@ -45,6 +45,10 @@
             this.mbtnSave = new MetroFramework.Controls.MetroButton();
             this.mcbLocked = new MetroFramework.Controls.MetroCheckBox();
             this.mtxtPPG = new MetroFramework.Controls.MetroTextBox();
+            this.mtxtUsage = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.mtxtMoldSetupTime = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
             this.SuspendLayout();
             // 
             // mtxtMoldName
@@ -134,7 +138,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(50, 155);
+            this.metroLabel3.Location = new System.Drawing.Point(50, 272);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(105, 19);
             this.metroLabel3.TabIndex = 35;
@@ -155,7 +159,7 @@
             this.mtxtOz.CustomButton.UseSelectable = true;
             this.mtxtOz.CustomButton.Visible = false;
             this.mtxtOz.Lines = new string[0];
-            this.mtxtOz.Location = new System.Drawing.Point(239, 133);
+            this.mtxtOz.Location = new System.Drawing.Point(239, 250);
             this.mtxtOz.MaxLength = 25;
             this.mtxtOz.Name = "mtxtOz";
             this.mtxtOz.PasswordChar = '\0';
@@ -173,7 +177,7 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(50, 134);
+            this.metroLabel4.Location = new System.Drawing.Point(50, 251);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(26, 19);
             this.metroLabel4.TabIndex = 33;
@@ -194,7 +198,7 @@
             this.mtxtSPH.CustomButton.UseSelectable = true;
             this.mtxtSPH.CustomButton.Visible = false;
             this.mtxtSPH.Lines = new string[0];
-            this.mtxtSPH.Location = new System.Drawing.Point(239, 177);
+            this.mtxtSPH.Location = new System.Drawing.Point(239, 131);
             this.mtxtSPH.MaxLength = 10;
             this.mtxtSPH.Name = "mtxtSPH";
             this.mtxtSPH.PasswordChar = '\0';
@@ -211,12 +215,13 @@
             this.mtxtSPH.WaterMark = "0";
             this.mtxtSPH.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtSPH.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.mtxtSPH.TextChanged += new System.EventHandler(this.mtxtSPH_TextChanged);
             this.mtxtSPH.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtSPH_KeyPress);
             // 
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(50, 178);
+            this.metroLabel5.Location = new System.Drawing.Point(50, 132);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(97, 19);
             this.metroLabel5.TabIndex = 37;
@@ -237,7 +242,7 @@
             this.mtxtCavity.CustomButton.UseSelectable = true;
             this.mtxtCavity.CustomButton.Visible = false;
             this.mtxtCavity.Lines = new string[0];
-            this.mtxtCavity.Location = new System.Drawing.Point(239, 199);
+            this.mtxtCavity.Location = new System.Drawing.Point(239, 153);
             this.mtxtCavity.MaxLength = 10;
             this.mtxtCavity.Name = "mtxtCavity";
             this.mtxtCavity.PasswordChar = '\0';
@@ -254,12 +259,13 @@
             this.mtxtCavity.WaterMark = "0";
             this.mtxtCavity.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtCavity.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.mtxtCavity.TextChanged += new System.EventHandler(this.mtxtCavity_TextChanged);
             this.mtxtCavity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtCavity_KeyPress);
             // 
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(51, 199);
+            this.metroLabel6.Location = new System.Drawing.Point(51, 153);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(44, 19);
             this.metroLabel6.TabIndex = 39;
@@ -280,11 +286,11 @@
             this.mtxtPPH.CustomButton.UseSelectable = true;
             this.mtxtPPH.CustomButton.Visible = false;
             this.mtxtPPH.Lines = new string[0];
-            this.mtxtPPH.Location = new System.Drawing.Point(239, 221);
+            this.mtxtPPH.Location = new System.Drawing.Point(239, 175);
             this.mtxtPPH.MaxLength = 10;
             this.mtxtPPH.Name = "mtxtPPH";
             this.mtxtPPH.PasswordChar = '\0';
-            this.mtxtPPH.PromptText = "0";
+            this.mtxtPPH.ReadOnly = true;
             this.mtxtPPH.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtPPH.SelectedText = "";
             this.mtxtPPH.SelectionLength = 0;
@@ -294,7 +300,6 @@
             this.mtxtPPH.TabIndex = 42;
             this.mtxtPPH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtPPH.UseSelectable = true;
-            this.mtxtPPH.WaterMark = "0";
             this.mtxtPPH.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtPPH.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtPPH.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtPPH_KeyPress);
@@ -302,7 +307,7 @@
             // metroLabel7
             // 
             this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(51, 221);
+            this.metroLabel7.Location = new System.Drawing.Point(51, 175);
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(102, 19);
             this.metroLabel7.TabIndex = 41;
@@ -310,7 +315,7 @@
             // 
             // mbtnCancel
             // 
-            this.mbtnCancel.Location = new System.Drawing.Point(316, 251);
+            this.mbtnCancel.Location = new System.Drawing.Point(316, 303);
             this.mbtnCancel.Name = "mbtnCancel";
             this.mbtnCancel.Size = new System.Drawing.Size(75, 40);
             this.mbtnCancel.TabIndex = 50;
@@ -320,7 +325,7 @@
             // 
             // mbtnSave
             // 
-            this.mbtnSave.Location = new System.Drawing.Point(239, 251);
+            this.mbtnSave.Location = new System.Drawing.Point(239, 303);
             this.mbtnSave.Name = "mbtnSave";
             this.mbtnSave.Size = new System.Drawing.Size(75, 40);
             this.mbtnSave.TabIndex = 49;
@@ -354,7 +359,7 @@
             this.mtxtPPG.CustomButton.UseSelectable = true;
             this.mtxtPPG.CustomButton.Visible = false;
             this.mtxtPPG.Lines = new string[0];
-            this.mtxtPPG.Location = new System.Drawing.Point(239, 155);
+            this.mtxtPPG.Location = new System.Drawing.Point(239, 272);
             this.mtxtPPG.MaxLength = 10;
             this.mtxtPPG.Name = "mtxtPPG";
             this.mtxtPPG.PasswordChar = '\0';
@@ -373,11 +378,102 @@
             this.mtxtPPG.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtPPG.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtPPG_KeyPress);
             // 
+            // mtxtUsage
+            // 
+            // 
+            // 
+            // 
+            this.mtxtUsage.CustomButton.Image = null;
+            this.mtxtUsage.CustomButton.Location = new System.Drawing.Point(133, 1);
+            this.mtxtUsage.CustomButton.Name = "";
+            this.mtxtUsage.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.mtxtUsage.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.mtxtUsage.CustomButton.TabIndex = 1;
+            this.mtxtUsage.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.mtxtUsage.CustomButton.UseSelectable = true;
+            this.mtxtUsage.CustomButton.Visible = false;
+            this.mtxtUsage.Lines = new string[0];
+            this.mtxtUsage.Location = new System.Drawing.Point(239, 224);
+            this.mtxtUsage.MaxLength = 10;
+            this.mtxtUsage.Name = "mtxtUsage";
+            this.mtxtUsage.PasswordChar = '\0';
+            this.mtxtUsage.PromptText = "0";
+            this.mtxtUsage.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.mtxtUsage.SelectedText = "";
+            this.mtxtUsage.SelectionLength = 0;
+            this.mtxtUsage.SelectionStart = 0;
+            this.mtxtUsage.ShortcutsEnabled = true;
+            this.mtxtUsage.Size = new System.Drawing.Size(155, 23);
+            this.mtxtUsage.TabIndex = 70;
+            this.mtxtUsage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtxtUsage.UseSelectable = true;
+            this.mtxtUsage.WaterMark = "0";
+            this.mtxtUsage.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.mtxtUsage.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.mtxtUsage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtUsage_KeyPress);
+            // 
+            // metroLabel8
+            // 
+            this.metroLabel8.AutoSize = true;
+            this.metroLabel8.Location = new System.Drawing.Point(50, 224);
+            this.metroLabel8.Name = "metroLabel8";
+            this.metroLabel8.Size = new System.Drawing.Size(45, 19);
+            this.metroLabel8.TabIndex = 69;
+            this.metroLabel8.Text = "Usage";
+            // 
+            // mtxtMoldSetupTime
+            // 
+            // 
+            // 
+            // 
+            this.mtxtMoldSetupTime.CustomButton.Image = null;
+            this.mtxtMoldSetupTime.CustomButton.Location = new System.Drawing.Point(133, 1);
+            this.mtxtMoldSetupTime.CustomButton.Name = "";
+            this.mtxtMoldSetupTime.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.mtxtMoldSetupTime.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.mtxtMoldSetupTime.CustomButton.TabIndex = 1;
+            this.mtxtMoldSetupTime.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.mtxtMoldSetupTime.CustomButton.UseSelectable = true;
+            this.mtxtMoldSetupTime.CustomButton.Visible = false;
+            this.mtxtMoldSetupTime.Lines = new string[0];
+            this.mtxtMoldSetupTime.Location = new System.Drawing.Point(239, 202);
+            this.mtxtMoldSetupTime.MaxLength = 25;
+            this.mtxtMoldSetupTime.Name = "mtxtMoldSetupTime";
+            this.mtxtMoldSetupTime.PasswordChar = '\0';
+            this.mtxtMoldSetupTime.PromptText = "0";
+            this.mtxtMoldSetupTime.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.mtxtMoldSetupTime.SelectedText = "";
+            this.mtxtMoldSetupTime.SelectionLength = 0;
+            this.mtxtMoldSetupTime.SelectionStart = 0;
+            this.mtxtMoldSetupTime.ShortcutsEnabled = true;
+            this.mtxtMoldSetupTime.Size = new System.Drawing.Size(155, 23);
+            this.mtxtMoldSetupTime.TabIndex = 68;
+            this.mtxtMoldSetupTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.mtxtMoldSetupTime.UseSelectable = true;
+            this.mtxtMoldSetupTime.WaterMark = "0";
+            this.mtxtMoldSetupTime.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.mtxtMoldSetupTime.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.mtxtMoldSetupTime.Click += new System.EventHandler(this.metroTextBox2_Click);
+            this.mtxtMoldSetupTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtMoldSetupTime_KeyPress);
+            // 
+            // metroLabel9
+            // 
+            this.metroLabel9.AutoSize = true;
+            this.metroLabel9.Location = new System.Drawing.Point(50, 203);
+            this.metroLabel9.Name = "metroLabel9";
+            this.metroLabel9.Size = new System.Drawing.Size(75, 19);
+            this.metroLabel9.TabIndex = 67;
+            this.metroLabel9.Text = "Setup Time";
+            // 
             // frmMT_PI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 317);
+            this.ClientSize = new System.Drawing.Size(734, 370);
+            this.Controls.Add(this.mtxtUsage);
+            this.Controls.Add(this.metroLabel8);
+            this.Controls.Add(this.mtxtMoldSetupTime);
+            this.Controls.Add(this.metroLabel9);
             this.Controls.Add(this.mtxtPPG);
             this.Controls.Add(this.mcbLocked);
             this.Controls.Add(this.mbtnCancel);
@@ -425,6 +521,10 @@
         private MetroFramework.Controls.MetroButton mbtnSave;
         private MetroFramework.Controls.MetroCheckBox mcbLocked;
         private MetroFramework.Controls.MetroTextBox mtxtPPG;
+        private MetroFramework.Controls.MetroTextBox mtxtUsage;
+        private MetroFramework.Controls.MetroLabel metroLabel8;
+        private MetroFramework.Controls.MetroTextBox mtxtMoldSetupTime;
+        private MetroFramework.Controls.MetroLabel metroLabel9;
 
 
     }

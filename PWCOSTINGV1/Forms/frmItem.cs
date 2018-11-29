@@ -40,12 +40,6 @@ namespace PWCOSTINGV1.Forms
         tbl_000_H_PART com;
 
         tbl_000_H_ITEM item;
-        tbl_000_H_ITEM_PART item_com;
-        tbl_000_H_ITEM_TABULATION item_pi;
-        tbl_000_H_ITEM_TABULATION_VP item_vp;
-        tbl_000_H_ITEM_TABULATION_ASSY item_assy;
-        tbl_000_H_ITEM_MPT item_mpt;
-        tbl_000_H_ITEM_FDC item_fdc;
         tbl_000_H_CATEGORY cat;
 
         List<tbl_000_H_ITEM_PART> item_comlist;
@@ -55,7 +49,14 @@ namespace PWCOSTINGV1.Forms
         List<tbl_000_H_ITEM_MPT> item_mptlist;
         List<tbl_000_H_ITEM_FDC> item_fdclist;
 
-        public List<tbl_000_H_PART> comlist { get; set; }
+        //Binder
+        BindingList<tbl_000_H_ITEM_PART> bitem_comlist;
+        BindingList<tbl_000_H_ITEM_TABULATION> bitem_pilist;
+        BindingList<tbl_000_H_ITEM_TABULATION_VP> bitem_vplist;
+        BindingList<tbl_000_H_ITEM_TABULATION_ASSY> bitem_assylist;
+        BindingList<tbl_000_H_ITEM_MPT> bitem_mptlist;
+        BindingList<tbl_000_H_ITEM_FDC> bitem_fdclist; 
+
         ErrorProviderExtended err;
 
         public FormState MyState { get; set; }
@@ -80,7 +81,6 @@ namespace PWCOSTINGV1.Forms
                     case FormState.Add:
                         LockFields(false);
                         LockColumn(false);
-                        HideButton(false);
                         PanelSetup();
                         strheader += " - New";
                         mtcItem.SelectedIndex = 0;
@@ -90,7 +90,6 @@ namespace PWCOSTINGV1.Forms
                         AssignRecord(false, true);
                         LockFields(false);
                         LockColumn(false);
-                        HideButton(true);
                         if (MyState == FormState.View)
                         {
                             LockFields(true);
@@ -102,7 +101,6 @@ namespace PWCOSTINGV1.Forms
                         else
                         {
                             mtxtItemNo.ReadOnly = true;
-                            mgridListFDC.Columns["colType"].ReadOnly = true;
                             mbtnSave.BackgroundImage = Properties.Resources.saveicon1;
                             strheader += " - Edit";
                         }
@@ -115,17 +113,58 @@ namespace PWCOSTINGV1.Forms
                 MessageHelpers.ShowError(ex.Message);
             }
             ListHelper.FillMetroCombo(mcboCatCode, catbal.GetAll().Select(i => new { i.CATCODE, i.CATDESC }).Distinct().OrderBy(m => m.CATDESC).ToList(), "CATCODE", "CATDESC");
-            LoadGridPI();
-            LoadGridVP();
-            LoadGridAssy();
-            LoadGridMPT();
-            LoadGridCL();
             lblTotalDepn.Text = CalculateTotal(mgridListPI, "colDepnMold").ToString();
             lblTotalOPTime.Text = CalculateTotal(mgridListPI, "colOperatingTime").ToString();
             lblTotalSTDRateHour.Text = CalculateTotal(mgridListAssy, "colSTDRATEperHour").ToString();
             lblTotalAmount.Text = CalculateTotal(mgridListCL, "colAmount").ToString();
 
 
+        }
+        private void MainItem()
+        {
+            item = itembal.GetByID(UserSettings.LogInYear, mtxtItemNo.Text);
+            if (item == null)
+            {
+                item = new tbl_000_H_ITEM();
+                item.state = "add";
+                item.YEARUSED = UserSettings.LogInYear;
+                item.ItemNo = mtxtItemNo.Text;
+                item.CreatedDate = DateTime.Now;
+                item.CreatedBy = UserSettings.Username;
+                item.LockedDate = DateTime.Now;
+                item.IsCopied = false;
+                item.CopyDate = DateTime.Now;
+                item.ImportDate = DateTime.Now;
+            }
+            else
+            {
+                item.state = "update";
+            }
+
+            item.Description = mtxtItemDesc.Text;
+            item.CatCode = BPSUtilitiesV1.NZ(mcboCatCode.SelectedValue, "").ToString();
+            item.CatDesc = mcboCatCode.Text;
+            if (!item.IsLocked && mcbLock.Checked)
+            {
+                item.LockedDate = DateTime.Now;
+            }
+            item.IsLocked = mcbLock.Checked;
+            //Temporary
+            item.LotQTY = 0;
+            item.ProdMonth = 0;
+            //
+            item.LastUpdated = DateTime.Now;
+            item.UpdatedDate = DateTime.Now;
+            item.UpdatedBy = UserSettings.Username;
+        }
+        private void RenewLists()
+        {
+            item_comlist = new List<tbl_000_H_ITEM_PART>();
+            item_pilist = new List<tbl_000_H_ITEM_TABULATION>();
+            item_vplist = new List<tbl_000_H_ITEM_TABULATION_VP>();
+            item_assylist = new List<tbl_000_H_ITEM_TABULATION_ASSY>();
+            item_mptlist = new List<tbl_000_H_ITEM_MPT>();
+            item_fdclist = new List<tbl_000_H_ITEM_FDC>();
         }
         private double CalculateTotal(DataGridView dgv, string columnname)
         {
@@ -172,27 +211,6 @@ namespace PWCOSTINGV1.Forms
             mgridListVP.ReadOnly = IsLock;
             mgridListMPT.ReadOnly = IsLock;
             mgridListFDC.ReadOnly = IsLock;
-            mgridListFDC.AllowUserToAddRows = !IsLock;
-        }
-        private void HideButton(Boolean IsHidden)
-        {
-            mbtnAddCL.Visible = !IsHidden;
-            mbtnRemoveCL.Visible = !IsHidden;
-            mbtnAddAssy.Visible = !IsHidden;
-            mbtnRemoveAssy.Visible = !IsHidden;
-            mbtnAddVP.Visible = !IsHidden;
-            mbtnRemoveVP.Visible = !IsHidden;
-            mbtnAddPI.Visible = !IsHidden;
-            mbtnRemovePI.Visible = !IsHidden;
-            mbtnAddMPT.Visible = !IsHidden;
-            mbtnRemoveMPT.Visible = !IsHidden;
-            mbtnRemoveMPT.Visible = !IsHidden;
-            if (MyState == FormState.Edit || MyState == FormState.View)
-            {
-                //Adjust Grids
-                mgridListCL.Location = mbtnAddCL.Location;
-                mgridListMPT.Location = mbtnAddMPT.Location;
-            }
         }
         //Assigning
         private void FilltxtAutoComplete()
@@ -207,313 +225,264 @@ namespace PWCOSTINGV1.Forms
             mtxtItemNo.AutoCompleteSource = AutoCompleteSource.CustomSource;
             mtxtItemNo.AutoCompleteCustomSource = collection;
         }
-
-        private void AssignCom()
-        {
-            item_comlist = new List<tbl_000_H_ITEM_PART>();
-            for (int i = 0; i < mgridListCL.Rows.Count; i++)
-            {
-                item_com = item_combal.GetByID(Convert.ToInt64(mgridListCL.Rows[i].Cells["colDocIDCL"].Value));
-                if (item_com == null)
-                {
-                    item.Type = Convert.ToInt16(ItemComposition.Components);
-                    item_com = new tbl_000_H_ITEM_PART();
-                    item_com.YEARUSED = UserSettings.LogInYear;
-                    item_com.ItemNo = mtxtItemNo.Text;
-                    item_com.PartNo = mgridListCL.Rows[i].Cells["colPartNoCL"].Value.ToString();
-                    item_com.IsCopied = false;
-                    item_com.CopyDate = DateTime.Now;
-                    item_com.ImportDate = DateTime.Now;
-                }
-                item_com.PartName = mgridListCL.Rows[i].Cells["colDescriptionCL"].Value.ToString();
-                item_com.PartType = mgridListCL.Rows[i].Cells["colBagging"].Value.ToString();
-                item_com.ItemAddress = mgridListCL.Rows[i].Cells["colAddress"].Value.ToString();
-                item_com.ItemUsage = Convert.ToDecimal(mgridListCL.Rows[i].Cells["colUsageCL"].Value);
-                item_com.SectionCode = mgridListCL.Rows[i].Cells["colProcess"].Value.ToString();
-                item_com.ItemVendor = mgridListCL.Rows[i].Cells["colVendor"].Value.ToString();
-                item_com.ItemUnit = mgridListCL.Rows[i].Cells["colUnit"].Value.ToString();
-                item_com.UnitPrice = Convert.ToDecimal(mgridListCL.Rows[i].Cells["colUnitPrice"].Value);
-                item_com.Amount = Convert.ToDecimal(mgridListCL.Rows[i].Cells["colAmount"].Value);
-                item_comlist.Add(item_com);
-            }
-
-            if (item_comlist.Count > 0)
-            {
-                item.itemCom = item_comlist;
-            }
-        }
-        private void AssignPI()
-        {
-            for (int i = 0; i < mgridListPI.RowCount; i++)
-            {
-                item_pi = item_pibal.GetByID(Convert.ToInt64(mgridListPI.Rows[i].Cells["colDocIDPI"].Value));
-                if (item_pi == null)
-                {
-                    item.Type = Convert.ToInt16(ItemComposition.PlasticInjection);
-                    item_pi = new tbl_000_H_ITEM_TABULATION();
-                    item_pi.YEARUSED = UserSettings.LogInYear;
-                    item_pi.ItemNo = mtxtItemNo.Text;
-                    item_pi.PartNo = mgridListPI.Rows[i].Cells["colMoldNo"].Value.ToString();
-                    item_pi.IsCopied = false;
-                    item_pi.CopyDate = DateTime.Now;
-                }
-                item_pi.PartName = mgridListPI.Rows[i].Cells["colPartNamePI"].Value.ToString();
-                item_pi.AcquisitionCost = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colAcquCost"].Value);
-                item_pi.QtyProduced = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colQTYprodcd"].Value);
-                item_pi.DepQty = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colDepnQty"].Value);
-                item_pi.MoldCost = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colMoldCost"].Value);
-                item_pi.ESTSHHR = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colSPH"].Value);
-                item_pi.ESTPCSHR = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colPPH"].Value);
-                item_pi.ESTHC = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colUsagePI"].Value);
-                item_pi.DepnMold = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colDepnMold"].Value);
-
-                //Temporary
-                item_pi.ACTSHHR = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colSPH"].Value);
-                item_pi.ACTPCSHR = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colPPH"].Value);
-                item_pi.ACTHC = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colUsagePI"].Value);
-                //
-
-                item_pi.Cavity = mgridListPI.Rows[i].Cells["colCavity"].Value.ToString();
-                item_pi.MoldSetUpTime = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colMSandChangehr"].Value);
-                item_pi.Oz = mgridListPI.Rows[i].Cells["colOz"].Value.ToString();
-                item_pi.Purge_G = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colPurge"].Value);
-                item_pi.OPTime = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colOperatingTime"].Value);
-                item_pilist.Add(item_pi);
-            }
-            if (item_pilist.Count > 0)
-            {
-                item.itemPI = item_pilist;
-            }
-        }
-        private void AssignVP()
-        {
-            for (int i = 0; i < mgridListVP.RowCount; i++)
-            {
-                item_vp = item_vpbal.GetByID(Convert.ToInt64(mgridListVP.Rows[i].Cells["colDocIDVP"].Value));
-                if (item_vp == null)
-                {
-                    if (mgridListPI.RowCount > 0)
-                    {
-                        item.Type = Convert.ToInt16(ItemComposition.PlasticInjection_VacuumPlating);
-                    }
-                    else
-                    {
-                        item.Type = Convert.ToInt16(ItemComposition.VacuumPlating);
-                    }
-                    item_vp = new tbl_000_H_ITEM_TABULATION_VP();
-                    item_vp.YEARUSED = UserSettings.LogInYear;
-                    item_vp.ItemNo = mtxtItemNo.Text;
-                    item_vp.PartNo = mgridListVP.Rows[i].Cells["colPartNoVP"].Value.ToString();
-                    item_vp.CreatedDate = DateTime.Now;
-                    item_vp.CreatedBy = UserSettings.Username;
-                    item_vp.IsCopied = false;
-                    item_vp.CopyDate = DateTime.Now;
-                }
-                item_vp.PartName = mgridListVP.Rows[i].Cells["colPartNameVP"].Value.ToString();
-                item_vp.SourceData = mgridListVP.Rows[i].Cells["colSourceData"].Value.ToString();
-                item_vp.ActualTimePerUnit = Convert.ToDecimal(mgridListVP.Rows[i].Cells["colATperUnit"].Value);
-                //Temporary
-                item_vp.VP_Operation = mgridListVP.Rows[i].Cells["colHC"].Value.ToString();
-                item_vp.TotalQty = Convert.ToDecimal(mgridListVP.Rows[i].Cells["colQty"].Value);
-                item_vp.TotalTime = 0;
-                //
-                item_vplist.Add(item_vp);
-            }
-            if (item_vplist.Count > 0)
-            {
-                item.itemVP = item_vplist;
-            }
-        }
-        private void AssignAssy()
-        {
-            for (int i = 0; i < mgridListAssy.Rows.Count; i++)
-            {
-                item_assy = item_assybal.GetByID(Convert.ToInt64(mgridListAssy.Rows[i].Cells["colDocIDAssy"].Value));
-                if (item_assy == null)
-                {
-                    if (mgridListPI.RowCount > 0 && mgridListVP.RowCount <= 0)
-                    {
-                        item.Type = Convert.ToInt16(ItemComposition.PlasticInjection_Assembly);
-                    }
-                    else if (mgridListVP.RowCount > 0 && mgridListPI.RowCount <= 0)
-                    {
-                        item.Type = Convert.ToInt32(ItemComposition.VacuumPlating_Assembly);
-                    }
-                    else if (mgridListPI.RowCount > 0 && mgridListVP.RowCount > 0)
-                    {
-                        item.Type = Convert.ToInt16(ItemComposition.AllTabulation);
-                    }
-                    else
-                    {
-                        item.Type = Convert.ToInt16(ItemComposition.Assembly);
-                    }
-                    item_assy = new tbl_000_H_ITEM_TABULATION_ASSY();
-                    item_assy.YEARUSED = UserSettings.LogInYear;
-                    item_assy.ItemNo = mtxtItemNo.Text;
-                    item_assy.PartNo = mgridListAssy.Rows[i].Cells["colPartNoAssy"].Value.ToString();
-                    item_assy.CreatedDate = DateTime.Now;
-                    item_assy.CreatedBy = UserSettings.Username;
-                    item_assy.IsCopied = false;
-                    item_assy.CopyDate = DateTime.Now;
-                }
-                item_assy.PartName = mgridListAssy.Rows[i].Cells["colPartNameAssy"].Value.ToString();
-                item_assy.Usage = Convert.ToDecimal(mgridListAssy.Rows[i].Cells["colOPUSG"].Value);
-
-                //Temporary
-                item_assy.OPASSY = Convert.ToInt32(mgridListAssy.Rows[i].Cells["colOPHC"].Value);
-                item_assy.OPPI = Convert.ToInt32(mgridListAssy.Rows[i].Cells["colOPHC"].Value);
-                //
-                item_assy.STDRATEPERHOUR = Convert.ToDecimal(mgridListAssy.Rows[i].Cells["colSTDRATEperHour"].Value);
-                item_assylist.Add(item_assy);
-            }
-            if (item_assylist.Count > 0)
-            {
-                item.itemAssy = item_assylist;
-            }
-        }
-        private void AssignMPT()
-        {
-            for (int i = 0; i < mgridListMPT.Rows.Count; i++)
-            {
-                item_mpt = item_mptbal.GetByID(Convert.ToInt64(mgridListMPT.Rows[i].Cells["colDocIDMPT"].Value.ToString()));
-                if (item_mpt == null)
-                {
-                    item.Type = Convert.ToInt16(ItemComposition.ManufacturingProcessTIME);
-                    item_mpt = new tbl_000_H_ITEM_MPT();
-                    item_mpt.YEARUSED = UserSettings.LogInYear;
-                    item_mpt.ItemNo = mtxtItemNo.Text;
-                    item_mpt.SectionCode = mgridListMPT.Rows[i].Cells["colSectionCode"].Value.ToString();
-                    item_mpt.CreatedDate = DateTime.Now;
-                    item_mpt.CreatedBy = UserSettings.Username;
-                    item_mpt.IsCopied = false;
-                    item_mpt.CopyDate = DateTime.Now;
-                }
-                item_mpt.SectionName = mgridListMPT.Rows[i].Cells["colSectionName"].Value.ToString();
-                item_mpt.ProductionTime = Convert.ToDecimal(mgridListMPT.Rows[i].Cells["colProductionTime"].Value);
-                item_mptlist.Add(item_mpt);
-            }
-            if (item_mptlist.Count > 0)
-            {
-                item.itemMPT = item_mptlist;
-            }
-        }
-        private void AssignFDC()
-        {
-            for (int i = 0; i < mgridListFDC.RowCount; i++)
-            {
-                if (mgridListFDC.Rows[i].IsNewRow) continue;
-                item_fdc = item_fdcbal.GetByID(UserSettings.LogInYear, mtxtItemNo.Text, mgridListFDC.Rows[i].Cells["colType"].Value.ToString());
-                if (item_fdc == null)
-                {
-                    item.Type = Convert.ToInt16(ItemComposition.FilmDepreciationCost);
-                    item_fdc = new tbl_000_H_ITEM_FDC();
-                    item_fdc.YEARUSED = UserSettings.LogInYear;
-                    item_fdc.ItemNo = mtxtItemNo.Text;
-                    item_fdc.DepnType = mgridListFDC.Rows[i].Cells["colType"].Value.ToString();
-                    item_fdc.CreatedDate = DateTime.Now;
-                    item_fdc.CreatedBy = UserSettings.Username;
-                    item_fdc.IsCopied = false;
-                    item_fdc.CopyDate = DateTime.Now;
-                }
-                item_fdc.Description = mgridListFDC.Rows[i].Cells["colDesciptionFDC"].Value.ToString();
-                item_fdc.FDC_QTY = Convert.ToDecimal(mgridListFDC.Rows[i].Cells["colQTYFDC"].Value);
-                item_fdc.AcquisitionCost = Convert.ToDecimal(mgridListFDC.Rows[i].Cells["colAcquCostFDC"].Value);
-                item_fdc.DepnQTY = Convert.ToDecimal(mgridListFDC.Rows[i].Cells["colDepnQtyFDC"].Value);
-                item_fdc.DepnCost = Convert.ToDecimal(mgridListFDC.Rows[i].Cells["colDepnCost"].Value);
-                item_fdc.DepnFilm = Convert.ToDecimal(mgridListFDC.Rows[i].Cells["colDepnFilm"].Value);
-                item_fdclist.Add(item_fdc);
-            }
-            if (item_fdclist.Count > 0)
-            {
-                item.itemFDC = item_fdclist;
-            }
-        }
-
         //End Assigning Subs
+        private void LoadItem(int subsyearused)
+        {
+
+            var item_comdata = item_combal.GetByNo(subsyearused, itemno).ToList();
+            bitem_comlist = new BindingList<tbl_000_H_ITEM_PART>(item_comdata);
+            mgridListCL.DataSource = bitem_comlist;
+
+            var item_pidata = item_pibal.GetByNo(subsyearused, itemno).ToList();
+            bitem_pilist = new BindingList<tbl_000_H_ITEM_TABULATION>(item_pidata);
+            mgridListPI.DataSource = bitem_pilist;
+
+            var item_vpdata = item_vpbal.GetByNo(subsyearused, itemno).ToList();
+            bitem_vplist = new BindingList<tbl_000_H_ITEM_TABULATION_VP>(item_vpdata);
+            mgridListVP.DataSource = bitem_vplist;
+
+            var item_assydata = item_assybal.GetByNo(subsyearused, itemno).ToList();
+            bitem_assylist = new BindingList<tbl_000_H_ITEM_TABULATION_ASSY>(item_assydata);
+            mgridListAssy.DataSource = bitem_assylist;
+
+            var item_mptdata = item_mptbal.GetByNo(subsyearused, itemno).ToList();
+            bitem_mptlist = new BindingList<tbl_000_H_ITEM_MPT>(item_mptdata);
+            mgridListMPT.DataSource = bitem_mptlist;
+
+            var item_fdcdata = item_fdcbal.GetByNo(subsyearused, itemno).ToList();
+            bitem_fdclist = new BindingList<tbl_000_H_ITEM_FDC>(item_fdcdata);
+            mgridListFDC.DataSource = bitem_fdclist;
+        }
         private void AssignRecord(Boolean IsSave, Boolean IsNewItem)
         {
             try
             {
+                MainItem();
                 if (IsSave)
                 {
-                    item = itembal.GetByID(UserSettings.LogInYear, mtxtItemNo.Text);
-                    if (item == null)
+                    //Composition List
+                    for (int i = 0; i < mgridListCL.RowCount; i++)
                     {
-                        item = new tbl_000_H_ITEM();
-                        item.YEARUSED = UserSettings.LogInYear;
-                        item.ItemNo = mtxtItemNo.Text;
-                        item.CreatedDate = DateTime.Now;
-                        item.CreatedBy = UserSettings.Username;
-                        item.LockedDate = DateTime.Now;
-                        item.IsCopied = false;
-                        item.CopyDate = DateTime.Now;
-                        item.ImportDate = DateTime.Now;
-                    }
-                    item.Description = mtxtItemDesc.Text;
-                    item.CatCode = BPSUtilitiesV1.NZ(mcboCatCode.SelectedValue, "").ToString();
-                    item.CatDesc = mcboCatCode.Text;
-                    if (!item.IsLocked && mcbLock.Checked)
-                    {
-                        item.LockedDate = DateTime.Now;
-                    }
-                    item.IsLocked = mcbLock.Checked;
-                    //Temporary
-                    item.LotQTY = 0;
-                    item.ProdMonth = 0;
-                    //
-                    item.LastUpdated = DateTime.Now;
-                    item.UpdatedDate = DateTime.Now;
-                    item.UpdatedBy = UserSettings.Username;
-                    if (mtcItem.SelectedTab == mtpCompositionList)
-                    {
-                        //Compositition List
-                        if (mgridListCL.RowCount > 0)
+                        if (mgridListCL.Rows[i].IsNewRow) continue;
+                        var docid = Convert.ToInt64(BPSUtilitiesV1.NZ(mgridListCL.Rows[i].Cells["colDocIDCL"].Value, 0));
+                        var item_com = item_combal.GetByID(docid);
+                        if (item_com == null)
                         {
-                            AssignCom();
+                            item_com = new tbl_000_H_ITEM_PART();
+                            item_com.state = "add";
+                            item_com.YEARUSED = UserSettings.LogInYear;
+                            item_com.ItemNo = mtxtItemNo.Text;
+                            item_com.PartNo = mgridListCL.Rows[i].Cells["colPartNoCL"].Value.ToString();
+                            item_com.IsCopied = false;
+                            item_com.CopyDate = DateTime.Now;
+                            item_com.ImportDate = DateTime.Now;
                         }
+                        else
+                        {
+                            item_com.state = "update";
+                        }
+                        item_com.PartName = mgridListCL.Rows[i].Cells["colDescriptionCL"].Value.ToString();
+                        item_com.PartType = mgridListCL.Rows[i].Cells["colBagging"].Value.ToString();
+                        item_com.ItemAddress = mgridListCL.Rows[i].Cells["colAddress"].Value.ToString();
+                        item_com.ItemUsage = Convert.ToDecimal(mgridListCL.Rows[i].Cells["colUsageCL"].Value);
+                        item_com.SectionCode = mgridListCL.Rows[i].Cells["colProcess"].Value.ToString();
+                        item_com.ItemVendor = mgridListCL.Rows[i].Cells["colVendor"].Value.ToString();
+                        item_com.ItemUnit = mgridListCL.Rows[i].Cells["colUnit"].Value.ToString();
+                        item_com.UnitPrice = Convert.ToDecimal(mgridListCL.Rows[i].Cells["colUnitPrice"].Value);
+                        item_com.Amount = Convert.ToDecimal(mgridListCL.Rows[i].Cells["colAmount"].Value);
+                        item_comlist.Add(item_com);
                     }
-                    else if (mtcItem.SelectedTab == mtpTabulationData)
+                    if (item_comlist.Count > 0)
                     {
-                        //Tabulation Data
-                        //PI
-                        if (mgridListPI.RowCount > 0)
-                        {
-                            AssignPI();
-                        }
-                        //VP
-                        if (mgridListVP.RowCount > 0)
-                        {
-                            AssignVP();
-                        }
-                        //Assy
-                        if (mgridListAssy.RowCount > 0)
-                        {
-                            AssignAssy();
-                        }
+                        item.itemCom = item_comlist;
                     }
-                    else if (mtcItem.SelectedTab == mtpManufacturingPT)
-                    {
-                        //Manufacturing Process Time
-                        if (mgridListMPT.RowCount > 0)
-                        {
-                            AssignMPT();
-                        }
-                    }
-                    else if (mtcItem.SelectedTab == mtpDepreciationCost)
-                    {
-                        //Film Depreciation Cost
-                        if (mgridListFDC.RowCount > 1)
-                        {
-                            AssignFDC();
-                        }
-                    }
-                    else
-                    {
 
-                    }
-                    if (item.Type == 0)
+                    //Tabulation Data: PI
+                    for (int i = 0; i < mgridListPI.RowCount; i++)
                     {
-                        item.Type = Convert.ToInt16(ItemComposition._NULL);
+                        if (mgridListPI.Rows[i].IsNewRow) continue;
+                        var docid = Convert.ToInt64(BPSUtilitiesV1.NZ(mgridListPI.Rows[i].Cells["colDocIDPI"].Value, 0));
+                        var item_pi = item_pibal.GetByID(docid);
+                        if (item_pi == null)
+                        {
+                            item_pi = new tbl_000_H_ITEM_TABULATION();
+                            item_pi.state = "add";
+                            item_pi.YEARUSED = UserSettings.LogInYear;
+                            item_pi.ItemNo = mtxtItemNo.Text;
+                            item_pi.PartNo = mgridListPI.Rows[i].Cells["colMoldNo"].Value.ToString();
+                            item_pi.IsCopied = false;
+                            item_pi.CopyDate = DateTime.Now;
+                        }
+                        else
+                        {
+                            item_pi.state = "update";
+                        }
+                        item_pi.PartName = mgridListPI.Rows[i].Cells["colPartNamePI"].Value.ToString();
+                        item_pi.AcquisitionCost = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colAcquCost"].Value);
+                        item_pi.QtyProduced = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colQTYprodcd"].Value);
+                        item_pi.DepQty = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colDepnQty"].Value);
+                        item_pi.MoldCost = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colMoldCost"].Value);
+                        item_pi.ESTSHHR = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colSPH"].Value);
+                        item_pi.ESTPCSHR = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colPPH"].Value);
+                        item_pi.ESTHC = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colUsagePI"].Value);
+                        item_pi.DepnMold = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colDepnMold"].Value);
+
+                        //Temporary
+                        item_pi.ACTSHHR = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colSPH"].Value);
+                        item_pi.ACTPCSHR = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colPPH"].Value);
+                        item_pi.ACTHC = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colUsagePI"].Value);
+                        //
+
+                        item_pi.Cavity = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colCavity"].Value);
+                        item_pi.MoldSetUpTime = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colMSandChangehr"].Value);
+                        item_pi.Oz = mgridListPI.Rows[i].Cells["colOz"].Value.ToString();
+                        item_pi.Purge_G = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colPurge"].Value);
+                        item_pi.OPTime = Convert.ToDecimal(mgridListPI.Rows[i].Cells["colOperatingTime"].Value);
+                        item_pilist.Add(item_pi);
+                    }
+                    if (item_pilist.Count > 0)
+                    {
+                        item.itemPI = item_pilist;
+                    }
+
+                    //Tabulation Data: VP
+                    for (int i = 0; i < mgridListVP.RowCount; i++)
+                    {
+                        if (mgridListVP.Rows[i].IsNewRow) continue;
+                        var docid = Convert.ToInt64(BPSUtilitiesV1.NZ(mgridListVP.Rows[i].Cells["colDocIDVP"].Value, 0));
+                        var item_vp = item_vpbal.GetByID(docid);
+                        if (item_vp == null)
+                        {
+                            item_vp = new tbl_000_H_ITEM_TABULATION_VP();
+                            item_vp.state = "add";
+                            item_vp.YEARUSED = UserSettings.LogInYear;
+                            item_vp.ItemNo = mtxtItemNo.Text;
+                            item_vp.PartNo = mgridListVP.Rows[i].Cells["colPartNoVP"].Value.ToString();
+                            item_vp.CreatedDate = DateTime.Now;
+                            item_vp.CreatedBy = UserSettings.Username;
+                            item_vp.IsCopied = false;
+                            item_vp.CopyDate = DateTime.Now;
+                        }
+                        else
+                        {
+                            item_vp.state = "update";
+                        }
+
+                        item_vp.PartName = mgridListVP.Rows[i].Cells["colPartNameVP"].Value.ToString();
+                        item_vp.SourceData = mgridListVP.Rows[i].Cells["colSourceData"].Value.ToString();
+                        item_vp.ActualTimePerUnit = Convert.ToDecimal(mgridListVP.Rows[i].Cells["colATperUnit"].Value);
+                        //Temporary
+                        item_vp.VP_Operation = mgridListVP.Rows[i].Cells["colHC"].Value.ToString();
+                        item_vp.TotalQty = Convert.ToDecimal(mgridListVP.Rows[i].Cells["colQty"].Value);
+                        item_vp.TotalTime = 0;
+                        item_vplist.Add(item_vp);
+                    }
+                    if (item_vplist.Count > 0)
+                    {
+                        item.itemVP = item_vplist;
+                    }
+
+                    //Tabulation Data: Assy
+                    for (int i = 0; i < mgridListAssy.RowCount; i++)
+                    {
+                        if (mgridListAssy.Rows[i].IsNewRow) continue;
+                        var docid = Convert.ToInt64(BPSUtilitiesV1.NZ(mgridListAssy.Rows[i].Cells["colDocIDAssy"].Value, 0));
+                        var item_assy = item_assybal.GetByID(docid);
+                        if (item_assy == null)
+                        {
+                            item_assy = new tbl_000_H_ITEM_TABULATION_ASSY();
+                            item_assy.state = "add";
+                            item_assy.YEARUSED = UserSettings.LogInYear;
+                            item_assy.ItemNo = mtxtItemNo.Text;
+                            item_assy.PartNo = mgridListAssy.Rows[i].Cells["colPartNoAssy"].Value.ToString();
+                            item_assy.CreatedDate = DateTime.Now;
+                            item_assy.CreatedBy = UserSettings.Username;
+                            item_assy.IsCopied = false;
+                            item_assy.CopyDate = DateTime.Now;
+                        }
+                        else
+                        {
+                            item_assy.state = "update";
+                        }
+                        item_assy.PartName = mgridListAssy.Rows[i].Cells["colPartNameAssy"].Value.ToString();
+                        item_assy.Usage = Convert.ToDecimal(mgridListAssy.Rows[i].Cells["colOPUSG"].Value);
+
+                        //Temporary
+                        item_assy.OPASSY = Convert.ToInt32(mgridListAssy.Rows[i].Cells["colOPHC"].Value);
+                        item_assy.OPPI = Convert.ToInt32(mgridListAssy.Rows[i].Cells["colOPHC"].Value);
+                        //
+                        item_assy.STDRATEPERHOUR = Convert.ToDecimal(mgridListAssy.Rows[i].Cells["colSTDRATEperHour"].Value);
+                        item_assylist.Add(item_assy);
+                    }
+                    if (item_assylist.Count > 0)
+                    {
+                        item.itemAssy = item_assylist;
+                    }
+
+                    //MPT
+                    for (int i = 0; i < mgridListMPT.RowCount; i++)
+                    {
+                        if (mgridListMPT.Rows[i].IsNewRow) continue;
+                        var docid = Convert.ToInt64(BPSUtilitiesV1.NZ(mgridListMPT.Rows[i].Cells["colDocIDMPT"].Value, 0));
+                        var item_mpt = item_mptbal.GetByID(docid);
+                        if (item_mpt == null)
+                        {
+                            item_mpt = new tbl_000_H_ITEM_MPT();
+                            item_mpt.state = "add";
+                            item_mpt.YEARUSED = UserSettings.LogInYear;
+                            item_mpt.ItemNo = mtxtItemNo.Text;
+                            item_mpt.SectionCode = mgridListMPT.Rows[i].Cells["colSectionCode"].Value.ToString();
+                            item_mpt.CreatedDate = DateTime.Now;
+                            item_mpt.CreatedBy = UserSettings.Username;
+                            item_mpt.IsCopied = false;
+                            item_mpt.CopyDate = DateTime.Now;
+                        }
+                        else
+                        {
+                            item_mpt.state = "update";
+                        }
+                        item_mpt.SectionName = mgridListMPT.Rows[i].Cells["colSectionName"].Value.ToString();
+                        item_mpt.ProductionTime = Convert.ToDecimal(mgridListMPT.Rows[i].Cells["colProductionTime"].Value);
+                        item_mptlist.Add(item_mpt);
+                    }
+                    if (item_mptlist.Count > 0)
+                    {
+                        item.itemMPT = item_mptlist;
+                    }
+
+                    //FDC
+                    for (int i = 0; i < mgridListFDC.RowCount; i++)
+                    {
+                        if (mgridListFDC.Rows[i].IsNewRow) continue;
+                        var type = BPSUtilitiesV1.NZ(mgridListFDC.Rows[i].Cells["colType"].Value, "").ToString();
+                        var item_fdc = item_fdcbal.GetByID(UserSettings.LogInYear, mtxtItemNo.Text, type);
+                        if (item_fdc == null)
+                        {
+                            item_fdc = new tbl_000_H_ITEM_FDC();
+                            item_fdc.state = "add";
+                            item_fdc.YEARUSED = UserSettings.LogInYear;
+                            item_fdc.ItemNo = mtxtItemNo.Text;
+                            item_fdc.DepnType = mgridListFDC.Rows[i].Cells["colType"].Value.ToString();
+                            item_fdc.CreatedDate = DateTime.Now;
+                            item_fdc.CreatedBy = UserSettings.Username;
+                            item_fdc.IsCopied = false;
+                            item_fdc.CopyDate = DateTime.Now;
+                        }
+                        else
+                        {
+                            item_fdc.state = "update";
+                        }
+                        item_fdc.Description = mgridListFDC.Rows[i].Cells["colDesciptionFDC"].Value.ToString();
+                        item_fdc.FDC_QTY = Convert.ToDecimal(mgridListFDC.Rows[i].Cells["colQTYFDC"].Value);
+                        item_fdc.AcquisitionCost = Convert.ToDecimal(mgridListFDC.Rows[i].Cells["colAcquCostFDC"].Value);
+                        item_fdc.DepnQTY = Convert.ToDecimal(mgridListFDC.Rows[i].Cells["colDepnQtyFDC"].Value);
+                        item_fdc.DepnCost = Convert.ToDecimal(mgridListFDC.Rows[i].Cells["colDepnCost"].Value);
+                        item_fdc.DepnFilm = Convert.ToDecimal(mgridListFDC.Rows[i].Cells["colDepnFilm"].Value);
+                        item_fdclist.Add(item_fdc);
+                    }
+                    if (item_fdclist.Count > 0)
+                    {
+                        item.itemFDC = item_fdclist;
                     }
                 }
                 else
@@ -541,61 +510,7 @@ namespace PWCOSTINGV1.Forms
                         int subsyearused = UserSettings.LogInYear;
                         if (!IsNewItem)
                             subsyearused = _yearused;
-
-                        var item_comdata = item_combal.GetByNo(subsyearused, itemno).ToList();
-                        BindingList<tbl_000_H_ITEM_PART> comlist = new BindingList<tbl_000_H_ITEM_PART>(item_comdata);
-                        if (comlist.Count > 0)
-                        {
-                            mgridListCL.DataSource = comlist;
-                            mtcItem.SelectedTab = mtpCompositionList;
-                        }
-
-                        var item_pidata = item_pibal.GetByNo(subsyearused, itemno).ToList();
-                        BindingList<tbl_000_H_ITEM_TABULATION> pilist = new BindingList<tbl_000_H_ITEM_TABULATION>(item_pidata);
-
-                        var item_vpdata = item_vpbal.GetByNo(subsyearused, itemno).ToList();
-                        BindingList<tbl_000_H_ITEM_TABULATION_VP> vplist = new BindingList<tbl_000_H_ITEM_TABULATION_VP>(item_vpdata);
-
-                        var item_assydata = item_assybal.GetByNo(subsyearused, itemno).ToList();
-                        BindingList<tbl_000_H_ITEM_TABULATION_ASSY> assylist = new BindingList<tbl_000_H_ITEM_TABULATION_ASSY>(item_assydata);
-                        mgridListAssy.DataSource = assylist;
-
-                        if (pilist.Count > 0)
-                        {
-                            mgridListPI.DataSource = pilist;
-                        }
-                        if (vplist.Count > 0)
-                        {
-                            mgridListVP.DataSource = vplist;
-                        }
-                        if (assylist.Count > 0)
-                        {
-                            mgridListAssy.DataSource = assylist;
-                        }
-
-                        if (pilist.Count > 0
-                            || vplist.Count > 0
-                            || assylist.Count > 0)
-                        {
-                            mtcItem.SelectedTab = mtpTabulationData;
-                        }
-                        var item_mptdata = item_mptbal.GetByNo(subsyearused, itemno).ToList();
-                        BindingList<tbl_000_H_ITEM_MPT> mptlist = new BindingList<tbl_000_H_ITEM_MPT>(item_mptdata);
-
-                        if (mptlist.Count > 0)
-                        {
-                            mgridListMPT.DataSource = mptlist;
-                            mtcItem.SelectedTab = mtpManufacturingPT;
-                        }
-
-                        var item_fdcdata = item_fdcbal.GetByNo(subsyearused, itemno).ToList();
-                        BindingList<tbl_000_H_ITEM_FDC> fdclist = new BindingList<tbl_000_H_ITEM_FDC>(item_fdcdata);
-
-                        if (fdclist.Count > 0)
-                        {
-                            mgridListFDC.DataSource = fdclist;
-                            mtcItem.SelectedTab = mtpDepreciationCost;
-                        }
+                        LoadItem(subsyearused);
                     }
                 }
             }
@@ -613,15 +528,15 @@ namespace PWCOSTINGV1.Forms
                 {
                     var isSuccess = false;
                     var msg = "";
+                    RenewLists();
                     AssignRecord(true, true);
                     switch (MyState)
                     {
                         case FormState.Add:
                             msg = "Saving";
                             if (itembal.Save(item))
-                            {
+
                                 isSuccess = true;
-                            }
                             break;
                         case FormState.Edit:
                             msg = "Updating";
@@ -667,64 +582,209 @@ namespace PWCOSTINGV1.Forms
         }
         public void LoadGridCL()
         {
-            List<tbl_000_H_PART> comlist = new List<tbl_000_H_PART>();
-            comlist = combal.GetByNo(yearused, partnoCL).ToList();
-            foreach (var item in comlist)
+            var newitem_comlist = new List<tbl_000_H_ITEM_PART>();
+            com = combal.GetByID(yearused, partnoCL);
+            bool isExists = false;
+            if (bitem_comlist != null && bitem_comlist.Count > 0)
             {
-                var index = mgridListCL.Rows.Add();
-                mgridListCL.Rows[index].Cells["colPartNoCL"].Value = item.PartNo;
-                mgridListCL.Rows[index].Cells["colDescriptionCL"].Value = item.PartName;
+                foreach (tbl_000_H_ITEM_PART bic in bitem_comlist)
+                {
+                    if (bic.PartNo == com.PartNo)
+                    {
+                        MessageHelpers.ShowError("PartNo " + bic.PartNo + " was loaded already!");
+                        isExists = true;
+                        break;
+                    }
+                }
             }
-
+            if (!isExists)
+            {
+                if (com != null)
+                {
+                    if (bitem_comlist == null)
+                    {
+                        var itmcom = new tbl_000_H_ITEM_PART();
+                        itmcom.PartNo = com.PartNo;
+                        itmcom.PartName = com.PartName;
+                        newitem_comlist.Add(itmcom);
+                        bitem_comlist = new BindingList<tbl_000_H_ITEM_PART>(newitem_comlist);
+                        mgridListCL.DataSource = bitem_comlist;
+                    }
+                    else
+                    {
+                        var newbitem_comlist = bitem_comlist.AddNew();
+                        newbitem_comlist.PartNo = com.PartNo;
+                        newbitem_comlist.PartName = com.PartName;
+                    }
+                }
+            }
         }
         public void LoadGridPI()
         {
-            List<tbl_000_H_PI> pilist = new List<tbl_000_H_PI>();
-            pilist = pibal.GetByNo(yearused, moldno).ToList();
-            foreach (var item in pilist)
+            var newitem_pilist = new List<tbl_000_H_ITEM_TABULATION>();
+            pi = pibal.GetByID(yearused, moldno);
+            bool isExists = false;
+            if (bitem_pilist != null && bitem_pilist.Count > 0)
             {
-                var index = mgridListPI.Rows.Add();
-                mgridListPI.Rows[index].Cells["colMoldNo"].Value = item.MoldNo;
-                mgridListPI.Rows[index].Cells["colPartNamePI"].Value = item.MoldName;
-                mgridListPI.Rows[index].Cells["colSPH"].Value = item.SPH;
-                mgridListPI.Rows[index].Cells["colCavity"].Value = item.Cavity;
-                mgridListPI.Rows[index].Cells["colPPH"].Value = item.PPH;
-                mgridListPI.Rows[index].Cells["colOz"].Value = item.Oz;
-                mgridListPI.Rows[index].Cells["colPurge"].Value = item.PurgePerG;
+                foreach (tbl_000_H_ITEM_TABULATION bipi in bitem_pilist)
+                {
+                    if (bipi.PartNo == pi.MoldNo)
+                    {
+                        MessageHelpers.ShowError("MoldNo "+ bipi.PartNo + " was loaded already!");
+                        isExists = true;
+                        break;
+                    }
+                }
+            }
+            if (!isExists)
+            {
+                if (pi != null)
+                {
+                    if (bitem_pilist == null)
+                    {
+                        var itmpi = new tbl_000_H_ITEM_TABULATION();
+                        itmpi.PartNo = pi.MoldNo;
+                        itmpi.PartName = pi.MoldName;
+                        itmpi.ESTPCSHR = pi.SPH;
+                        itmpi.Cavity = pi.Cavity;
+                        itmpi.ESTPCSHR = pi.SPH;
+                        itmpi.Oz = pi.Oz;
+                        itmpi.Purge_G = pi.PurgePerG;
+                        newitem_pilist.Add(itmpi);
+                        bitem_pilist = new BindingList<tbl_000_H_ITEM_TABULATION>(newitem_pilist);
+                        mgridListPI.DataSource = bitem_pilist;
+                    }
+                    else
+                    {
+                        var newbitem_pilist = bitem_pilist.AddNew();
+                        newbitem_pilist.PartNo = pi.MoldNo;
+                        newbitem_pilist.PartName = pi.MoldName;
+                        newbitem_pilist.ESTPCSHR = pi.SPH;
+                        newbitem_pilist.Cavity = pi.Cavity;
+                        newbitem_pilist.ESTPCSHR = pi.SPH;
+                        newbitem_pilist.Oz = pi.Oz;
+                        newbitem_pilist.Purge_G = pi.PurgePerG;
+                    }
+                }
             }
         }
         public void LoadGridVP()
         {
-            List<tbl_000_H_VP> vplist = new List<tbl_000_H_VP>();
-            vplist = vpbal.GetByNo(yearused, partnoVP).ToList();
-            foreach (var item in vplist)
+            var newitem_vplist = new List<tbl_000_H_ITEM_TABULATION_VP>();
+            vp = vpbal.GetByID(yearused, partnoVP);
+            bool isExists = false;
+            if (bitem_vplist != null && bitem_vplist.Count > 0)
             {
-                var index = mgridListVP.Rows.Add();
-                mgridListVP.Rows[index].Cells["colPartNoVP"].Value = item.PartNo;
-                mgridListVP.Rows[index].Cells["colPartNameVP"].Value = item.PartName;
-                mgridListVP.Rows[index].Cells["colSourceData"].Value = item.SourceData;
+                foreach (tbl_000_H_ITEM_TABULATION_VP biv in bitem_vplist)
+                {
+                    if (biv.PartNo == vp.PartNo)
+                    {
+                        MessageHelpers.ShowError("PartNo " + biv.PartNo + " was loaded already!");
+                        isExists = true;
+                        break;
+                    }
+                }
+            }
+            if (!isExists)
+            {
+                if (vp != null)
+                {
+                    if (bitem_vplist == null)
+                    {
+                        var itmvp = new tbl_000_H_ITEM_TABULATION_VP();
+                        itmvp.PartNo = vp.PartNo;
+                        itmvp.PartName = vp.PartName;
+                        itmvp.SourceData = vp.SourceData;
+                        newitem_vplist.Add(itmvp);
+                        bitem_vplist = new BindingList<tbl_000_H_ITEM_TABULATION_VP>(newitem_vplist);
+                        mgridListVP.DataSource = bitem_vplist;
+                    }
+                    else
+                    {
+                        var newbitem_vplist = bitem_vplist.AddNew();
+                        newbitem_vplist.PartNo = vp.PartNo;
+                        newbitem_vplist.PartName = vp.PartName;
+                        newbitem_vplist.SourceData = vp.SourceData;
+                    }
+                }
             }
         }
         public void LoadGridAssy()
         {
-            List<tbl_000_H_ASSY> assylist = new List<tbl_000_H_ASSY>();
-            assylist = assybal.GetByNo(yearused, partnoAssy).ToList();
-            foreach (var item in assylist)
+            var newitem_assylist = new List<tbl_000_H_ITEM_TABULATION_ASSY>();
+            assy = assybal.GetByID(yearused, partnoAssy);
+            bool isExists = false;
+            if (bitem_assylist != null && bitem_assylist.Count > 0)
             {
-                var index = mgridListAssy.Rows.Add();
-                mgridListAssy.Rows[index].Cells["colPartNoAssy"].Value = item.PartNo;
-                mgridListAssy.Rows[index].Cells["colPartNameAssy"].Value = item.PartName;
+                foreach (tbl_000_H_ITEM_TABULATION_ASSY bias in bitem_assylist)
+                {
+                    if (bias.PartNo == assy.PartNo)
+                    {
+                        MessageHelpers.ShowError("PartNo " + bias.PartNo + " was loaded already!");
+                        isExists = true;
+                        break;
+                    }
+                }
+            }
+            if (!isExists)
+            {
+                if (assy != null)
+                {
+                    if (bitem_assylist == null)
+                    {
+                        var itmassy = new tbl_000_H_ITEM_TABULATION_ASSY();
+                        itmassy.PartNo = assy.PartNo;
+                        itmassy.PartName = assy.PartName;
+                        newitem_assylist.Add(itmassy);
+                        bitem_assylist = new BindingList<tbl_000_H_ITEM_TABULATION_ASSY>(newitem_assylist);
+                        mgridListAssy.DataSource = bitem_assylist;
+                    }
+                    else
+                    {
+                        var newbitem_assylist = bitem_assylist.AddNew();
+                        newbitem_assylist.PartNo = assy.PartNo;
+                        newbitem_assylist.PartName = assy.PartName;
+                    }
+                }
             }
         }
         public void LoadGridMPT()
         {
-            List<tbl_000_SECTION> sectionlist = new List<tbl_000_SECTION>();
-            sectionlist = sectbal.GetByNo(sectioncode).ToList();
-            foreach (var item in sectionlist)
+            var newitem_mptlist = new List<tbl_000_H_ITEM_MPT>();
+            sect = sectbal.GetByID(sectioncode);
+            bool isExists = false;
+            if (bitem_mptlist != null && bitem_mptlist.Count > 0)
             {
-                var index = mgridListMPT.Rows.Add();
-                mgridListMPT.Rows[index].Cells["colSectionCode"].Value = item.SECTIONCODE;
-                mgridListMPT.Rows[index].Cells["colSectionName"].Value = item.SECTIONDESC;
+                foreach (tbl_000_H_ITEM_MPT bimpt in bitem_mptlist)
+                {
+                    if (bimpt.SectionCode == sect.SECTIONCODE)
+                    {
+                        MessageHelpers.ShowError("SectionCode " + bimpt.SectionCode + " was loaded already!");
+                        isExists = true;
+                        break;
+                    }
+                }
+            }
+            if (!isExists)
+            {
+                if (sect != null)
+                {
+                    if (bitem_mptlist == null)
+                    {
+                        var itmmpt = new tbl_000_H_ITEM_MPT();
+                        itmmpt.SectionCode = sect.SECTIONCODE;
+                        itmmpt.SectionName = sect.SECTIONDESC;
+                        newitem_mptlist.Add(itmmpt);
+                        bitem_mptlist = new BindingList<tbl_000_H_ITEM_MPT>(newitem_mptlist);
+                        mgridListMPT.DataSource = bitem_mptlist;
+                    }
+                    else
+                    {
+                        var newbitem_mptlist = bitem_mptlist.AddNew();
+                        newbitem_mptlist.SectionCode = sect.SECTIONCODE;
+                        newbitem_mptlist.SectionName = sect.SECTIONDESC;
+                    }
+                }
             }
         }
         public void ChbxSetting(Boolean IsChecked)
@@ -761,12 +821,6 @@ namespace PWCOSTINGV1.Forms
             sect = new tbl_000_SECTION();
             com = new tbl_000_H_PART();
             item = new tbl_000_H_ITEM();
-            item_com = new tbl_000_H_ITEM_PART();
-            item_pi = new tbl_000_H_ITEM_TABULATION();
-            item_vp = new tbl_000_H_ITEM_TABULATION_VP();
-            item_assy = new tbl_000_H_ITEM_TABULATION_ASSY();
-            item_mpt = new tbl_000_H_ITEM_MPT();
-            item_fdc = new tbl_000_H_ITEM_FDC();
             cat = new tbl_000_H_CATEGORY();
 
             item_comlist = new List<tbl_000_H_ITEM_PART>();
@@ -1085,7 +1139,7 @@ namespace PWCOSTINGV1.Forms
         private void KeyHandler(string selecteditemno)
        {
 
-                item = itembal.GetAll().Where(w => w.ItemNo == selecteditemno && w.YEARUSED < UserSettings.LogInYear).FirstOrDefault();
+                item = itembal.GetAll().Where(w => w.ItemNo == selecteditemno && w.YEARUSED == UserSettings.LogInYear).FirstOrDefault();
                 if (item != null)
                 {
                     mtxtItemDesc.Text = BPSUtilitiesV1.NZ(item.Description, "").ToString();

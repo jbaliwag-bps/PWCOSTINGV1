@@ -259,58 +259,99 @@ namespace PWCOSTING.DAL._000
                     {
                         foreach (tbl_000_H_ITEM_PART item in record.itemCom)
                         {
-                            db.ItemPartList.Attach(item);
-                            db.Entry(item).State = EntityState.Modified;
-                            db.SaveChanges();
+                            if (item.state == "update")
+                            {
+                                db.Entry(item).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                            else if(item.state == "add")
+                            {
+                                db.ItemPartList.Add(item);
+                                db.SaveChanges();
+                            }
                         }
                     }
                     if (BPSUtilitiesV1.NZ(record.itemPI, "").ToString() != "")
                     {
                         foreach (tbl_000_H_ITEM_TABULATION item in record.itemPI)
                         {
-                            db.ItemTabulationPIList.Attach(item);
-                            db.Entry(item).State = EntityState.Modified;
-                            db.SaveChanges();
+                            if (item.state == "update")
+                            {
+                                db.Entry(item).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                            else if (item.state == "add")
+                            {
+                                db.ItemTabulationPIList.Add(item);
+                                db.SaveChanges();
+                            }
                         }
                     }
                     if (BPSUtilitiesV1.NZ(record.itemVP, "").ToString() != "")
                     {
                         foreach (tbl_000_H_ITEM_TABULATION_VP item in record.itemVP)
                         {
-                            db.ItemTabulationVPList.Attach(item);
-                            db.Entry(item).State = EntityState.Modified;
-                            db.SaveChanges();
+                            if (item.state == "update")
+                            {
+                                db.Entry(item).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                            else if (item.state == "add")
+                            {
+                                db.ItemTabulationVPList.Add(item);
+                                db.SaveChanges();
+                            }
                         }
                     }
                     if (BPSUtilitiesV1.NZ(record.itemAssy, "").ToString() != "")
                     {
                         foreach (tbl_000_H_ITEM_TABULATION_ASSY item in record.itemAssy)
                         {
-                            db.ItemTabulationAssyList.Attach(item);
-                            db.Entry(item).State = EntityState.Modified;
-                            db.SaveChanges();
+                            if (item.state == "update")
+                            {
+                                db.Entry(item).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                            else if (item.state == "add")
+                            {
+                                db.ItemTabulationAssyList.Add(item);
+                                db.SaveChanges();
+                            }
                         }
                     }
                     if (BPSUtilitiesV1.NZ(record.itemMPT, "").ToString() != "")
                     {
                         foreach (tbl_000_H_ITEM_MPT item in record.itemMPT)
                         {
-                            db.ItemMPTList.Attach(item);
-                            db.Entry(item).State = EntityState.Modified;
-                            db.SaveChanges();
+                            if (item.state == "update")
+                            {
+                                db.Entry(item).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                            else if (item.state == "add")
+                            {
+                                db.ItemMPTList.Add(item);
+                                db.SaveChanges();
+                            }
                         }
                     }
                     if (BPSUtilitiesV1.NZ(record.itemFDC, "").ToString() != "")
                     {
                         foreach (tbl_000_H_ITEM_FDC item in record.itemFDC)
                         {
-                            db.ItemFDCList.Attach(item);
-                            db.Entry(item).State = EntityState.Modified;
-                            db.SaveChanges();
+                            if (item.state == "update")
+                            {
+                                db.Entry(item).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                            else if (item.state == "add")
+                            {
+                                db.ItemFDCList.Add(item);
+                                db.SaveChanges();
+                            }
                         }
                     }
-                    var existrecord = GetByID(record.YEARUSED, record.ItemNo);
-                    db.Entry(existrecord).CurrentValues.SetValues(record);
+                    db.Entry(record).State = EntityState.Modified; 
                     db.SaveChanges();
                     dbContextTransaction.Commit();
                     return true;
@@ -365,7 +406,7 @@ namespace PWCOSTING.DAL._000
             }
         }
         public Boolean CopyByItem(int yearusedfrom, int yearusedto, string itemno, string user, Boolean IsOverwrite)
-        {
+       {
             try
             {
                 string spname = "sp_CopyByItem";

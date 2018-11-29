@@ -80,9 +80,16 @@ namespace PWCOSTING.DAL._100
                 {
                     foreach (tbl_100_WIP_COSTING_LABOR_BAGG record in records)
                     {
-                        db.WIPLaborBaggList.Attach(record);
-                        db.Entry(record).State = EntityState.Modified;
-                        db.SaveChanges();
+                        if (record.state == "update")
+                        {
+                            db.Entry(record).State = EntityState.Modified;
+                            db.SaveChanges();
+                        }
+                        else if (record.state == "add")
+                        {
+                            db.WIPLaborBaggList.Add(record);
+                            db.SaveChanges();
+                        }
                     }
                     dbContextTransaction.Commit();
                     return true;

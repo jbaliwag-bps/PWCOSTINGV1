@@ -23,7 +23,7 @@ namespace PWCOSTINGV1.Forms
     {
         public frmWIPCostingList MyCaller { get; set; }
         public FormState MyState { get; set; }
-        public long recid { get; set; }
+        public long costitem_recid { get; set; }
 
         ItemCompositionBAL itmcombal;
         ItemTabulationPIBAL itmpibal;
@@ -48,6 +48,7 @@ namespace PWCOSTINGV1.Forms
 
         private void Init_Form()
         {
+            FormHelpers.FormatForm(this.Controls);
             try
             {
                 ReColorColumn(mgridMaterials, "colUnitType");
@@ -55,21 +56,25 @@ namespace PWCOSTINGV1.Forms
                 switch (MyState)
                 {
                     case FormState.Add:
-                        //ClearDgvRow();
+                        ClearDgvRow();
                         break;
                     case FormState.Edit:
                     case FormState.View:
                         if(MyState == FormState.Edit)
-                            ControlsManager(false);
+                        {
+                         ControlsManager(false);
+                         mtxtItemNo.ReadOnly = true;
+                         mtxtItemDesc.ReadOnly = true;
+                         mbtnSave.BackgroundImage = PWCOSTINGV1.Properties.Resources.saveicon1;
+                        }
                         else
                         {
                             ControlsManager(true);
-                            mbtnSave.Enabled = false;
+                            mbtnSave.BackgroundImage = PWCOSTINGV1.Properties.Resources.editicon;
                         }
-                        //RefreshGrid();
+                        AssignRecord(false);
                         break;
                 }
-                RefreshGrid();
             }
             catch (Exception ex)
             {
@@ -125,7 +130,7 @@ namespace PWCOSTINGV1.Forms
                 l.ForeColor = Color.Black;
             }
         }
-        private void RefreshGrid()
+        private void LoadCostItem()
         {
             //Materials
             var sourcelist_mat = wipmatbal.GetByYear(mtxtItemNo.Text, UserSettings.LogInYear);
@@ -211,13 +216,7 @@ namespace PWCOSTINGV1.Forms
             wipplatbal = new WIPLabPlatingBAL();
             wipccbal = new WIPCCodeBAL();
 
-            wipmatlist = new List<tbl_100_WIP_COSTING_MATERIALS>();
-            wiplabpilist = new List<tbl_100_WIP_COSTING_LABOR_PI>();
-            wiplabassylist = new List<tbl_100_WIP_COSTING_LABOR_ASSY>();
-            wiplabbagglist = new List<tbl_100_WIP_COSTING_LABOR_BAGG>();
-            wiplabassylist = new List<tbl_100_WIP_COSTING_LABOR_ASSY>();
-            wiplabplatedlist = new List<tbl_100_WIP_COSTING_LABOR_PLATED>();
-            wipccodelist = new List<tbl_100_WIP_COSTING_CC>();
+            RenewLists();
         }
 
         private void FilltxtAutoComplete()
@@ -263,6 +262,7 @@ namespace PWCOSTINGV1.Forms
             foreach (DataGridView dgv in dgvs)
             {
                 dgv.ReadOnly = IsLocked;
+                dgv.AllowUserToAddRows = !IsLocked;
             }
         }
         private void ClearDgvRow()
@@ -278,35 +278,79 @@ namespace PWCOSTINGV1.Forms
         private void mtxtItemNo_TextChanged(object sender, EventArgs e)
         {
             ItemDesc();
-            var partnolist = wipmatbal.GetByYear(mtxtItemNo.Text, UserSettings.LogInYear);
+            var partnolist = wipcostbal.GetByItem(UserSettings.LogInYear, mtxtItemNo.Text);
             DataTable pnoTable = new DataTable();
             using (var reader = ObjectReader.Create(partnolist,
-                "PartNo"))
+                "PartNo", 
+                "PartName"))
             {
                 pnoTable.Load(reader);
                 mgridPartNos.DataSource = pnoTable;
             }
         }
-        private void CheckMmainWIPItem()
+        private void MainWIPItem()
         {
-            wipcost = wipcostbal.GetByID(recid);
+            wipcost = wipcostbal.GetByID(costitem_recid);
             if (wipcost == null)
             {
                 wipcost = new tbl_100_WIP_COST();
+                wipcost.state = "add";
                 wipcost.YEARUSED = UserSettings.LogInYear;
                 wipcost.ItemNo = mtxtItemNo.Text;
+            }
+            else
+            {
+                wipcost.state = "update";
+            }
                 //For Testing
                 wipcost.PartNo = _mtxtProcess1.Text;
                 wipcost.PartName = _mtxtPartDesc.Text;
                 //
-                wipcost.MatLaborCost = Convert.ToDecimal(mtxtSTCost.Text);
-                wipcost.ProfitRate = Convert.ToDecimal(mtxtAPRate.Text);
-                wipcost.SellingPrice = Convert.ToDecimal(mtxtTSelPrice.Text);
-                wipcost.Forex = Convert.ToDecimal(mtxtForex.Text);
+                wipcost.MatLaborCost = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtSTCost.Text, 0));
+                wipcost.ProfitRate = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtAPRate.Text, 0));
+                wipcost.SellingPrice = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtTSelPrice.Text, 0));
+                wipcost.Forex = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtForex.Text, 0));
                 //For Testing
                 wipcost.Ref_Add = "TEST";
-
-            }
+                //
+                wipcost.TPInjec = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblTPInjec.Text, 0));
+                wipcost.TBagging = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblTBagging.Text, 0));
+                wipcost.TAssembled = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblTAssembled.Text, 0));
+                wipcost.TPlating = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblTPlating.Text, 0));
+                wipcost.AllwPLInjec = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblAllwPLInjec.Text, 0));
+                wipcost.AllwBagging = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblAllwBagging.Text, 0));
+                wipcost.AllwAssembled = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblAllwAssembled.Text, 0));
+                wipcost.AllwPlating = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblAllwPlating.Text, 0));
+                wipcost.PLO1 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblPLO1.Text, 0));
+                wipcost.PLO2 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblPLO2.Text, 0));
+                wipcost.PLO3 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblPLO3.Text, 0));
+                wipcost.PLO4 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblPLO4.Text, 0));
+                wipcost.SPL1 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblSPL1.Text, 0));
+                wipcost.SPL2 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblSPL2.Text, 0));
+                wipcost.SPL3 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblSPL3.Text, 0));
+                wipcost.SPL4 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblSPL4.Text, 0));
+                wipcost.LLabor1 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblLLabor1.Text, 0));
+                wipcost.LLabor2 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblLLabor2.Text, 0));
+                wipcost.LLabor3 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblLLabor3.Text, 0));
+                wipcost.LLabor4 = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblLLabor4.Text, 0));
+                wipcost.SPPInjec = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblSPPInjec.Text, 0));
+                wipcost.SPBagging = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblSPBagging.Text, 0));
+                wipcost.SPAssembled = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblSPAssembled.Text, 0));
+                wipcost.SPPlating = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblSPPlating.Text, 0));
+                //For Testing
+                wipcost.DollarInjec = 0;
+                wipcost.DollarAssembled = 0;
+                wipcost.DollarPlating = 0;
+        }
+        private void RenewLists()
+        {
+            wipmatlist = new List<tbl_100_WIP_COSTING_MATERIALS>();
+            wiplabpilist = new List<tbl_100_WIP_COSTING_LABOR_PI>();
+            wiplabassylist = new List<tbl_100_WIP_COSTING_LABOR_ASSY>();
+            wiplabbagglist = new List<tbl_100_WIP_COSTING_LABOR_BAGG>();
+            wiplabassylist = new List<tbl_100_WIP_COSTING_LABOR_ASSY>();
+            wiplabplatedlist = new List<tbl_100_WIP_COSTING_LABOR_PLATED>();
+            wipccodelist = new List<tbl_100_WIP_COSTING_CC>();
         }
         private void AssignRecord(Boolean IsSave)
         {
@@ -314,6 +358,7 @@ namespace PWCOSTINGV1.Forms
             {
                 if (IsSave)
                 {
+                    MainWIPItem();
                     //Materials
                     for (int i = 0; i < mgridMaterials.RowCount; i++)
                     {
@@ -323,9 +368,14 @@ namespace PWCOSTINGV1.Forms
                         if (wipmat == null)
                         {
                             wipmat = new tbl_100_WIP_COSTING_MATERIALS();
+                            wipmat.state = "add";
                             wipmat.YEARUSED = UserSettings.LogInYear;
                             wipmat.ItemNo = mtxtItemNo.Text;
                             wipmat.PartNo = _mtxtProcess1.Text;
+                        }
+                        else
+                        {
+                            wipmat.state = "update";
                         }
                         wipmat.MatCode = mgridMaterials.Rows[i].Cells["colMatCode"].Value.ToString();
                         wipmat.MatDescription = mgridMaterials.Rows[i].Cells["colMatDescription"].Value.ToString();
@@ -350,9 +400,14 @@ namespace PWCOSTINGV1.Forms
                         if (wippi == null)
                         {
                             wippi = new tbl_100_WIP_COSTING_LABOR_PI();
+                            wippi.state = "add";
                             wippi.YEARUSED = UserSettings.LogInYear;
                             wippi.ItemNo = mtxtItemNo.Text;
                             wippi.Partno = _mtxtProcess1.Text;
+                        }
+                        else
+                        {
+                            wippi.state = "update";
                         }
                         wippi.MoldNo = mgridLabPI.Rows[i].Cells["colMoldNoPI"].Value.ToString();
                         wippi.SPH = Convert.ToDecimal(mgridLabPI.Rows[i].Cells["colSPH"].Value);
@@ -378,9 +433,14 @@ namespace PWCOSTINGV1.Forms
                         if (wipbagg == null)
                         {
                             wipbagg = new tbl_100_WIP_COSTING_LABOR_BAGG();
+                            wipbagg.state = "add";
                             wipbagg.YEARUSED = UserSettings.LogInYear;
                             wipbagg.ItemNo = mtxtItemNo.Text;
                             wipbagg.PartNo = _mtxtProcess1.Text;
+                        }
+                        else
+                        {
+                            wipbagg.state = "update";
                         }
                         wipbagg.ProcessName = mgridLabBagg.Rows[i].Cells["colProcessNameBagg"].Value.ToString();
                         wipbagg.HC = Convert.ToDecimal(mgridLabBagg.Rows[i].Cells["colHCBagg"].Value);
@@ -397,9 +457,14 @@ namespace PWCOSTINGV1.Forms
                         if (wipassy == null)
                         {
                             wipassy = new tbl_100_WIP_COSTING_LABOR_ASSY();
+                            wipassy.state = "add";
                             wipassy.YEARUSED = UserSettings.LogInYear;
                             wipassy.ItemNo = mtxtItemNo.Text;
                             wipassy.PartNo = _mtxtProcess1.Text;
+                        }
+                        else
+                        {
+                            wipassy.state = "update";
                         }
                         wipassy.ProcessName = mgridLabAssy.Rows[i].Cells["colProcessNameAssy"].Value.ToString();
                         wipassy.HC = Convert.ToDecimal(mgridLabAssy.Rows[i].Cells["colHCAssy"].Value);
@@ -416,9 +481,14 @@ namespace PWCOSTINGV1.Forms
                         if (wipplated == null)
                         {
                             wipplated = new tbl_100_WIP_COSTING_LABOR_PLATED();
+                            wipplated.state = "add";
                             wipplated.YEARUSED = UserSettings.LogInYear;
                             wipplated.ItemNo = mtxtItemNo.Text;
                             wipplated.PartNo = _mtxtProcess1.Text;
+                        }
+                        else
+                        {
+                            wipplated.state = "update";
                         }
                         wipplated.ProcessName = mgridLabPlated.Rows[i].Cells["colProcessNamePP"].Value.ToString();
                         wipplated.PlatingTime = Convert.ToDecimal(mgridLabPlated.Rows[i].Cells["colPlatingTime"].Value);
@@ -434,9 +504,14 @@ namespace PWCOSTINGV1.Forms
                         if (wipccodes == null)
                         {
                             wipccodes = new tbl_100_WIP_COSTING_CC();
+                            wipccodes.state = "add";
                             wipccodes.YEARUSED = UserSettings.LogInYear;
                             wipccodes.ItemNo = mtxtItemNo.Text;
                             wipccodes.PartNo = _mtxtProcess3.Text;
+                        }
+                        else
+                        {
+                            wipccodes.state = "update";
                         }
                         wipccodes.MatCode = mgridColorCode.Rows[i].Cells["colMatCodeCC"].Value.ToString();
                         wipccodes.MatDescription = mgridColorCode.Rows[i].Cells["colMatDescriptionCC"].Value.ToString();
@@ -453,7 +528,21 @@ namespace PWCOSTINGV1.Forms
                 }
                 else
                 {
+                    wipcost = wipcostbal.GetByID(costitem_recid);
+                    if (wipcost != null)
+                    {
+                        mtxtItemNo.Text = wipcost.ItemNo;
+                        
+                        //For Testing 
+                        _mtxtProcess1.Text = wipcost.PartNo;
+                        _mtxtPartDesc.Text = wipcost.PartName;
+                        mtxtSTCost.Text = wipcost.MatLaborCost.ToString();
+                        mtxtAPRate.Text = wipcost.ProfitRate.ToString();
+                        mtxtTSelPrice.Text = wipcost.SellingPrice.ToString();
+                        mtxtForex.Text = wipcost.Forex.ToString();
 
+                        LoadCostItem();
+                    }
                 }
             }
             catch (Exception ex)
@@ -468,11 +557,15 @@ namespace PWCOSTINGV1.Forms
                 FormHelpers.CursorWait(true);
                 var isSuccess = false;
                 var msg = "";
+                RenewLists();
                 AssignRecord(true);
                 switch (MyState)
                 {
                     case FormState.Add:
                         msg = "Saving";
+                        //main
+                        if(wipcostbal.Save(wipcost))
+                        //
                         if (wipmatbal.Save(wipmatlist))
                             if (wippibal.Save(wiplabpilist))
                                 if (wipbagbal.Save(wiplabbagglist))
@@ -480,35 +573,27 @@ namespace PWCOSTINGV1.Forms
                                         if (wipplatbal.Save(wiplabplatedlist))
                                             if (wipccbal.Save(wipccodelist))
                                                 isSuccess = true;
-                                           
-                                       
                         break;
                     case FormState.Edit:
                         msg = "Updating";
-                       if(wipmatbal.Update(wipmatlist)){
-                           if (wippibal.Update(wiplabpilist))
-                           {
-                               if (wipbagbal.Update(wiplabbagglist))
-                               {
-                                   if (wipassybal.Update(wiplabassylist))
-                                   {
-                                       if (wipplatbal.Update(wiplabplatedlist))
-                                       {
-                                           if (wipccbal.Update(wipccodelist))
-                                           {
-                                               isSuccess = true;
-                                           }
-                                       }
-                                   }
-                               }
-                           }
-                       }
+                        //main
+                        if (wipcostbal.Update(wipcost))
+                            //
+                        if (wipmatbal.Update(wipmatlist))
+                            if (wippibal.Update(wiplabpilist))
+                                if (wipbagbal.Update(wiplabbagglist))
+                                    if (wipassybal.Update(wiplabassylist))
+                                        if (wipplatbal.Update(wiplabplatedlist))
+                                            if (wipccbal.Update(wipccodelist))
+                                                isSuccess = true;
                         break;
                 }
                 if (isSuccess)
                 {
                     MessageHelpers.ShowInfo(msg + " Successful!");
-                    RefreshGrid();
+                    LoadCostItem();
+                    MyCaller.RefreshGrid();
+                    this.Close();
                 }
             }
             catch (Exception ex)
@@ -523,7 +608,15 @@ namespace PWCOSTINGV1.Forms
 
         private void mbtnSave_Click(object sender, EventArgs e)
         {
-            SaveRecord();
+            if (MyState == FormState.View)
+            {
+                MyState = FormState.Edit;
+                Init_Form();
+            }
+            else
+            {
+                SaveRecord();
+            }
         }
 
         private void mbtnViewList_Click(object sender, EventArgs e)
@@ -538,7 +631,7 @@ namespace PWCOSTINGV1.Forms
         {
             if (e.KeyCode == Keys.Enter)
             {
-                RefreshGrid();
+                LoadCostItem();
             }
         }
 
@@ -547,6 +640,10 @@ namespace PWCOSTINGV1.Forms
             PanelSetup();
             ReColorColumn(mgridMaterials, "colUnitType");
             ReColorColumn(mgridColorCode, "colUnitTypeCC");
+            if (MyState == FormState.View)
+            {
+                ControlsManager(true);
+            }
         }
     }
 }

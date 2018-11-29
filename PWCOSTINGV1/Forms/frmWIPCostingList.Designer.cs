@@ -35,6 +35,7 @@
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
             this.tsbEdit = new System.Windows.Forms.ToolStripButton();
             this.tsbDelete = new System.Windows.Forms.ToolStripButton();
+            this.tsbView = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbRefresh = new System.Windows.Forms.ToolStripButton();
             this.tsbPrint = new System.Windows.Forms.ToolStripButton();
@@ -51,7 +52,6 @@
             this.colSellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colForex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRef_Add = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tsbView = new System.Windows.Forms.ToolStripButton();
             this.listTS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mgridList)).BeginInit();
             this.SuspendLayout();
@@ -112,6 +112,18 @@
             this.tsbDelete.Tag = "delete";
             this.tsbDelete.Text = "&Delete";
             this.tsbDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsbView
+            // 
+            this.tsbView.AutoSize = false;
+            this.tsbView.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tsbView.Image = global::PWCOSTINGV1.Properties.Resources.search_file;
+            this.tsbView.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbView.Name = "tsbView";
+            this.tsbView.Size = new System.Drawing.Size(50, 40);
+            this.tsbView.Tag = "view";
+            this.tsbView.Text = "&View";
+            this.tsbView.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // toolStripSeparator1
             // 
@@ -297,18 +309,6 @@
             this.colRef_Add.Name = "colRef_Add";
             this.colRef_Add.ReadOnly = true;
             // 
-            // tsbView
-            // 
-            this.tsbView.AutoSize = false;
-            this.tsbView.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbView.Image = global::PWCOSTINGV1.Properties.Resources.search_file;
-            this.tsbView.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbView.Name = "tsbView";
-            this.tsbView.Size = new System.Drawing.Size(50, 40);
-            this.tsbView.Tag = "view";
-            this.tsbView.Text = "&View";
-            this.tsbView.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // frmWIPCostingList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,6 +321,7 @@
             this.Name = "frmWIPCostingList";
             this.Resizable = false;
             this.Text = "WIP Costing List";
+            this.Load += new System.EventHandler(this.frmWIPCostingList_Load);
             this.listTS.ResumeLayout(false);
             this.listTS.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mgridList)).EndInit();

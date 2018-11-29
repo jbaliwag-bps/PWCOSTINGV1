@@ -27,7 +27,7 @@ namespace PWCOSTINGV1.Forms
             FormHelpers.FormatForm(this.Controls);
             RefreshGrid();
         }
-        private void RefreshGrid()
+        public void RefreshGrid()
         {
             try
             {
@@ -37,8 +37,10 @@ namespace PWCOSTINGV1.Forms
                     "RecID",
                     "ItemNo",
                     "PartNo",
+                    "PartName",
                     "MatLaborCost",
                     "ProfitRate",
+                    "SellingPrice",
                     "Forex",
                     "Ref_Add"
                     ))
@@ -71,11 +73,11 @@ namespace PWCOSTINGV1.Forms
                     case FormState.Edit:
                     case FormState.View:
                         var recid = Convert.ToInt64(mgridList.SelectedRows[0].Cells["colRecID"].Value);
-                        frm.recid = recid;
+                        frm.costitem_recid = recid;
                         if (MyState == FormState.Edit)
-                            ext = " - Edit";
+                            ext += " - Edit";
                         else
-                            ext = " - View";
+                            ext += " - View";
                         break;
                     case FormState.Delete:
                         Delete();
@@ -130,6 +132,11 @@ namespace PWCOSTINGV1.Forms
                           break;
                   }
               }
+        }
+
+        private void frmWIPCostingList_Load(object sender, EventArgs e)
+        {
+            Init_Form();
         }
 
     }

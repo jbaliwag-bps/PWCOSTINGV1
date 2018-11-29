@@ -10,6 +10,10 @@ namespace PWCOSTING.BO._100
     [Table("tbl_100_WIP_COSTING_LABOR_PI")]
     public class tbl_100_WIP_COSTING_LABOR_PI
     {
+        [NotMapped]
+        [Browsable(false)]
+        public string state { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Int64 RecID { get; set; }
