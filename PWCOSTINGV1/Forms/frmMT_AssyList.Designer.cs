@@ -35,9 +35,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.listTS = new System.Windows.Forms.ToolStrip();
             this.tsbNew = new System.Windows.Forms.ToolStripButton();
-            this.tsbEdit = new System.Windows.Forms.ToolStripButton();
-            this.tsbDelete = new System.Windows.Forms.ToolStripButton();
-            this.tsbView = new System.Windows.Forms.ToolStripButton();
+            this._tsbEdit = new System.Windows.Forms.ToolStripButton();
+            this._tsbDelete = new System.Windows.Forms.ToolStripButton();
+            this._tsbView = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbRefresh = new System.Windows.Forms.ToolStripButton();
             this.tstxtSearch = new System.Windows.Forms.ToolStripTextBox();
@@ -46,6 +46,14 @@
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.mgridListAssy = new MetroFramework.Controls.MetroGrid();
+            this.colDocIDAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPartNoAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPartNameAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRatePerHour = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLastUpdated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUpdatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.listTSFooter = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -55,14 +63,6 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.tslblRowCount = new System.Windows.Forms.ToolStripLabel();
-            this.colDocIDAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPartNoAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPartNameAssy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRatePerHour = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLastUpdated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUpdatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.listTS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mgridListAssy)).BeginInit();
             this.listTSFooter.SuspendLayout();
@@ -74,9 +74,9 @@
             this.listTS.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.listTS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbNew,
-            this.tsbEdit,
-            this.tsbDelete,
-            this.tsbView,
+            this._tsbEdit,
+            this._tsbDelete,
+            this._tsbView,
             this.toolStripSeparator1,
             this.tsbRefresh,
             this.tstxtSearch,
@@ -102,41 +102,41 @@
             this.tsbNew.Text = "&New";
             this.tsbNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // tsbEdit
+            // _tsbEdit
             // 
-            this.tsbEdit.AutoSize = false;
-            this.tsbEdit.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbEdit.Image = global::PWCOSTINGV1.Properties.Resources.edit_file;
-            this.tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbEdit.Name = "tsbEdit";
-            this.tsbEdit.Size = new System.Drawing.Size(50, 40);
-            this.tsbEdit.Tag = "edit";
-            this.tsbEdit.Text = "&Edit";
-            this.tsbEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this._tsbEdit.AutoSize = false;
+            this._tsbEdit.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._tsbEdit.Image = global::PWCOSTINGV1.Properties.Resources.edit_file;
+            this._tsbEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._tsbEdit.Name = "_tsbEdit";
+            this._tsbEdit.Size = new System.Drawing.Size(50, 40);
+            this._tsbEdit.Tag = "edit";
+            this._tsbEdit.Text = "&Edit";
+            this._tsbEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // tsbDelete
+            // _tsbDelete
             // 
-            this.tsbDelete.AutoSize = false;
-            this.tsbDelete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbDelete.Image = global::PWCOSTINGV1.Properties.Resources.delete_file;
-            this.tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDelete.Name = "tsbDelete";
-            this.tsbDelete.Size = new System.Drawing.Size(50, 40);
-            this.tsbDelete.Tag = "delete";
-            this.tsbDelete.Text = "&Delete";
-            this.tsbDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this._tsbDelete.AutoSize = false;
+            this._tsbDelete.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._tsbDelete.Image = global::PWCOSTINGV1.Properties.Resources.delete_file;
+            this._tsbDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._tsbDelete.Name = "_tsbDelete";
+            this._tsbDelete.Size = new System.Drawing.Size(50, 40);
+            this._tsbDelete.Tag = "delete";
+            this._tsbDelete.Text = "&Delete";
+            this._tsbDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // tsbView
+            // _tsbView
             // 
-            this.tsbView.AutoSize = false;
-            this.tsbView.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tsbView.Image = global::PWCOSTINGV1.Properties.Resources.search_file;
-            this.tsbView.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbView.Name = "tsbView";
-            this.tsbView.Size = new System.Drawing.Size(50, 40);
-            this.tsbView.Tag = "view";
-            this.tsbView.Text = "&View";
-            this.tsbView.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this._tsbView.AutoSize = false;
+            this._tsbView.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._tsbView.Image = global::PWCOSTINGV1.Properties.Resources.search_file;
+            this._tsbView.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._tsbView.Name = "_tsbView";
+            this._tsbView.Size = new System.Drawing.Size(50, 40);
+            this._tsbView.Tag = "view";
+            this._tsbView.Text = "&View";
+            this._tsbView.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // toolStripSeparator1
             // 
@@ -266,6 +266,77 @@
             this.mgridListAssy.Tag = "list";
             this.mgridListAssy.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mgridListAssy_CellDoubleClick);
             // 
+            // colDocIDAssy
+            // 
+            this.colDocIDAssy.DataPropertyName = "DocID";
+            this.colDocIDAssy.HeaderText = "Doc ID";
+            this.colDocIDAssy.Name = "colDocIDAssy";
+            this.colDocIDAssy.ReadOnly = true;
+            this.colDocIDAssy.Visible = false;
+            // 
+            // colPartNoAssy
+            // 
+            this.colPartNoAssy.DataPropertyName = "PartNo";
+            this.colPartNoAssy.HeaderText = "Part No.";
+            this.colPartNoAssy.MinimumWidth = 100;
+            this.colPartNoAssy.Name = "colPartNoAssy";
+            this.colPartNoAssy.ReadOnly = true;
+            // 
+            // colPartNameAssy
+            // 
+            this.colPartNameAssy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPartNameAssy.DataPropertyName = "PartName";
+            this.colPartNameAssy.HeaderText = "Part Name";
+            this.colPartNameAssy.MinimumWidth = 150;
+            this.colPartNameAssy.Name = "colPartNameAssy";
+            this.colPartNameAssy.ReadOnly = true;
+            // 
+            // colHC
+            // 
+            this.colHC.DataPropertyName = "HC";
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.colHC.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colHC.HeaderText = "H/C";
+            this.colHC.Name = "colHC";
+            this.colHC.ReadOnly = true;
+            this.colHC.Width = 70;
+            // 
+            // colQty
+            // 
+            this.colQty.DataPropertyName = "Qty";
+            dataGridViewCellStyle3.Format = "N0";
+            this.colQty.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colQty.HeaderText = "Qty";
+            this.colQty.Name = "colQty";
+            this.colQty.ReadOnly = true;
+            this.colQty.Width = 70;
+            // 
+            // colRatePerHour
+            // 
+            this.colRatePerHour.DataPropertyName = "RatePerHour";
+            this.colRatePerHour.HeaderText = "Rate Per Hour";
+            this.colRatePerHour.MinimumWidth = 100;
+            this.colRatePerHour.Name = "colRatePerHour";
+            this.colRatePerHour.ReadOnly = true;
+            this.colRatePerHour.Width = 120;
+            // 
+            // colLastUpdated
+            // 
+            this.colLastUpdated.DataPropertyName = "UpdatedDate";
+            this.colLastUpdated.HeaderText = "Last Updated";
+            this.colLastUpdated.Name = "colLastUpdated";
+            this.colLastUpdated.ReadOnly = true;
+            this.colLastUpdated.Width = 150;
+            // 
+            // colUpdatedBy
+            // 
+            this.colUpdatedBy.DataPropertyName = "UpdatedBy";
+            this.colUpdatedBy.HeaderText = "Updated By";
+            this.colUpdatedBy.Name = "colUpdatedBy";
+            this.colUpdatedBy.ReadOnly = true;
+            this.colUpdatedBy.Width = 150;
+            // 
             // listTSFooter
             // 
             this.listTSFooter.BackColor = System.Drawing.Color.Transparent;
@@ -353,77 +424,6 @@
             this.tslblRowCount.Size = new System.Drawing.Size(86, 35);
             this.tslblRowCount.Text = "toolStripLabel2";
             // 
-            // colDocIDAssy
-            // 
-            this.colDocIDAssy.DataPropertyName = "DocID";
-            this.colDocIDAssy.HeaderText = "Doc ID";
-            this.colDocIDAssy.Name = "colDocIDAssy";
-            this.colDocIDAssy.ReadOnly = true;
-            this.colDocIDAssy.Visible = false;
-            // 
-            // colPartNoAssy
-            // 
-            this.colPartNoAssy.DataPropertyName = "PartNo";
-            this.colPartNoAssy.HeaderText = "Part No.";
-            this.colPartNoAssy.MinimumWidth = 100;
-            this.colPartNoAssy.Name = "colPartNoAssy";
-            this.colPartNoAssy.ReadOnly = true;
-            // 
-            // colPartNameAssy
-            // 
-            this.colPartNameAssy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPartNameAssy.DataPropertyName = "PartName";
-            this.colPartNameAssy.HeaderText = "Part Name";
-            this.colPartNameAssy.MinimumWidth = 150;
-            this.colPartNameAssy.Name = "colPartNameAssy";
-            this.colPartNameAssy.ReadOnly = true;
-            // 
-            // colHC
-            // 
-            this.colHC.DataPropertyName = "HC";
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.colHC.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colHC.HeaderText = "H/C";
-            this.colHC.Name = "colHC";
-            this.colHC.ReadOnly = true;
-            this.colHC.Width = 70;
-            // 
-            // colQty
-            // 
-            this.colQty.DataPropertyName = "Qty";
-            dataGridViewCellStyle3.Format = "N0";
-            this.colQty.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colQty.HeaderText = "Qty";
-            this.colQty.Name = "colQty";
-            this.colQty.ReadOnly = true;
-            this.colQty.Width = 70;
-            // 
-            // colRatePerHour
-            // 
-            this.colRatePerHour.DataPropertyName = "RatePerHour";
-            this.colRatePerHour.HeaderText = "Rate Per Hour";
-            this.colRatePerHour.MinimumWidth = 100;
-            this.colRatePerHour.Name = "colRatePerHour";
-            this.colRatePerHour.ReadOnly = true;
-            this.colRatePerHour.Width = 120;
-            // 
-            // colLastUpdated
-            // 
-            this.colLastUpdated.DataPropertyName = "UpdatedDate";
-            this.colLastUpdated.HeaderText = "Last Updated";
-            this.colLastUpdated.Name = "colLastUpdated";
-            this.colLastUpdated.ReadOnly = true;
-            this.colLastUpdated.Width = 150;
-            // 
-            // colUpdatedBy
-            // 
-            this.colUpdatedBy.DataPropertyName = "UpdatedBy";
-            this.colUpdatedBy.HeaderText = "Updated By";
-            this.colUpdatedBy.Name = "colUpdatedBy";
-            this.colUpdatedBy.ReadOnly = true;
-            this.colUpdatedBy.Width = 150;
-            // 
             // frmMT_AssyList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -452,9 +452,9 @@
 
         private System.Windows.Forms.ToolStrip listTS;
         private System.Windows.Forms.ToolStripButton tsbNew;
-        private System.Windows.Forms.ToolStripButton tsbEdit;
-        private System.Windows.Forms.ToolStripButton tsbDelete;
-        private System.Windows.Forms.ToolStripButton tsbView;
+        private System.Windows.Forms.ToolStripButton _tsbEdit;
+        private System.Windows.Forms.ToolStripButton _tsbDelete;
+        private System.Windows.Forms.ToolStripButton _tsbView;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbRefresh;
         private System.Windows.Forms.ToolStripTextBox tstxtSearch;

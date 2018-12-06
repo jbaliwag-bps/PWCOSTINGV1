@@ -241,7 +241,8 @@
             this.mtxtCavity.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtCavity.CustomButton.UseSelectable = true;
             this.mtxtCavity.CustomButton.Visible = false;
-            this.mtxtCavity.Lines = new string[0];
+            this.mtxtCavity.Lines = new string[] {
+        "1"};
             this.mtxtCavity.Location = new System.Drawing.Point(239, 153);
             this.mtxtCavity.MaxLength = 10;
             this.mtxtCavity.Name = "mtxtCavity";
@@ -254,6 +255,7 @@
             this.mtxtCavity.ShortcutsEnabled = true;
             this.mtxtCavity.Size = new System.Drawing.Size(155, 23);
             this.mtxtCavity.TabIndex = 40;
+            this.mtxtCavity.Text = "1";
             this.mtxtCavity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtCavity.UseSelectable = true;
             this.mtxtCavity.WaterMark = "0";

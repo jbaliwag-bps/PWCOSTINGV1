@@ -32,15 +32,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this._toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this._toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this._toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStriptxtSearch = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.listTS = new System.Windows.Forms.ToolStrip();
             this.mgridList = new MetroFramework.Controls.MetroGrid();
+            this.colRecID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSectionCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSectionDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.listTSFooter = new System.Windows.Forms.ToolStrip();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
@@ -50,10 +54,6 @@
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
             this.tslblRowCount = new System.Windows.Forms.ToolStripLabel();
-            this.colRecID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSectionCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSectionDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.listTS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mgridList)).BeginInit();
             this.listTSFooter.SuspendLayout();
@@ -71,41 +71,41 @@
             this.toolStripButton1.Text = "&New";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripButton2
+            // _toolStripButton2
             // 
-            this.toolStripButton2.AutoSize = false;
-            this.toolStripButton2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton2.Image = global::PWCOSTINGV1.Properties.Resources.edit_file;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(50, 40);
-            this.toolStripButton2.Tag = "edit";
-            this.toolStripButton2.Text = "&Edit";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this._toolStripButton2.AutoSize = false;
+            this._toolStripButton2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._toolStripButton2.Image = global::PWCOSTINGV1.Properties.Resources.edit_file;
+            this._toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolStripButton2.Name = "_toolStripButton2";
+            this._toolStripButton2.Size = new System.Drawing.Size(50, 40);
+            this._toolStripButton2.Tag = "edit";
+            this._toolStripButton2.Text = "&Edit";
+            this._toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripButton3
+            // _toolStripButton3
             // 
-            this.toolStripButton3.AutoSize = false;
-            this.toolStripButton3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton3.Image = global::PWCOSTINGV1.Properties.Resources.delete_file;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(50, 40);
-            this.toolStripButton3.Tag = "delete";
-            this.toolStripButton3.Text = "&Delete";
-            this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this._toolStripButton3.AutoSize = false;
+            this._toolStripButton3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._toolStripButton3.Image = global::PWCOSTINGV1.Properties.Resources.delete_file;
+            this._toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolStripButton3.Name = "_toolStripButton3";
+            this._toolStripButton3.Size = new System.Drawing.Size(50, 40);
+            this._toolStripButton3.Tag = "delete";
+            this._toolStripButton3.Text = "&Delete";
+            this._toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripButton4
+            // _toolStripButton4
             // 
-            this.toolStripButton4.AutoSize = false;
-            this.toolStripButton4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton4.Image = global::PWCOSTINGV1.Properties.Resources.search_file;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(50, 40);
-            this.toolStripButton4.Tag = "view";
-            this.toolStripButton4.Text = "&View";
-            this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this._toolStripButton4.AutoSize = false;
+            this._toolStripButton4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._toolStripButton4.Image = global::PWCOSTINGV1.Properties.Resources.search_file;
+            this._toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolStripButton4.Name = "_toolStripButton4";
+            this._toolStripButton4.Size = new System.Drawing.Size(50, 40);
+            this._toolStripButton4.Tag = "view";
+            this._toolStripButton4.Text = "&View";
+            this._toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // toolStripSeparator1
             // 
@@ -149,9 +149,9 @@
             this.listTS.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.listTS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4,
+            this._toolStripButton2,
+            this._toolStripButton3,
+            this._toolStripButton4,
             this.toolStripSeparator1,
             this.toolStripButton5,
             this.toolStriptxtSearch,
@@ -217,6 +217,40 @@
             this.mgridList.TabIndex = 7;
             this.mgridList.Tag = "list";
             this.mgridList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mgridList_CellDoubleClick);
+            // 
+            // colRecID
+            // 
+            this.colRecID.DataPropertyName = "RecID";
+            this.colRecID.HeaderText = "Rec ID";
+            this.colRecID.Name = "colRecID";
+            this.colRecID.ReadOnly = true;
+            this.colRecID.Visible = false;
+            // 
+            // colSectionCode
+            // 
+            this.colSectionCode.DataPropertyName = "SECTIONCODE";
+            this.colSectionCode.HeaderText = "Code";
+            this.colSectionCode.MinimumWidth = 100;
+            this.colSectionCode.Name = "colSectionCode";
+            this.colSectionCode.ReadOnly = true;
+            // 
+            // colSectionDesc
+            // 
+            this.colSectionDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colSectionDesc.DataPropertyName = "SECTIONDESC";
+            this.colSectionDesc.HeaderText = "Description";
+            this.colSectionDesc.MinimumWidth = 150;
+            this.colSectionDesc.Name = "colSectionDesc";
+            this.colSectionDesc.ReadOnly = true;
+            // 
+            // colIsActive
+            // 
+            this.colIsActive.DataPropertyName = "IsActive";
+            this.colIsActive.HeaderText = "Active";
+            this.colIsActive.MinimumWidth = 60;
+            this.colIsActive.Name = "colIsActive";
+            this.colIsActive.ReadOnly = true;
+            this.colIsActive.Width = 60;
             // 
             // listTSFooter
             // 
@@ -305,40 +339,6 @@
             this.tslblRowCount.Size = new System.Drawing.Size(86, 35);
             this.tslblRowCount.Text = "toolStripLabel2";
             // 
-            // colRecID
-            // 
-            this.colRecID.DataPropertyName = "RecID";
-            this.colRecID.HeaderText = "Rec ID";
-            this.colRecID.Name = "colRecID";
-            this.colRecID.ReadOnly = true;
-            this.colRecID.Visible = false;
-            // 
-            // colSectionCode
-            // 
-            this.colSectionCode.DataPropertyName = "SECTIONCODE";
-            this.colSectionCode.HeaderText = "Code";
-            this.colSectionCode.MinimumWidth = 100;
-            this.colSectionCode.Name = "colSectionCode";
-            this.colSectionCode.ReadOnly = true;
-            // 
-            // colSectionDesc
-            // 
-            this.colSectionDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colSectionDesc.DataPropertyName = "SECTIONDESC";
-            this.colSectionDesc.HeaderText = "Description";
-            this.colSectionDesc.MinimumWidth = 150;
-            this.colSectionDesc.Name = "colSectionDesc";
-            this.colSectionDesc.ReadOnly = true;
-            // 
-            // colIsActive
-            // 
-            this.colIsActive.DataPropertyName = "IsActive";
-            this.colIsActive.HeaderText = "Active";
-            this.colIsActive.MinimumWidth = 60;
-            this.colIsActive.Name = "colIsActive";
-            this.colIsActive.ReadOnly = true;
-            this.colIsActive.Width = 60;
-            // 
             // frmSectionList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -368,9 +368,9 @@
         #endregion
 
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton _toolStripButton2;
+        private System.Windows.Forms.ToolStripButton _toolStripButton3;
+        private System.Windows.Forms.ToolStripButton _toolStripButton4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripTextBox toolStriptxtSearch;

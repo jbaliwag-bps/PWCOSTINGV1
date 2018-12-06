@@ -34,36 +34,35 @@ namespace PWCOSTINGV1.Forms
             RefreshGrid();
             rowcount = mgridList.RowCount;
             PageManager(1);
+            mgridList.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
         public void RefreshGrid()
         {
             try
             {
-                var list = combal.GetByYear(UserSettings.LogInYear).Select(i => new
-                {
-                    i.DocID,
-                    i.YEARUSED,
-                    aPartNo = i.PartNo,
-                    bPartName = i.PartName,
-                    cWholeQty = i.WholeQty,
-                    dWholeUnit = i.WholeUnit,
-                    eConversionQty = i.ConversionQty,
-                    fConversionUnit = i.ConversionUnit,
-                    gWholePrice = i.WholePrice,
-                    hConversionPrice = i.ConversionPrice,
-                    iPreviousPrice = i.PreviousPrice,
-                    jUpdatedDate = i.UpdatedDate,
-                    kUpdatedBy = i.UpdatedBy,
-                    lIsLocked = i.IsLocked,
-                }
-                ).ToList();
+                var list = combal.GetByYear(UserSettings.LogInYear).ToList();
                 DataTable comTable = new DataTable();
-                using (var reader = ObjectReader.Create(list))
+                using (var reader = ObjectReader.Create(list,
+                    "DocID",
+                    "PartNo",
+                    "PartName",
+                    "WholeQty",
+                    "WholeUnit",
+                    "ConversionQty",
+                    "ConversionUnit",
+                    "WholePrice",
+                    "ConversionPrice",
+                    "PreviousPrice",
+                    "UpdatedDate",
+                    "UpdatedBy",
+                    "IsLocked"
+                    ))
                 {
                     comTable.Load(reader);
                     mgridList.DataSource = comTable;
                 }
                 dgvorig.DataSource = mgridList.DataSource;
+                Grid.ListCheck(mgridList, listTS);
                 tslblRowCount.Text = "Number of Records:    " + list.Count + "       ";
             }
             catch (Exception ex)
@@ -97,8 +96,8 @@ namespace PWCOSTINGV1.Forms
                         break;
                     case FormState.Edit:
                     case FormState.View:
-                        var year = Convert.ToInt32(mgridList.SelectedRows[0].Cells["colYEARUSED"].Value);
-                        var no = mgridList.SelectedRows[0].Cells["colPartNo"].Value.ToString();
+                        var year = UserSettings.LogInYear;
+                        var no = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colPartNo"].Value.ToString();
                         frm.yearused = year;
                         frm.partno = no;
                         break;
@@ -195,9 +194,9 @@ namespace PWCOSTINGV1.Forms
             try
             {
                 FormHelpers.CursorWait(true);
-                var year = Convert.ToInt32(mgridList.SelectedRows[0].Cells["colYEARUSED"].Value);
+                var year = UserSettings.LogInYear;
                 int yearused = year;
-                var no = mgridList.SelectedRows[0].Cells["colPartNo"].Value.ToString();
+                var no = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colPartNo"].Value.ToString();
                 string partno = no;
                 if (MessageHelpers.ShowQuestion("Are you sure want to delete record?") == DialogResult.Yes)
                 {
@@ -276,7 +275,7 @@ namespace PWCOSTINGV1.Forms
             string strtosearch = toolStriptxtSearch.Text;
             try
             {
-                mgridList.DataSource = Grid.PageRandom(dgvorig, minrowcount, strtosearch, "aPartNo ", "bPartName");
+                mgridList.DataSource = Grid.PageRandom(dgvorig, minrowcount, strtosearch, "PartNo ", "PartName");
             }
             catch (Exception ex)
             {

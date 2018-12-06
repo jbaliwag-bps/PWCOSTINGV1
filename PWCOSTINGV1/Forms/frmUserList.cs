@@ -32,6 +32,7 @@ namespace PWCOSTINGV1.Forms
             RefreshGrid();
             rowcount = mgridList.RowCount;
             PageManager(1);
+            mgridList.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
         public void RefreshGrid()
         {
@@ -51,6 +52,7 @@ namespace PWCOSTINGV1.Forms
                     mgridList.DataSource = usrTable;
                 }
                 dgvorig.DataSource = mgridList.DataSource;
+                Grid.ListCheck(mgridList, listTS);
                 tslblRowCount.Text = "Number of Records:    " + list.Count + "       ";
             }
             catch (Exception ex)
@@ -86,7 +88,7 @@ namespace PWCOSTINGV1.Forms
                     case FormState.Edit:
                     case FormState.Delete:
                     case FormState.View:
-                        var uname = mgridList.SelectedRows[0].Cells["colUsername"].Value.ToString();
+                        var uname = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colUsername"].Value.ToString();
                         frm.username = uname;
                         break;
                 }

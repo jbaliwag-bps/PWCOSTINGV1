@@ -93,11 +93,11 @@ namespace PWCOSTING.BAL._100
                 throw ex;
             }
         }
-        public Boolean Delete(List<tbl_100_WIP_COST> records)
+        public Boolean Delete(tbl_100_WIP_COST record)
         {
             try
             {
-                return wipcostdal.Delete(records);
+                return wipcostdal.Delete(record);
             }
             catch (Exception ex)
             {

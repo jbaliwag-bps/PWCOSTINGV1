@@ -40,6 +40,17 @@ namespace PWCOSTING.DAL._100
                 throw ex;
             }
         }
+        public List<tbl_100_WIP_COSTING_LABOR_BAGG> GetByNo(int yearused, string itemno, string partno)
+        {
+            try
+            {
+                return db.WIPLaborBaggList.AsNoTracking().Where(w => w.YEARUSED == yearused && w.ItemNo == itemno && w.PartNo == partno).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<tbl_100_WIP_COSTING_LABOR_BAGG> GetByYear(string itemno, int yearused)
         {
             try
@@ -110,6 +121,7 @@ namespace PWCOSTING.DAL._100
                     foreach (tbl_100_WIP_COSTING_LABOR_BAGG record in records)
                     {
                         var existrecord = GetByID(record.RecID);
+                        db.WIPLaborBaggList.Attach(existrecord);
                         db.WIPLaborBaggList.Remove(existrecord);
                         db.SaveChanges();
                     }

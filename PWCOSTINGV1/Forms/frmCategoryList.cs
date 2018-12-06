@@ -13,7 +13,6 @@ using PWCOSTING.BAL._000;
 using PWCOSTINGV1.Classes;
 using PWCOSTING.BO._000;
 
-
 namespace PWCOSTINGV1.Forms
 {
     public partial class frmCategoryList : MetroForm
@@ -26,39 +25,35 @@ namespace PWCOSTINGV1.Forms
         int minrowcount = 17;
         int currentpage = 1;
         DataGridView dgvorig = new DataGridView();
-
         private void Init_Form()
         {
             FormHelpers.FormatForm(this.Controls);
             RefreshGrid();
             rowcount = mgridList.RowCount;
             PageManager(1);
+            mgridList.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
         public void RefreshGrid()
         {
             try
             {
-                //var list = Categorybal.GetAll().Select(i => new { i.RecID, i.CATCODE, i.CATDESC, i.YEARUSED, i.MoldSetup, i.LotSize, i.IsDependent, i.IsActive }).OrderBy(m => m.CATDESC).Where(r=>r.YEARUSED == UserSettings.LogInYear).ToList();
-                //this.mgridList.DataSource = list;
-
-                var list = Categorybal.GetAll().Select(i => new
-                {
-                    i.RecID,
-                    i.YEARUSED,
-                    aCATCODE = i.CATCODE,
-                    bCATDESC = i.CATDESC,
-                    cMoldSetup = i.MoldSetup,
-                    dLotSize = i.LotSize,
-                    eIsDependent = i.IsDependent,
-                    fIsActive = i.IsActive
-                }).Distinct().Where(r => r.YEARUSED == UserSettings.LogInYear).ToList();
+                var list = Categorybal.GetAll().Distinct().Where(r => r.YEARUSED == UserSettings.LogInYear).ToList();
                 DataTable itmTable = new DataTable();
-                using (var reader = ObjectReader.Create(list))
+                using (var reader = ObjectReader.Create(list, 
+                    "RecID",
+                    "CATCODE",
+                    "CATDESC",
+                    "MoldSetup",
+                    "LotSize",
+                    "IsDependent",
+                    "IsActive"
+                    ))
                 {
                     itmTable.Load(reader);
                     mgridList.DataSource = itmTable;
                 }
                 dgvorig.DataSource = mgridList.DataSource;
+                Grid.ListCheck(mgridList, listTS);
                 tslblRowCount.Text = "Number of Records:    " + list.Count + "       ";
             }
             catch (Exception ex)
@@ -92,9 +87,9 @@ namespace PWCOSTINGV1.Forms
                         break;
                     case FormState.Edit:
                     case FormState.View:
-                        var ccode = mgridList.SelectedRows[0].Cells["colCATCODE"].Value.ToString();
+                        var ccode = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colCATCODE"].Value.ToString();
                         frm.CategoryCode = ccode;
-                        var cyearused = mgridList.SelectedRows[0].Cells["colYEARUSED"].Value.ToString();
+                        var cyearused = UserSettings.LogInYear;
                         frm.YearUsed = Convert.ToInt32(cyearused);
                         break;
                 }
@@ -155,9 +150,9 @@ namespace PWCOSTINGV1.Forms
             try
             {
                 FormHelpers.CursorWait(true);
-                var categorycode = mgridList.SelectedRows[0].Cells["colCATCODE"].Value.ToString();
+                var categorycode = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colCATCODE"].Value.ToString();
                 string ccode = categorycode;
-                var cyearused = mgridList.SelectedRows[0].Cells["colYEARUSED"].Value.ToString();
+                var cyearused = UserSettings.LogInYear;
                 int yearused = Convert.ToInt32(cyearused);
                 if (MessageHelpers.ShowQuestion("Are you sure you want to delete record?") == System.Windows.Forms.DialogResult.Yes)
                 {
@@ -199,7 +194,7 @@ namespace PWCOSTINGV1.Forms
             string strtosearch = toolStriptxtSearch.Text;
             try
             {
-                mgridList.DataSource = Grid.PageRandom(dgvorig, minrowcount, strtosearch, "aCATCODE", "bCATDESC");
+                mgridList.DataSource = Grid.PageRandom(dgvorig, minrowcount, strtosearch, "CATCODE", "CATDESC");
             }
             catch (Exception ex)
             {
@@ -240,6 +235,5 @@ namespace PWCOSTINGV1.Forms
         {
             PagingByTS(e);
         }
-
     }
 }

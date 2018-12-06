@@ -19,11 +19,12 @@ namespace PWCOSTINGV1.Forms
     {
         FXSPBAL FXSPbal;
         tbl_000_FXSP fxsp;
-        ErrorProviderExtended err;
         public void Init_Form()
         {
             FormHelpers.FormatForm(this.Controls);
             RefreshGrid();
+            mgridList1.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            mgridList2.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
         public void RecordCount(){
             var fxcount = FXSPbal.GetAll().Select(i => new { i.RecID, i.RecType, i.YearUsed}).Where(r => r.RecType == "FX" && r.YearUsed == UserSettings.LogInYear).Count();
@@ -41,6 +42,17 @@ namespace PWCOSTINGV1.Forms
                 var list2 = FXSPbal.GetAll().Select(i => new { i.RecID, i.RecType, i.EffectiveDate, i.Rate, i.YearUsed}).OrderBy(m => m.EffectiveDate).Where(r => r.RecType == "SP" && r.YearUsed == UserSettings.LogInYear).ToList();
                 this.mgridList2.DataSource = list2;
                 this.mgridList2.ClearSelection();
+                if (mgridList1.RowCount == 0 && mgridList2.RowCount == 0)
+                {
+                    Grid.tsButtonManager(listTS, true);
+                }
+                else
+                {
+                    if(mgridList1.RowCount > 0)
+                    Grid.ListCheck(mgridList1, listTS);
+                    if(mgridList2.RowCount > 0)
+                    Grid.ListCheck(mgridList2, listTS);
+                }
                 RecordCount();
             }
             catch (Exception ex)
@@ -63,8 +75,8 @@ namespace PWCOSTINGV1.Forms
                             {
                                 if (mgridList1.SelectedRows != null)
                                 {
-                                    var fxsptype = mgridList1.SelectedRows[0].Cells["colRecType1"].Value.ToString();
-                                    var fxspeffdate = mgridList1.SelectedRows[0].Cells["colEffectiveDate1"].Value.ToString();
+                                    var fxsptype = mgridList1.Rows[mgridList1.SelectedCells[0].RowIndex].Cells["colRecType1"].Value.ToString();
+                                    var fxspeffdate = mgridList1.Rows[mgridList1.SelectedCells[0].RowIndex].Cells["colEffectiveDate1"].Value.ToString();
                                     frm.RecType = fxsptype;
                                     frm.EffectiveDate = fxspeffdate;
                                 }
@@ -73,8 +85,8 @@ namespace PWCOSTINGV1.Forms
                             {
                                 if (mgridList2.SelectedRows != null)
                                 {
-                                    var fxsptype = mgridList2.SelectedRows[0].Cells["colRecType2"].Value.ToString();
-                                    var fxspeffdate = mgridList2.SelectedRows[0].Cells["colEffectiveDate2"].Value.ToString();
+                                    var fxsptype = mgridList2.Rows[mgridList2.SelectedCells[0].RowIndex].Cells["colRecType2"].Value.ToString();
+                                    var fxspeffdate = mgridList2.Rows[mgridList2.SelectedCells[0].RowIndex].Cells["colEffectiveDate2"].Value.ToString();
                                     frm.RecType = fxsptype;
                                     frm.EffectiveDate = fxspeffdate;
                                 }
@@ -139,16 +151,16 @@ namespace PWCOSTINGV1.Forms
             {
                 if (mgridList1.SelectedRows != null)
                 {
-                    fxsptype = mgridList1.SelectedRows[0].Cells["colRecType1"].Value.ToString();
-                    fxspeffdate = mgridList1.SelectedRows[0].Cells["colEffectiveDate1"].Value.ToString();
+                    fxsptype = mgridList1.Rows[mgridList1.SelectedCells[0].RowIndex].Cells["colRecType1"].Value.ToString();
+                    fxspeffdate = mgridList1.Rows[mgridList1.SelectedCells[0].RowIndex].Cells["colEffectiveDate1"].Value.ToString();
                 }
             }
             catch
             {
                 if (mgridList2.SelectedRows != null)
                 {
-                    fxsptype = mgridList2.SelectedRows[0].Cells["colRecType2"].Value.ToString();
-                    fxspeffdate = mgridList2.SelectedRows[0].Cells["colEffectiveDate2"].Value.ToString();
+                    fxsptype = mgridList2.Rows[mgridList2.SelectedCells[0].RowIndex].Cells["colRecType2"].Value.ToString();
+                    fxspeffdate = mgridList2.Rows[mgridList2.SelectedCells[0].RowIndex].Cells["colEffectiveDate2"].Value.ToString();
                 }
             }
             string rectype = fxsptype;

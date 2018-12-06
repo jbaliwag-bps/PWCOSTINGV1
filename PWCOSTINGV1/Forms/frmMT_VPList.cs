@@ -30,6 +30,7 @@ namespace PWCOSTINGV1.Forms
             RefreshGrid();
             rowcount = mgridListVP.RowCount;
             PageManager(1);
+            mgridListVP.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
         private void RefreshGrid()
         {
@@ -37,12 +38,20 @@ namespace PWCOSTINGV1.Forms
             {
                 var vplist = vpbal.GetByYear(UserSettings.LogInYear);
                 DataTable vpTable = new DataTable();
-                using (var reader = ObjectReader.Create(vplist, "DocID", "PartNo", "PartName", "SourceData", "UpdatedDate", "UpdatedBy"))
+                using (var reader = ObjectReader.Create(vplist, 
+                    "DocID", 
+                    "PartNo", 
+                    "PartName", 
+                    "SourceData", 
+                    "UpdatedDate", 
+                    "UpdatedBy"
+                    ))
                 {
                     vpTable.Load(reader);
                     mgridListVP.DataSource = vpTable;
                 }
                 dgvorig.DataSource = mgridListVP.DataSource;
+                Grid.ListCheck(mgridListVP, listTS);
                 tslblRowCount.Text = "Number of Records:    " + vplist.Count + "       ";
             }
             catch (Exception ex)
@@ -88,7 +97,7 @@ namespace PWCOSTINGV1.Forms
                     case FormState.Edit:
                     case FormState.View:
                         frmvp.yearused = UserSettings.LogInYear;
-                        var pno = mgridListVP.SelectedRows[0].Cells["colPartNoVP"].Value.ToString();
+                        var pno = mgridListVP.Rows[mgridListVP.SelectedCells[0].RowIndex].Cells["colPartNoVP"].Value.ToString();
                         frmvp.partno = pno;
                         break;
                 }
@@ -153,24 +162,14 @@ namespace PWCOSTINGV1.Forms
             try
             {
                     FormHelpers.CursorWait(true);
-                    var DeletingisSuccess = false;
                     var msg = "Deleting";
-                    Int32 selectedRowCount;
-                    selectedRowCount = mgridListVP.Rows.GetRowCount(DataGridViewElementStates.Selected);
                     if (MessageHelpers.ShowQuestion("Are you sure you want to delete record?") == System.Windows.Forms.DialogResult.Yes)
                     {
-                        for (int i = 0; i < selectedRowCount; i++)
-                        {
-                            var yearused = UserSettings.LogInYear;
-                            var partno = mgridListVP.SelectedRows[i].Cells["colPartNoVP"].Value.ToString();
+                        var yearused = UserSettings.LogInYear;
+                        var partno = mgridListVP.Rows[mgridListVP.SelectedCells[0].RowIndex].Cells["colPartNoVP"].Value.ToString();
 
-                            vp = vpbal.GetByID(Convert.ToInt32(yearused), partno.ToString()); ;
-                            if (vpbal.Delete(vp))
-                            {
-                                DeletingisSuccess = true;
-                            }
-                        }
-                        if (DeletingisSuccess)
+                        vp = vpbal.GetByID(Convert.ToInt32(yearused), partno.ToString()); ;
+                        if (vpbal.Delete(vp))
                         {
                             MessageHelpers.ShowInfo(msg + " Successful!");
                             RefreshGrid();

@@ -25,7 +25,7 @@ namespace PWCOSTINGV1.Classes
                     initialnamevalue = BPSUtilitiesV1.NZ(dgv.Rows[i].Cells[cellname].Value, "").ToString();
             }
         }
-
+        //For Paging
         public static DataTable Pager(DataGridView dgv, long _take, int _skip)
         {
             if (_skip != 1)
@@ -41,6 +41,7 @@ namespace PWCOSTINGV1.Classes
             return cloneDataTable;
         }
 
+        //For searching record
         public static DataTable PageRandom(DataGridView dgv, long _take, string strtosearch, string tosearch1, string tosearch2)
        {
             DataTable dt = new DataTable();
@@ -59,6 +60,28 @@ namespace PWCOSTINGV1.Classes
                 }
             var test = cloneDataTable.Rows.Count;
             return cloneDataTable;
+        }
+        public static void tsButtonManager(ToolStrip ts, bool isLocked)
+        {
+            var items = ts.Items;
+            foreach (ToolStripButton tsbtn in items.OfType<ToolStripButton>().AsEnumerable())
+            {
+                if (tsbtn.Name.Contains("_"))
+                {
+                    tsbtn.Enabled = !isLocked;
+                }
+            }
+        }
+        public static void ListCheck(DataGridView dgv, ToolStrip ts)
+        {
+            bool isLocked = true;
+            if (dgv.RowCount > 0)
+            {
+                dgv.Rows[0].Cells[1].Selected = true;
+                isLocked = false;
+            }
+            //Disable the tsbutton if the grid contains no row(s)
+            tsButtonManager(ts, isLocked);
         }
     }
 }

@@ -173,32 +173,6 @@ namespace PWCOSTINGV1.Forms
             else
                 mtxtItemDesc.Text = "";
         }
-        private void TableLayoutPainter(object sender, TableLayoutCellPaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            Rectangle r = e.CellBounds;
-
-            using (Pen pen = new Pen(Color.White, 0 /*1px width despite of page scale, dpi, page units*/ ))
-            {
-                pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Center;
-                // define border style
-                pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-
-                // decrease border rectangle height/width by pen's width for last row/column cell
-                if (e.Row == (tableLayoutPanel1.RowCount - 1))
-                {
-                    r.Height -= 1;
-                }
-
-                if (e.Column == (tableLayoutPanel1.ColumnCount - 1))
-                {
-                    r.Width -= 1;
-                }
-
-                // use graphics mehtods to draw cell's border
-                e.Graphics.DrawRectangle(pen, r);
-            }
-        }
         public frmWIPCosting()
         {
             InitializeComponent();
@@ -237,15 +211,6 @@ namespace PWCOSTINGV1.Forms
             PanelSetup();
             FilltxtAutoComplete();
         }
-        private void tableLayoutPanel1_CellPaint(object sender, TableLayoutCellPaintEventArgs e)
-        {
-            TableLayoutPainter(sender, e);
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            ControlPaint.DrawBorder(e.Graphics, this.panel1.ClientRectangle, Color.White, ButtonBorderStyle.Solid);
-        }
 
         private void ControlsManager(Boolean IsLocked)
         {
@@ -278,15 +243,6 @@ namespace PWCOSTINGV1.Forms
         private void mtxtItemNo_TextChanged(object sender, EventArgs e)
         {
             ItemDesc();
-            var partnolist = wipcostbal.GetByItem(UserSettings.LogInYear, mtxtItemNo.Text);
-            DataTable pnoTable = new DataTable();
-            using (var reader = ObjectReader.Create(partnolist,
-                "PartNo", 
-                "PartName"))
-            {
-                pnoTable.Load(reader);
-                mgridPartNos.DataSource = pnoTable;
-            }
         }
         private void MainWIPItem()
         {
@@ -308,7 +264,7 @@ namespace PWCOSTINGV1.Forms
                 //
                 wipcost.MatLaborCost = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtSTCost.Text, 0));
                 wipcost.ProfitRate = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtAPRate.Text, 0));
-                wipcost.SellingPrice = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtTSelPrice.Text, 0));
+                wipcost.TSellingPrice = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtTSelPrice.Text, 0));
                 wipcost.Forex = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtForex.Text, 0));
                 //For Testing
                 wipcost.Ref_Add = "TEST";
@@ -339,6 +295,7 @@ namespace PWCOSTINGV1.Forms
                 wipcost.SPPlating = Convert.ToDecimal(BPSUtilitiesV1.NZ(lblSPPlating.Text, 0));
                 //For Testing
                 wipcost.DollarInjec = 0;
+                wipcost.DollarBagging = 0;
                 wipcost.DollarAssembled = 0;
                 wipcost.DollarPlating = 0;
         }
@@ -538,7 +495,7 @@ namespace PWCOSTINGV1.Forms
                         _mtxtPartDesc.Text = wipcost.PartName;
                         mtxtSTCost.Text = wipcost.MatLaborCost.ToString();
                         mtxtAPRate.Text = wipcost.ProfitRate.ToString();
-                        mtxtTSelPrice.Text = wipcost.SellingPrice.ToString();
+                        mtxtTSelPrice.Text = wipcost.TSellingPrice.ToString();
                         mtxtForex.Text = wipcost.Forex.ToString();
 
                         LoadCostItem();

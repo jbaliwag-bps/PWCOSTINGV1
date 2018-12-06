@@ -30,6 +30,7 @@ namespace PWCOSTINGV1.Forms
             RefreshGrid();
             rowcount = mgridListAssy.RowCount;
             PageManager(1);
+            mgridListAssy.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
         private void RefreshGrid()
         {
@@ -51,6 +52,7 @@ namespace PWCOSTINGV1.Forms
                     mgridListAssy.DataSource = assyTable;
                 }
                 dgvorig.DataSource = mgridListAssy.DataSource;
+                Grid.ListCheck(mgridListAssy, listTS);
                 tslblRowCount.Text = "Number of Records:    " + assylist.Count + "       ";
             }
             catch (Exception ex)
@@ -97,7 +99,7 @@ namespace PWCOSTINGV1.Forms
                     case FormState.Edit:
                     case FormState.View:
                         frmassy.yearused = UserSettings.LogInYear;
-                        var pno = mgridListAssy.SelectedRows[0].Cells["colPartNoAssy"].Value.ToString();
+                        var pno = mgridListAssy.Rows[mgridListAssy.SelectedCells[0].RowIndex].Cells["colPartNoAssy"].Value.ToString();
                         frmassy.partno = pno;
                         break;
                 }
@@ -161,24 +163,15 @@ namespace PWCOSTINGV1.Forms
             try
             {
                 FormHelpers.CursorWait(true);
-                var DeletingisSuccess = false;
                 var msg = "Deleting";
-                Int32 selectedRowCount;
-                selectedRowCount = mgridListAssy.Rows.GetRowCount(DataGridViewElementStates.Selected);
+
                 if (MessageHelpers.ShowQuestion("Are you sure you want to delete record?") == System.Windows.Forms.DialogResult.Yes)
                 {
-                    for (int i = 0; i < selectedRowCount; i++)
-                    {
-                        var yearused = UserSettings.LogInYear;
-                        var partno = mgridListAssy.SelectedRows[i].Cells["colPartNoAssy"].Value.ToString();
+                    var yearused = UserSettings.LogInYear;
+                    var partno = mgridListAssy.Rows[mgridListAssy.SelectedCells[0].RowIndex].Cells["colPartNoAssy"].Value.ToString();
 
-                        assy = assybal.GetByID(Convert.ToInt32(yearused), partno.ToString()); ;
-                        if (assybal.Delete(assy))
-                        {
-                            DeletingisSuccess = true;
-                        }
-                    }
-                    if (DeletingisSuccess)
+                    assy = assybal.GetByID(Convert.ToInt32(yearused), partno.ToString()); ;
+                    if (assybal.Delete(assy))
                     {
                         MessageHelpers.ShowInfo(msg + " Successful!");
                         RefreshGrid();

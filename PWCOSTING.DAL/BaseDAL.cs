@@ -24,7 +24,7 @@ namespace PWCOSTING.DAL
         {
             db = ObjectFactory.GetContainer().GetInstance<AppDBContext>();
         }
-        //Components & PriceList with Details
+        //Components & PriceList with Details & Preview All WIP Items
         public DataTable SP_Dynamic1(string spname, int loginyear)
         {
             dttemp = new DataTable();
@@ -144,6 +144,48 @@ namespace PWCOSTING.DAL
                     prms.Clear();
                     prms.Add(new SqlParameter("@Month", month));
                     prms.Add(new SqlParameter("@YEAR", year));
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dttemp);
+                }
+                con.Close();
+            }
+            return dttemp;
+        }
+
+        //Preview By WIP
+        public DataTable SP_PreviewByWIP(string spname, long recid)
+        {
+            dttemp = new DataTable();
+            using(con = new SqlConnection(Common.ConnectionString))
+            {
+                con.Open();
+                using (cmd = new SqlCommand(spname, con))
+                {
+                    var prms = cmd.Parameters;
+                    prms.Clear();
+                    prms.Add(new SqlParameter("@recid", recid));
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dttemp);
+                }
+                con.Close();                   
+            }
+            return dttemp;
+        }
+        public DataTable SP_ByWIPSubs(string spname, int loginyear, string itemno, string partno)
+        {
+            dttemp = new DataTable();
+            using (con = new SqlConnection(Common.ConnectionString))
+            {
+                con.Open();
+                using(cmd = new SqlCommand(spname, con))
+                {
+                    var prms = cmd.Parameters;
+                    prms.Clear();
+                    prms.Add(new SqlParameter("@YEARUSED", loginyear));
+                    prms.Add(new SqlParameter("@ItemNo", itemno));
+                    prms.Add(new SqlParameter("@PartNo", partno));
                     cmd.CommandType = CommandType.StoredProcedure;
                     da = new SqlDataAdapter(cmd);
                     da.Fill(dttemp);

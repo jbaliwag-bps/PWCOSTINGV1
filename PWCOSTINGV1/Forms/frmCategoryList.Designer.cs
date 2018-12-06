@@ -28,21 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStriptxtSearch = new System.Windows.Forms.ToolStripTextBox();
             this.listTS = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this._toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this._toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this._toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.mgridList = new MetroFramework.Controls.MetroGrid();
             this.colRecID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colYEARUSED = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCATCODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCATDESC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colModelSetup = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,9 +82,9 @@
             this.listTS.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.listTS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4,
+            this._toolStripButton2,
+            this._toolStripButton3,
+            this._toolStripButton4,
             this.toolStripSeparator1,
             this.toolStripButton5,
             this.toolStriptxtSearch,
@@ -108,41 +107,41 @@
             this.toolStripButton1.Text = "&New";
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripButton2
+            // _toolStripButton2
             // 
-            this.toolStripButton2.AutoSize = false;
-            this.toolStripButton2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton2.Image = global::PWCOSTINGV1.Properties.Resources.edit_file;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(50, 40);
-            this.toolStripButton2.Tag = "edit";
-            this.toolStripButton2.Text = "&Edit";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this._toolStripButton2.AutoSize = false;
+            this._toolStripButton2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._toolStripButton2.Image = global::PWCOSTINGV1.Properties.Resources.edit_file;
+            this._toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolStripButton2.Name = "_toolStripButton2";
+            this._toolStripButton2.Size = new System.Drawing.Size(50, 40);
+            this._toolStripButton2.Tag = "edit";
+            this._toolStripButton2.Text = "&Edit";
+            this._toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripButton3
+            // _toolStripButton3
             // 
-            this.toolStripButton3.AutoSize = false;
-            this.toolStripButton3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton3.Image = global::PWCOSTINGV1.Properties.Resources.delete_file;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(50, 40);
-            this.toolStripButton3.Tag = "delete";
-            this.toolStripButton3.Text = "&Delete";
-            this.toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this._toolStripButton3.AutoSize = false;
+            this._toolStripButton3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._toolStripButton3.Image = global::PWCOSTINGV1.Properties.Resources.delete_file;
+            this._toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolStripButton3.Name = "_toolStripButton3";
+            this._toolStripButton3.Size = new System.Drawing.Size(50, 40);
+            this._toolStripButton3.Tag = "delete";
+            this._toolStripButton3.Text = "&Delete";
+            this._toolStripButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripButton4
+            // _toolStripButton4
             // 
-            this.toolStripButton4.AutoSize = false;
-            this.toolStripButton4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton4.Image = global::PWCOSTINGV1.Properties.Resources.search_file;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(50, 40);
-            this.toolStripButton4.Tag = "view";
-            this.toolStripButton4.Text = "&View";
-            this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this._toolStripButton4.AutoSize = false;
+            this._toolStripButton4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._toolStripButton4.Image = global::PWCOSTINGV1.Properties.Resources.search_file;
+            this._toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._toolStripButton4.Name = "_toolStripButton4";
+            this._toolStripButton4.Size = new System.Drawing.Size(50, 40);
+            this._toolStripButton4.Tag = "view";
+            this._toolStripButton4.Text = "&View";
+            this._toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // toolStripButton5
             // 
@@ -175,33 +174,32 @@
             this.mgridList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mgridList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.mgridList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mgridList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mgridList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.mgridList.ColumnHeadersHeight = 25;
             this.mgridList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.mgridList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colRecID,
-            this.colYEARUSED,
             this.colCATCODE,
             this.colCATDESC,
             this.colModelSetup,
             this.colLotSize,
             this.colDependent,
             this.colIsActive});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mgridList.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mgridList.DefaultCellStyle = dataGridViewCellStyle2;
             this.mgridList.Dock = System.Windows.Forms.DockStyle.Top;
             this.mgridList.EnableHeadersVisualStyles = false;
             this.mgridList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -210,14 +208,14 @@
             this.mgridList.Name = "mgridList";
             this.mgridList.ReadOnly = true;
             this.mgridList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mgridList.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mgridList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.mgridList.RowHeadersWidth = 25;
             this.mgridList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.mgridList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -234,17 +232,9 @@
             this.colRecID.ReadOnly = true;
             this.colRecID.Visible = false;
             // 
-            // colYEARUSED
-            // 
-            this.colYEARUSED.DataPropertyName = "YEARUSED";
-            this.colYEARUSED.HeaderText = "Year Used";
-            this.colYEARUSED.Name = "colYEARUSED";
-            this.colYEARUSED.ReadOnly = true;
-            this.colYEARUSED.Visible = false;
-            // 
             // colCATCODE
             // 
-            this.colCATCODE.DataPropertyName = "aCATCODE";
+            this.colCATCODE.DataPropertyName = "CATCODE";
             this.colCATCODE.HeaderText = "Code";
             this.colCATCODE.MinimumWidth = 100;
             this.colCATCODE.Name = "colCATCODE";
@@ -253,7 +243,7 @@
             // colCATDESC
             // 
             this.colCATDESC.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCATDESC.DataPropertyName = "bCATDESC";
+            this.colCATDESC.DataPropertyName = "CATDESC";
             this.colCATDESC.HeaderText = "Description";
             this.colCATDESC.MinimumWidth = 150;
             this.colCATDESC.Name = "colCATDESC";
@@ -261,21 +251,21 @@
             // 
             // colModelSetup
             // 
-            this.colModelSetup.DataPropertyName = "cMoldSetup";
+            this.colModelSetup.DataPropertyName = "MoldSetup";
             this.colModelSetup.HeaderText = "Model Setup";
             this.colModelSetup.Name = "colModelSetup";
             this.colModelSetup.ReadOnly = true;
             // 
             // colLotSize
             // 
-            this.colLotSize.DataPropertyName = "dLotSize";
+            this.colLotSize.DataPropertyName = "LotSize";
             this.colLotSize.HeaderText = "Lot Size";
             this.colLotSize.Name = "colLotSize";
             this.colLotSize.ReadOnly = true;
             // 
             // colDependent
             // 
-            this.colDependent.DataPropertyName = "eIsDependent";
+            this.colDependent.DataPropertyName = "IsDependent";
             this.colDependent.HeaderText = "Dependent";
             this.colDependent.Name = "colDependent";
             this.colDependent.ReadOnly = true;
@@ -284,7 +274,7 @@
             // 
             // colIsActive
             // 
-            this.colIsActive.DataPropertyName = "fIsActive";
+            this.colIsActive.DataPropertyName = "IsActive";
             this.colIsActive.HeaderText = "Active";
             this.colIsActive.MinimumWidth = 60;
             this.colIsActive.Name = "colIsActive";
@@ -406,23 +396,15 @@
         #endregion
 
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton _toolStripButton2;
+        private System.Windows.Forms.ToolStripButton _toolStripButton3;
+        private System.Windows.Forms.ToolStripButton _toolStripButton4;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripTextBox toolStriptxtSearch;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStrip listTS;
         private MetroFramework.Controls.MetroGrid mgridList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colRecID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colYEARUSED;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCATCODE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCATDESC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colModelSetup;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLotSize;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colDependent;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colIsActive;
         private System.Windows.Forms.ToolStrip listTSFooter;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
@@ -432,5 +414,12 @@
         private System.Windows.Forms.ToolStripButton toolStripButton8;
         private System.Windows.Forms.ToolStripButton toolStripButton9;
         private System.Windows.Forms.ToolStripLabel tslblRowCount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRecID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCATCODE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCATDESC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colModelSetup;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLotSize;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colDependent;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colIsActive;
     }
 }

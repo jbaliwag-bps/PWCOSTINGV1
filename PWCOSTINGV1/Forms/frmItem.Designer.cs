@@ -50,18 +50,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -77,6 +65,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle42 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle48 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle43 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle44 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle45 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle46 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle47 = new System.Windows.Forms.DataGridViewCellStyle();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.mtxtItemDesc = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
@@ -154,6 +154,28 @@
             this.colATperUnit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mgridListPI = new MetroFramework.Controls.MetroGrid();
+            this.colDocIDPI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colYEARUSEDPI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMoldNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAcquCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDepnQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQTYprodcd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMoldCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPartNamePI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDepnMold = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCavity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUsagePI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMSandChangehr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOz = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPurge = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOperatingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMoldSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colACTSHHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colACTPCSHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colACTHC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mtpManufacturingPT = new System.Windows.Forms.TabPage();
             this.mbtnRemoveMPT = new MetroFramework.Controls.MetroButton();
             this.mbtnAddMPT = new MetroFramework.Controls.MetroButton();
@@ -183,28 +205,6 @@
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.mbtnCancel = new MetroFramework.Controls.MetroButton();
             this.mbtnSave = new MetroFramework.Controls.MetroButton();
-            this.colDocIDPI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colYEARUSEDPI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMoldNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAcquCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDepnQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQTYprodcd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMoldCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPartNamePI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDepnMold = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCavity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colUsagePI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMSandChangehr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOz = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPurge = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOperatingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMoldSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colACTSHHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colACTPCSHR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colACTHC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mtcItem.SuspendLayout();
             this.mtpCompositionList.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -1275,6 +1275,236 @@
             this.mgridListPI.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.mgridListPI_CellEndEdit);
             this.mgridListPI.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.mgridListPI_EditingControlShowing);
             // 
+            // colDocIDPI
+            // 
+            this.colDocIDPI.DataPropertyName = "DocID";
+            this.colDocIDPI.HeaderText = "DocID";
+            this.colDocIDPI.Name = "colDocIDPI";
+            this.colDocIDPI.Visible = false;
+            // 
+            // colYEARUSEDPI
+            // 
+            this.colYEARUSEDPI.DataPropertyName = "YEARUSED";
+            this.colYEARUSEDPI.HeaderText = "YEARUSED";
+            this.colYEARUSEDPI.Name = "colYEARUSEDPI";
+            this.colYEARUSEDPI.Visible = false;
+            // 
+            // colItemNo
+            // 
+            this.colItemNo.DataPropertyName = "ItemNo";
+            this.colItemNo.HeaderText = "ItemNo";
+            this.colItemNo.Name = "colItemNo";
+            this.colItemNo.Visible = false;
+            // 
+            // colMoldNo
+            // 
+            this.colMoldNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colMoldNo.DataPropertyName = "PartNo";
+            this.colMoldNo.HeaderText = "Mold No.";
+            this.colMoldNo.MinimumWidth = 80;
+            this.colMoldNo.Name = "colMoldNo";
+            this.colMoldNo.ReadOnly = true;
+            // 
+            // colAcquCost
+            // 
+            this.colAcquCost.DataPropertyName = "AcquisitionCost";
+            dataGridViewCellStyle21.Format = "N4";
+            dataGridViewCellStyle21.NullValue = null;
+            this.colAcquCost.DefaultCellStyle = dataGridViewCellStyle21;
+            this.colAcquCost.HeaderText = "Acq. Cost";
+            this.colAcquCost.MinimumWidth = 70;
+            this.colAcquCost.Name = "colAcquCost";
+            this.colAcquCost.Width = 70;
+            // 
+            // colDepnQty
+            // 
+            this.colDepnQty.DataPropertyName = "DepQty";
+            dataGridViewCellStyle22.Format = "N0";
+            dataGridViewCellStyle22.NullValue = null;
+            this.colDepnQty.DefaultCellStyle = dataGridViewCellStyle22;
+            this.colDepnQty.HeaderText = "Depn. Qty";
+            this.colDepnQty.MinimumWidth = 70;
+            this.colDepnQty.Name = "colDepnQty";
+            this.colDepnQty.Width = 70;
+            // 
+            // colQTYprodcd
+            // 
+            this.colQTYprodcd.DataPropertyName = "QtyProduced";
+            dataGridViewCellStyle23.Format = "N0";
+            dataGridViewCellStyle23.NullValue = null;
+            this.colQTYprodcd.DefaultCellStyle = dataGridViewCellStyle23;
+            this.colQTYprodcd.HeaderText = "QTY Prodcd.";
+            this.colQTYprodcd.MinimumWidth = 70;
+            this.colQTYprodcd.Name = "colQTYprodcd";
+            this.colQTYprodcd.Width = 70;
+            // 
+            // colMoldCost
+            // 
+            this.colMoldCost.DataPropertyName = "MoldCost";
+            dataGridViewCellStyle24.Format = "N4";
+            dataGridViewCellStyle24.NullValue = null;
+            this.colMoldCost.DefaultCellStyle = dataGridViewCellStyle24;
+            this.colMoldCost.HeaderText = "Mold Cost";
+            this.colMoldCost.MinimumWidth = 70;
+            this.colMoldCost.Name = "colMoldCost";
+            this.colMoldCost.Width = 70;
+            // 
+            // colPartNamePI
+            // 
+            this.colPartNamePI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPartNamePI.DataPropertyName = "PartName";
+            this.colPartNamePI.HeaderText = "Part Name";
+            this.colPartNamePI.MinimumWidth = 150;
+            this.colPartNamePI.Name = "colPartNamePI";
+            this.colPartNamePI.ReadOnly = true;
+            // 
+            // colDepnMold
+            // 
+            this.colDepnMold.DataPropertyName = "DepnMold";
+            dataGridViewCellStyle25.Format = "N4";
+            dataGridViewCellStyle25.NullValue = null;
+            this.colDepnMold.DefaultCellStyle = dataGridViewCellStyle25;
+            this.colDepnMold.HeaderText = "Depn. Mold";
+            this.colDepnMold.MinimumWidth = 70;
+            this.colDepnMold.Name = "colDepnMold";
+            this.colDepnMold.Visible = false;
+            this.colDepnMold.Width = 70;
+            // 
+            // colSPH
+            // 
+            this.colSPH.DataPropertyName = "ESTSHHR";
+            dataGridViewCellStyle26.Format = "N0";
+            dataGridViewCellStyle26.NullValue = null;
+            this.colSPH.DefaultCellStyle = dataGridViewCellStyle26;
+            this.colSPH.HeaderText = "Shots/Hr";
+            this.colSPH.MinimumWidth = 70;
+            this.colSPH.Name = "colSPH";
+            this.colSPH.ReadOnly = true;
+            this.colSPH.Width = 70;
+            // 
+            // colCavity
+            // 
+            this.colCavity.DataPropertyName = "Cavity";
+            dataGridViewCellStyle27.Format = "N0";
+            dataGridViewCellStyle27.NullValue = "0";
+            this.colCavity.DefaultCellStyle = dataGridViewCellStyle27;
+            this.colCavity.HeaderText = "Cavity";
+            this.colCavity.MinimumWidth = 70;
+            this.colCavity.Name = "colCavity";
+            this.colCavity.ReadOnly = true;
+            this.colCavity.Width = 70;
+            // 
+            // colPPH
+            // 
+            this.colPPH.DataPropertyName = "ESTPCSHR";
+            dataGridViewCellStyle28.Format = "N0";
+            dataGridViewCellStyle28.NullValue = null;
+            this.colPPH.DefaultCellStyle = dataGridViewCellStyle28;
+            this.colPPH.HeaderText = "Pcs/Hr";
+            this.colPPH.MinimumWidth = 70;
+            this.colPPH.Name = "colPPH";
+            this.colPPH.ReadOnly = true;
+            this.colPPH.Width = 70;
+            // 
+            // colUsagePI
+            // 
+            this.colUsagePI.DataPropertyName = "ESTHC";
+            dataGridViewCellStyle29.Format = "N0";
+            dataGridViewCellStyle29.NullValue = null;
+            this.colUsagePI.DefaultCellStyle = dataGridViewCellStyle29;
+            this.colUsagePI.HeaderText = "Usage";
+            this.colUsagePI.MinimumWidth = 70;
+            this.colUsagePI.Name = "colUsagePI";
+            this.colUsagePI.Width = 70;
+            // 
+            // colMSandChangehr
+            // 
+            this.colMSandChangehr.DataPropertyName = "MoldSetUpTime";
+            dataGridViewCellStyle30.Format = "N4";
+            dataGridViewCellStyle30.NullValue = null;
+            this.colMSandChangehr.DefaultCellStyle = dataGridViewCellStyle30;
+            this.colMSandChangehr.HeaderText = "Mold Setup(Hr)";
+            this.colMSandChangehr.MinimumWidth = 80;
+            this.colMSandChangehr.Name = "colMSandChangehr";
+            this.colMSandChangehr.Width = 80;
+            // 
+            // colOz
+            // 
+            this.colOz.DataPropertyName = "OZ";
+            this.colOz.HeaderText = "Oz";
+            this.colOz.MinimumWidth = 60;
+            this.colOz.Name = "colOz";
+            this.colOz.ReadOnly = true;
+            this.colOz.Width = 60;
+            // 
+            // colPurge
+            // 
+            this.colPurge.DataPropertyName = "Purge_G";
+            dataGridViewCellStyle31.Format = "N4";
+            dataGridViewCellStyle31.NullValue = null;
+            this.colPurge.DefaultCellStyle = dataGridViewCellStyle31;
+            this.colPurge.HeaderText = "Purge/G";
+            this.colPurge.MinimumWidth = 60;
+            this.colPurge.Name = "colPurge";
+            this.colPurge.ReadOnly = true;
+            this.colPurge.Width = 60;
+            // 
+            // colOperatingTime
+            // 
+            this.colOperatingTime.DataPropertyName = "OPTime";
+            dataGridViewCellStyle32.Format = "N4";
+            dataGridViewCellStyle32.NullValue = null;
+            this.colOperatingTime.DefaultCellStyle = dataGridViewCellStyle32;
+            this.colOperatingTime.HeaderText = "OP. Time";
+            this.colOperatingTime.MinimumWidth = 70;
+            this.colOperatingTime.Name = "colOperatingTime";
+            this.colOperatingTime.Width = 70;
+            // 
+            // colMoldSize
+            // 
+            this.colMoldSize.DataPropertyName = "MoldSize";
+            this.colMoldSize.HeaderText = "MoldSize";
+            this.colMoldSize.MinimumWidth = 70;
+            this.colMoldSize.Name = "colMoldSize";
+            this.colMoldSize.Visible = false;
+            this.colMoldSize.Width = 70;
+            // 
+            // colACTSHHR
+            // 
+            this.colACTSHHR.DataPropertyName = "ACTSHHR";
+            dataGridViewCellStyle33.Format = "N2";
+            dataGridViewCellStyle33.NullValue = null;
+            this.colACTSHHR.DefaultCellStyle = dataGridViewCellStyle33;
+            this.colACTSHHR.HeaderText = "ACTSHHR";
+            this.colACTSHHR.MinimumWidth = 80;
+            this.colACTSHHR.Name = "colACTSHHR";
+            this.colACTSHHR.Visible = false;
+            this.colACTSHHR.Width = 80;
+            // 
+            // colACTPCSHR
+            // 
+            this.colACTPCSHR.DataPropertyName = "ACTPCSHR";
+            dataGridViewCellStyle34.Format = "N2";
+            dataGridViewCellStyle34.NullValue = null;
+            this.colACTPCSHR.DefaultCellStyle = dataGridViewCellStyle34;
+            this.colACTPCSHR.HeaderText = "ACTPCSHR";
+            this.colACTPCSHR.MinimumWidth = 80;
+            this.colACTPCSHR.Name = "colACTPCSHR";
+            this.colACTPCSHR.Visible = false;
+            this.colACTPCSHR.Width = 80;
+            // 
+            // colACTHC
+            // 
+            this.colACTHC.DataPropertyName = "ACTHC";
+            dataGridViewCellStyle35.Format = "N2";
+            dataGridViewCellStyle35.NullValue = null;
+            this.colACTHC.DefaultCellStyle = dataGridViewCellStyle35;
+            this.colACTHC.HeaderText = "ACTHC";
+            this.colACTHC.MinimumWidth = 80;
+            this.colACTHC.Name = "colACTHC";
+            this.colACTHC.Visible = false;
+            this.colACTHC.Width = 80;
+            // 
             // mtpManufacturingPT
             // 
             this.mtpManufacturingPT.BackColor = System.Drawing.Color.Transparent;
@@ -1670,236 +1900,6 @@
             this.metroToolTip1.SetToolTip(this.mbtnSave, "Save Item");
             this.mbtnSave.UseSelectable = true;
             this.mbtnSave.Click += new System.EventHandler(this.mbtnSave_Click);
-            // 
-            // colDocIDPI
-            // 
-            this.colDocIDPI.DataPropertyName = "DocID";
-            this.colDocIDPI.HeaderText = "DocID";
-            this.colDocIDPI.Name = "colDocIDPI";
-            this.colDocIDPI.Visible = false;
-            // 
-            // colYEARUSEDPI
-            // 
-            this.colYEARUSEDPI.DataPropertyName = "YEARUSED";
-            this.colYEARUSEDPI.HeaderText = "YEARUSED";
-            this.colYEARUSEDPI.Name = "colYEARUSEDPI";
-            this.colYEARUSEDPI.Visible = false;
-            // 
-            // colItemNo
-            // 
-            this.colItemNo.DataPropertyName = "ItemNo";
-            this.colItemNo.HeaderText = "ItemNo";
-            this.colItemNo.Name = "colItemNo";
-            this.colItemNo.Visible = false;
-            // 
-            // colMoldNo
-            // 
-            this.colMoldNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colMoldNo.DataPropertyName = "PartNo";
-            this.colMoldNo.HeaderText = "Mold No.";
-            this.colMoldNo.MinimumWidth = 80;
-            this.colMoldNo.Name = "colMoldNo";
-            this.colMoldNo.ReadOnly = true;
-            // 
-            // colAcquCost
-            // 
-            this.colAcquCost.DataPropertyName = "AcquisitionCost";
-            dataGridViewCellStyle21.Format = "N4";
-            dataGridViewCellStyle21.NullValue = null;
-            this.colAcquCost.DefaultCellStyle = dataGridViewCellStyle21;
-            this.colAcquCost.HeaderText = "Acq. Cost";
-            this.colAcquCost.MinimumWidth = 70;
-            this.colAcquCost.Name = "colAcquCost";
-            this.colAcquCost.Width = 70;
-            // 
-            // colDepnQty
-            // 
-            this.colDepnQty.DataPropertyName = "DepQty";
-            dataGridViewCellStyle22.Format = "N0";
-            dataGridViewCellStyle22.NullValue = null;
-            this.colDepnQty.DefaultCellStyle = dataGridViewCellStyle22;
-            this.colDepnQty.HeaderText = "Depn. Qty";
-            this.colDepnQty.MinimumWidth = 70;
-            this.colDepnQty.Name = "colDepnQty";
-            this.colDepnQty.Width = 70;
-            // 
-            // colQTYprodcd
-            // 
-            this.colQTYprodcd.DataPropertyName = "QtyProduced";
-            dataGridViewCellStyle23.Format = "N0";
-            dataGridViewCellStyle23.NullValue = null;
-            this.colQTYprodcd.DefaultCellStyle = dataGridViewCellStyle23;
-            this.colQTYprodcd.HeaderText = "QTY Prodcd.";
-            this.colQTYprodcd.MinimumWidth = 70;
-            this.colQTYprodcd.Name = "colQTYprodcd";
-            this.colQTYprodcd.Width = 70;
-            // 
-            // colMoldCost
-            // 
-            this.colMoldCost.DataPropertyName = "MoldCost";
-            dataGridViewCellStyle24.Format = "N4";
-            dataGridViewCellStyle24.NullValue = null;
-            this.colMoldCost.DefaultCellStyle = dataGridViewCellStyle24;
-            this.colMoldCost.HeaderText = "Mold Cost";
-            this.colMoldCost.MinimumWidth = 70;
-            this.colMoldCost.Name = "colMoldCost";
-            this.colMoldCost.Width = 70;
-            // 
-            // colPartNamePI
-            // 
-            this.colPartNamePI.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPartNamePI.DataPropertyName = "PartName";
-            this.colPartNamePI.HeaderText = "Part Name";
-            this.colPartNamePI.MinimumWidth = 150;
-            this.colPartNamePI.Name = "colPartNamePI";
-            this.colPartNamePI.ReadOnly = true;
-            // 
-            // colDepnMold
-            // 
-            this.colDepnMold.DataPropertyName = "DepnMold";
-            dataGridViewCellStyle25.Format = "N4";
-            dataGridViewCellStyle25.NullValue = null;
-            this.colDepnMold.DefaultCellStyle = dataGridViewCellStyle25;
-            this.colDepnMold.HeaderText = "Depn. Mold";
-            this.colDepnMold.MinimumWidth = 70;
-            this.colDepnMold.Name = "colDepnMold";
-            this.colDepnMold.Visible = false;
-            this.colDepnMold.Width = 70;
-            // 
-            // colSPH
-            // 
-            this.colSPH.DataPropertyName = "ESTSHHR";
-            dataGridViewCellStyle26.Format = "N0";
-            dataGridViewCellStyle26.NullValue = null;
-            this.colSPH.DefaultCellStyle = dataGridViewCellStyle26;
-            this.colSPH.HeaderText = "Shots/Hr";
-            this.colSPH.MinimumWidth = 70;
-            this.colSPH.Name = "colSPH";
-            this.colSPH.ReadOnly = true;
-            this.colSPH.Width = 70;
-            // 
-            // colCavity
-            // 
-            this.colCavity.DataPropertyName = "Cavity";
-            dataGridViewCellStyle27.Format = "N0";
-            dataGridViewCellStyle27.NullValue = "0";
-            this.colCavity.DefaultCellStyle = dataGridViewCellStyle27;
-            this.colCavity.HeaderText = "Cavity";
-            this.colCavity.MinimumWidth = 70;
-            this.colCavity.Name = "colCavity";
-            this.colCavity.ReadOnly = true;
-            this.colCavity.Width = 70;
-            // 
-            // colPPH
-            // 
-            this.colPPH.DataPropertyName = "ESTPCSHR";
-            dataGridViewCellStyle28.Format = "N0";
-            dataGridViewCellStyle28.NullValue = null;
-            this.colPPH.DefaultCellStyle = dataGridViewCellStyle28;
-            this.colPPH.HeaderText = "Pcs/Hr";
-            this.colPPH.MinimumWidth = 70;
-            this.colPPH.Name = "colPPH";
-            this.colPPH.ReadOnly = true;
-            this.colPPH.Width = 70;
-            // 
-            // colUsagePI
-            // 
-            this.colUsagePI.DataPropertyName = "ESTHC";
-            dataGridViewCellStyle29.Format = "N0";
-            dataGridViewCellStyle29.NullValue = null;
-            this.colUsagePI.DefaultCellStyle = dataGridViewCellStyle29;
-            this.colUsagePI.HeaderText = "Usage";
-            this.colUsagePI.MinimumWidth = 70;
-            this.colUsagePI.Name = "colUsagePI";
-            this.colUsagePI.Width = 70;
-            // 
-            // colMSandChangehr
-            // 
-            this.colMSandChangehr.DataPropertyName = "MoldSetUpTime";
-            dataGridViewCellStyle30.Format = "N4";
-            dataGridViewCellStyle30.NullValue = null;
-            this.colMSandChangehr.DefaultCellStyle = dataGridViewCellStyle30;
-            this.colMSandChangehr.HeaderText = "Mold Setup(Hr)";
-            this.colMSandChangehr.MinimumWidth = 80;
-            this.colMSandChangehr.Name = "colMSandChangehr";
-            this.colMSandChangehr.Width = 80;
-            // 
-            // colOz
-            // 
-            this.colOz.DataPropertyName = "OZ";
-            this.colOz.HeaderText = "Oz";
-            this.colOz.MinimumWidth = 60;
-            this.colOz.Name = "colOz";
-            this.colOz.ReadOnly = true;
-            this.colOz.Width = 60;
-            // 
-            // colPurge
-            // 
-            this.colPurge.DataPropertyName = "Purge_G";
-            dataGridViewCellStyle31.Format = "N4";
-            dataGridViewCellStyle31.NullValue = null;
-            this.colPurge.DefaultCellStyle = dataGridViewCellStyle31;
-            this.colPurge.HeaderText = "Purge/G";
-            this.colPurge.MinimumWidth = 60;
-            this.colPurge.Name = "colPurge";
-            this.colPurge.ReadOnly = true;
-            this.colPurge.Width = 60;
-            // 
-            // colOperatingTime
-            // 
-            this.colOperatingTime.DataPropertyName = "OPTime";
-            dataGridViewCellStyle32.Format = "N4";
-            dataGridViewCellStyle32.NullValue = null;
-            this.colOperatingTime.DefaultCellStyle = dataGridViewCellStyle32;
-            this.colOperatingTime.HeaderText = "OP. Time";
-            this.colOperatingTime.MinimumWidth = 70;
-            this.colOperatingTime.Name = "colOperatingTime";
-            this.colOperatingTime.Width = 70;
-            // 
-            // colMoldSize
-            // 
-            this.colMoldSize.DataPropertyName = "MoldSize";
-            this.colMoldSize.HeaderText = "MoldSize";
-            this.colMoldSize.MinimumWidth = 70;
-            this.colMoldSize.Name = "colMoldSize";
-            this.colMoldSize.Visible = false;
-            this.colMoldSize.Width = 70;
-            // 
-            // colACTSHHR
-            // 
-            this.colACTSHHR.DataPropertyName = "ACTSHHR";
-            dataGridViewCellStyle33.Format = "N2";
-            dataGridViewCellStyle33.NullValue = null;
-            this.colACTSHHR.DefaultCellStyle = dataGridViewCellStyle33;
-            this.colACTSHHR.HeaderText = "ACTSHHR";
-            this.colACTSHHR.MinimumWidth = 80;
-            this.colACTSHHR.Name = "colACTSHHR";
-            this.colACTSHHR.Visible = false;
-            this.colACTSHHR.Width = 80;
-            // 
-            // colACTPCSHR
-            // 
-            this.colACTPCSHR.DataPropertyName = "ACTPCSHR";
-            dataGridViewCellStyle34.Format = "N2";
-            dataGridViewCellStyle34.NullValue = null;
-            this.colACTPCSHR.DefaultCellStyle = dataGridViewCellStyle34;
-            this.colACTPCSHR.HeaderText = "ACTPCSHR";
-            this.colACTPCSHR.MinimumWidth = 80;
-            this.colACTPCSHR.Name = "colACTPCSHR";
-            this.colACTPCSHR.Visible = false;
-            this.colACTPCSHR.Width = 80;
-            // 
-            // colACTHC
-            // 
-            this.colACTHC.DataPropertyName = "ACTHC";
-            dataGridViewCellStyle35.Format = "N2";
-            dataGridViewCellStyle35.NullValue = null;
-            this.colACTHC.DefaultCellStyle = dataGridViewCellStyle35;
-            this.colACTHC.HeaderText = "ACTHC";
-            this.colACTHC.MinimumWidth = 80;
-            this.colACTHC.Name = "colACTHC";
-            this.colACTHC.Visible = false;
-            this.colACTHC.Width = 80;
             // 
             // frmItem
             // 

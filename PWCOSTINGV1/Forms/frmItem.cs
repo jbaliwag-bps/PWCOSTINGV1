@@ -76,6 +76,7 @@ namespace PWCOSTINGV1.Forms
             try
             {
                 var strheader = "Item";
+                mtcItem.SelectedIndex = 0;
                 switch (MyState)
                 {
                     case FormState.Add:
@@ -83,7 +84,6 @@ namespace PWCOSTINGV1.Forms
                         LockColumn(false);
                         PanelSetup();
                         strheader += " - New";
-                        mtcItem.SelectedIndex = 0;
                         break;
                     case FormState.Edit:
                     case FormState.View:

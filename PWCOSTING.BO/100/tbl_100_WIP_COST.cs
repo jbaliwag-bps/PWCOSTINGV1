@@ -23,7 +23,7 @@ namespace PWCOSTING.BO._100
         public string PartName { get; set; }
         public Decimal MatLaborCost { get; set; }
         public Decimal ProfitRate { get; set; }
-        public Decimal SellingPrice { get; set; }
+        public Decimal TSellingPrice { get; set; }
         public Decimal Forex { get; set; }
         public string Ref_Add { get; set; }
         public Decimal TPInjec { get; set; }
@@ -51,6 +51,7 @@ namespace PWCOSTING.BO._100
         public Decimal SPAssembled { get; set; }
         public Decimal SPPlating { get; set; }
         public Decimal DollarInjec { get; set; }
+        public Decimal DollarBagging { get; set; }
         public Decimal DollarAssembled { get; set; }
         public Decimal DollarPlating { get; set; }
     }

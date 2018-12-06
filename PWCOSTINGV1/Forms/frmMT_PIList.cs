@@ -30,6 +30,7 @@ namespace PWCOSTINGV1.Forms
             RefreshGrid();
             rowcount = mgridListPI.RowCount;
             PageManager(1);
+            mgridListPI.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
         private void RefreshGrid()
         {
@@ -54,6 +55,7 @@ namespace PWCOSTINGV1.Forms
                 mgridListPI.DataSource = piTable;
             }
             dgvorig.DataSource = mgridListPI.DataSource;
+            Grid.ListCheck(mgridListPI, listTS);
             tslblRowCount.Text = "Number of Records:    " + pilist.Count + "       ";
         }
         private void PageManager(int pagenum)
@@ -95,7 +97,7 @@ namespace PWCOSTINGV1.Forms
                     case FormState.Edit:
                     case FormState.View:
                         frmpi.yearused = UserSettings.LogInYear;
-                        var mno = mgridListPI.SelectedRows[0].Cells["colMoldNo"].Value.ToString();
+                        var mno = mgridListPI.Rows[mgridListPI.SelectedCells[0].RowIndex].Cells["colMoldNo"].Value.ToString();
                         frmpi.moldno = mno;
                         break;
                 }
@@ -156,24 +158,14 @@ namespace PWCOSTINGV1.Forms
             try
             {
                 FormHelpers.CursorWait(true);
-                var DeletingisSuccess = false;
                 var msg = "Deleting";
-                Int32 selectedRowCount;
-                selectedRowCount = mgridListPI.Rows.GetRowCount(DataGridViewElementStates.Selected);
                 if (MessageHelpers.ShowQuestion("Are you sure you want to delete record?") == System.Windows.Forms.DialogResult.Yes)
                 {
-                    for (int i = 0; i < selectedRowCount; i++)
-                    {
-                        var yearused = UserSettings.LogInYear;
-                        var moldno = mgridListPI.SelectedRows[i].Cells["colMoldNo"].Value.ToString();
+                    var yearused = UserSettings.LogInYear;
+                    var moldno = mgridListPI.Rows[mgridListPI.SelectedCells[0].RowIndex].Cells["colMoldNo"].Value.ToString();
 
-                        pi = pibal.GetByID(Convert.ToInt32(yearused), moldno.ToString()); ;
-                        if (pibal.Delete(pi))
-                        {
-                            DeletingisSuccess = true;
-                        }
-                    }
-                    if (DeletingisSuccess)
+                    pi = pibal.GetByID(Convert.ToInt32(yearused), moldno.ToString()); ;
+                    if (pibal.Delete(pi))
                     {
                         MessageHelpers.ShowInfo(msg + " Successful!");
                         RefreshGrid();

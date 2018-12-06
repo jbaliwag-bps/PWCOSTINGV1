@@ -25,6 +25,7 @@ namespace PWCOSTINGV1.Forms
         {
             FormHelpers.FormatForm(this.Controls);
             RefreshGrid();
+            mgridList.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
         public void RefreshGrid()
         {
@@ -41,6 +42,7 @@ namespace PWCOSTINGV1.Forms
                     usrgrpTable.Load(reader);
                     mgridList.DataSource = usrgrpTable;
                 }
+                Grid.ListCheck(mgridList, listTS);
             }
             catch (Exception ex)
             {
@@ -53,16 +55,13 @@ namespace PWCOSTINGV1.Forms
             try
             {
                 FormHelpers.CursorWait(true);
-                if (mgridList.SelectedRows.Count > 0)
+                var selgrp = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colUserGroupDesc"].Value;
+                string selgrpcode = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colUserGroupCode"].Value.ToString();
+                if (MessageHelpers.ShowQuestion("Do want to delete " + selgrp + " group?") == System.Windows.Forms.DialogResult.Yes)
                 {
-                    var selgrp = mgridList.SelectedRows[0].Cells["colUserGroupDesc"].Value;
-                    string selgrpcode = mgridList.SelectedRows[0].Cells["colUserGroupCode"].Value.ToString();
-                    if (MessageHelpers.ShowQuestion("Do want to delete " + selgrp + " group?") == System.Windows.Forms.DialogResult.Yes)
+                    if (usergroupbal.Delete(selgrpcode))
                     {
-                        if (usergroupbal.Delete(selgrpcode))
-                        {
-                            MessageHelpers.ShowInfo(selgrp + " group deleted successfully!");
-                        }
+                        MessageHelpers.ShowInfo(selgrp + " group deleted successfully!");
                     }
                 }
             }
@@ -106,7 +105,7 @@ namespace PWCOSTINGV1.Forms
                         break;
                     case FormState.Edit:
                     case FormState.View:
-                        var gcode = mgridList.SelectedRows[0].Cells["colUserGroupCode"].Value.ToString();
+                        var gcode = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colUserGroupCode"].Value.ToString();
                         frm.groupid = gcode;
                         break;
                 }

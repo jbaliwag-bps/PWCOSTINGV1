@@ -21,6 +21,9 @@ namespace PWCOSTINGV1.Classes
 
         public DataTable _SubDataSources1 = new DataTable();
         public DataTable _SubDataSources2 = new DataTable();
+        public DataTable _SubDataSources3 = new DataTable();
+        public DataTable _SubDataSources4 = new DataTable();
+        public DataTable _SubDataSources5 = new DataTable();
 
         public string ReportName { get { return _ReportName; } set { _ReportName = value; } }
         public DataTable SourceTable { get { return _SourceTable; } set { _SourceTable = value; } }
@@ -30,6 +33,10 @@ namespace PWCOSTINGV1.Classes
         //For SubReports
         public DataTable SubDataSources { get { return _SubDataSources1; } set { _SubDataSources1 = value; } }
         public DataTable SubDataSources1 { get { return _SubDataSources2; } set { _SubDataSources2 = value; } }
+        public DataTable SubDataSources2 { get { return _SubDataSources3; } set { _SubDataSources3 = value; } }
+        public DataTable SubDataSources3 { get { return _SubDataSources4; } set { _SubDataSources4 = value; } }
+        public DataTable SubDataSources4 { get { return _SubDataSources5; } set { _SubDataSources5 = value; } }
+
         public void New()
         {
             _ReportDoc = new ReportDocument();

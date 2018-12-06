@@ -48,6 +48,7 @@ namespace PWCOSTINGV1.Forms
             RefreshGrid();
             rowcount = mgridList.RowCount;
             PageManager(1);
+            mgridList.SelectionMode = DataGridViewSelectionMode.CellSelect;
         }
         public void RefreshGrid()
         {
@@ -66,6 +67,7 @@ namespace PWCOSTINGV1.Forms
                     mgridList.DataSource = itmTable;
                 }
                 dgvorig.DataSource = mgridList.DataSource;
+                Grid.ListCheck(mgridList, listTS);
                 tslblRowCount.Text = "Number of Records:    " + list.Count + "       ";
             }
             catch (Exception ex)
@@ -100,7 +102,7 @@ namespace PWCOSTINGV1.Forms
                         break;
                     case FormState.Edit:
                     case FormState.View:
-                        var itemno = mgridList.SelectedRows[0].Cells["colItemNo"].Value.ToString();
+                        var itemno = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colItemNo"].Value.ToString();
                         frm.itemno = itemno;
                         break;
                 }
@@ -178,7 +180,7 @@ namespace PWCOSTINGV1.Forms
                             FormHelpers.ShowDialog(frm2);
                             break;
                         case "quote":
-                            var itemno = mgridList.SelectedRows[0].Cells["colItemNo"].Value.ToString();
+                            var itemno = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colItemNo"].Value.ToString();
                             if (MessageHelpers.ShowQuestion("Quote item " + itemno +"?") == System.Windows.Forms.DialogResult.Yes)
                             {
                                 QuoteItem(itemno);
@@ -214,7 +216,7 @@ namespace PWCOSTINGV1.Forms
             try
             {
                 FormHelpers.CursorWait(true);
-                var ino = mgridList.SelectedRows[0].Cells["colItemNo"].Value.ToString();
+                var ino = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colItemNo"].Value.ToString();
                 string itemno = ino;
                 if (MessageHelpers.ShowQuestion("Are you sure you want to delete record?") == System.Windows.Forms.DialogResult.Yes)
                 {

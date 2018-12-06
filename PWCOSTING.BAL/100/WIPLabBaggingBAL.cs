@@ -38,6 +38,17 @@ namespace PWCOSTING.BAL._100
                 throw ex;
             }
         }
+        public List<tbl_100_WIP_COSTING_LABOR_BAGG> GetByNo(int yearused, string itemno, string partno)
+        {
+            try
+            {
+                return wipbagdal.GetByNo(yearused, itemno, partno);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<tbl_100_WIP_COSTING_LABOR_BAGG> GetByYear(string itemno, int yearused)
         {
             try

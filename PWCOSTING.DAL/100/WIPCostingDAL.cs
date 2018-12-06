@@ -106,18 +106,16 @@ namespace PWCOSTING.DAL._100
                 }
             }
         }
-        public Boolean Delete(List<tbl_100_WIP_COST> records)
+        public Boolean Delete(tbl_100_WIP_COST record)
         {
             using (var dbContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    foreach (tbl_100_WIP_COST record in records)
-                    {
-                        var existrecord = GetByID(record.RecID);
-                        db.WIPCostingList.Remove(existrecord);
-                        db.SaveChanges();
-                    }
+                    var existrecord = GetByID(record.RecID);
+                    db.WIPCostingList.Attach(existrecord);
+                    db.WIPCostingList.Remove(existrecord);
+                    db.SaveChanges();
                     dbContextTransaction.Commit();
                     return true;
                 }

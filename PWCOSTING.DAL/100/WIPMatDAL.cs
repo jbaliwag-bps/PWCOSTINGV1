@@ -40,6 +40,17 @@ namespace PWCOSTING.DAL._100
                 throw ex;
             }
         }
+        public List<tbl_100_WIP_COSTING_MATERIALS> GetByNo(int yearused, string itemno, string partno)
+        {
+            try
+            {
+                return db.WIPMaterialList.AsNoTracking().Where(w => w.YEARUSED == yearused && w.ItemNo == itemno && w.PartNo == partno).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<tbl_100_WIP_COSTING_MATERIALS> GetByYear(string itemno, int yearused)
         {
             try
@@ -110,6 +121,7 @@ namespace PWCOSTING.DAL._100
                     foreach (tbl_100_WIP_COSTING_MATERIALS record in records)
                     {
                         var existrecord = GetByID(record.RecID);
+                        db.WIPMaterialList.Attach(existrecord);
                         db.WIPMaterialList.Remove(existrecord);
                         db.SaveChanges();
                     }
