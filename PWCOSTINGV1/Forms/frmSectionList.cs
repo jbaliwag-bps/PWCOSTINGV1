@@ -77,6 +77,7 @@ namespace PWCOSTINGV1.Forms
         {
             try
             {
+                FormHelpers.CursorWait(true);
                 var frm = new frmSection();
                 switch (Mystate)
                 {
@@ -95,6 +96,10 @@ namespace PWCOSTINGV1.Forms
             catch (Exception ex)
             {
                 MessageHelpers.ShowError(ex.Message);
+            }
+            finally
+            {
+                FormHelpers.CursorWait(false);
             }
         }
         public frmSectionList()

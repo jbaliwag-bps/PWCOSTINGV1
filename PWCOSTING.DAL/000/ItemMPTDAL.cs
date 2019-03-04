@@ -62,45 +62,60 @@ namespace PWCOSTING.DAL._000
         }
         public Boolean Save(tbl_000_H_ITEM_MPT record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                db.ItemMPTList.Add(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    db.ItemMPTList.Add(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
         public Boolean Update(tbl_000_H_ITEM_MPT record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                //var existrecord = GetByID(record.YEARUSED, record.ItemNo, record.SectionCode);
-                var existrecord = GetByID(record.DocID);
-                db.Entry(existrecord).GetDatabaseValues().SetValues(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    //var existrecord = GetByID(record.YEARUSED, record.ItemNo, record.SectionCode);
+                    var existrecord = GetByID(record.DocID);
+                    db.Entry(existrecord).GetDatabaseValues().SetValues(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
         public Boolean Delete(tbl_000_H_ITEM_MPT record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                //var existrecord = GetByID(record.YEARUSED, record.ItemNo, record.SectionCode);
-                var existrecord = GetByID(record.DocID);
-                db.ItemMPTList.Remove(existrecord);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    //var existrecord = GetByID(record.YEARUSED, record.ItemNo, record.SectionCode);
+                    var existrecord = GetByID(record.DocID);
+                    db.ItemMPTList.Remove(existrecord);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
     }

@@ -101,15 +101,20 @@ namespace PWCOSTING.DAL._000
         }
         public Boolean Save(tbl_000_H_PI record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                db.PlasticInjectionList.Add(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    db.PlasticInjectionList.Add(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
         public Boolean Save_List(List<tbl_000_H_PI> record_list)
@@ -138,43 +143,58 @@ namespace PWCOSTING.DAL._000
         }
         public Boolean Update(tbl_000_H_PI record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                var existrecord = GetByID(record.YEARUSED, record.MoldNo);
-                db.Entry(existrecord).CurrentValues.SetValues(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    var existrecord = GetByID(record.YEARUSED, record.MoldNo);
+                    db.Entry(existrecord).CurrentValues.SetValues(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
         public Boolean Delete(tbl_000_H_PI record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                var existrecord = GetByID(record.YEARUSED, record.MoldNo);
-                db.PlasticInjectionList.Remove(existrecord);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    var existrecord = GetByID(record.YEARUSED, record.MoldNo);
+                    db.PlasticInjectionList.Remove(existrecord);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
         public Boolean DeleteAll(tbl_000_H_PI record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                db.PlasticInjectionList.Remove(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    db.PlasticInjectionList.Remove(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
         public Boolean CopyByYear(int yearusedfrom, int yearusedto, string user, Boolean IsOverwrite)

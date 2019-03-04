@@ -46,10 +46,10 @@
             this.mcboUserGroupCode = new MetroFramework.Controls.MetroComboBox();
             this.mcboSectionCode = new MetroFramework.Controls.MetroComboBox();
             this.mcbActive = new MetroFramework.Controls.MetroCheckBox();
-            this.picUser = new System.Windows.Forms.PictureBox();
             this.mbtnBrowse = new MetroFramework.Controls.MetroButton();
             this.ofdImage = new System.Windows.Forms.OpenFileDialog();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.picUser = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).BeginInit();
             this.SuspendLayout();
             // 
@@ -351,21 +351,6 @@
             this.mcbActive.UseSelectable = true;
             this.mcbActive.CheckedChanged += new System.EventHandler(this.mcbActive_CheckedChanged);
             // 
-            // picUser
-            // 
-            this.picUser.BackColor = System.Drawing.Color.Transparent;
-            this.picUser.BackgroundImage = global::PWCOSTINGV1.Properties.Resources.TPI_LOGO;
-            this.picUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.picUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picUser.Image = global::PWCOSTINGV1.Properties.Resources.UserMetro;
-            this.picUser.InitialImage = null;
-            this.picUser.Location = new System.Drawing.Point(588, 74);
-            this.picUser.Name = "picUser";
-            this.picUser.Size = new System.Drawing.Size(222, 222);
-            this.picUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picUser.TabIndex = 55;
-            this.picUser.TabStop = false;
-            // 
             // mbtnBrowse
             // 
             this.mbtnBrowse.BackColor = System.Drawing.Color.Transparent;
@@ -389,6 +374,20 @@
             this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
             this.metroToolTip1.StyleManager = null;
             this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // picUser
+            // 
+            this.picUser.BackColor = System.Drawing.Color.Transparent;
+            this.picUser.BackgroundImage = global::PWCOSTINGV1.Properties.Resources.UserMetro;
+            this.picUser.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.picUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picUser.InitialImage = null;
+            this.picUser.Location = new System.Drawing.Point(588, 74);
+            this.picUser.Name = "picUser";
+            this.picUser.Size = new System.Drawing.Size(222, 222);
+            this.picUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picUser.TabIndex = 55;
+            this.picUser.TabStop = false;
             // 
             // frmUserProfile
             // 
@@ -448,9 +447,9 @@
         private MetroFramework.Controls.MetroComboBox mcboUserGroupCode;
         private MetroFramework.Controls.MetroComboBox mcboSectionCode;
         private MetroFramework.Controls.MetroCheckBox mcbActive;
-        private System.Windows.Forms.PictureBox picUser;
         private MetroFramework.Controls.MetroButton mbtnBrowse;
         private System.Windows.Forms.OpenFileDialog ofdImage;
         private MetroFramework.Components.MetroToolTip metroToolTip1;
+        private System.Windows.Forms.PictureBox picUser;
     }
 }

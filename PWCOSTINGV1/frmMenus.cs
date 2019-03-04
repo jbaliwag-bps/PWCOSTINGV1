@@ -26,7 +26,7 @@ namespace PWCOSTINGV1
                 //clear menustrip items
                 this.flpMenu.Controls.Clear();
                 //iterate the main menus with parentmenuid == 0
-                foreach (var mainmenu in UserSettings.CurrentUser.MenuList.Where(m => m.IsShortCut == true).OrderBy(n => n.MenuID).OrderBy(o=>o.MenuOrder).ToList())
+                foreach (var mainmenu in UserSettings.CurrentUser.MenuList.Where(m => m.IsShortCut == true).OrderBy(n => n.ParentMenuID).ToList())
                 {
                     if (UserSettings.CurrentUser.UserGroup.MenuList.Where(n => n.MenuID == mainmenu.MenuID).FirstOrDefault() != null)
                     {
@@ -92,18 +92,15 @@ namespace PWCOSTINGV1
                 picUserPhoto.BackgroundImage = BPSolutionsTools.BPSUtilitiesV1.BytesToImage(UserSettings.CurrentUser.UserPhoto);
             }
         }
-
         private void frmMenus_Load(object sender, EventArgs e)
         {
             Init_Form();
             ShowMenus();
         }
-
         private void metroPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
         private void metroButton1_Click(object sender, EventArgs e)
         {
                 

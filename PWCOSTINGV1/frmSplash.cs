@@ -32,7 +32,7 @@ namespace PWCOSTINGV1
 
         private void frmSplash_Load(object sender, EventArgs e)
         {
-            Preloader.Preload();
+            
         }
 
         private void metroProgressBar1_Click(object sender, EventArgs e)

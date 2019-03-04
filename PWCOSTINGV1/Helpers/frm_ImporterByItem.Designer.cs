@@ -158,7 +158,7 @@
             this.MinimizeBox = false;
             this.Name = "frm_ImporterByItem";
             this.Resizable = false;
-            this.Text = "Import";
+            this.Text = "Import File";
             this.Load += new System.EventHandler(this.frm_ImporterByItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

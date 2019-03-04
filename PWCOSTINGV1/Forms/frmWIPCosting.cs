@@ -575,7 +575,6 @@ namespace PWCOSTINGV1.Forms
                 SaveRecord();
             }
         }
-
         private void mbtnViewList_Click(object sender, EventArgs e)
         {
             var frm = new frm_DynamicList();
@@ -591,7 +590,6 @@ namespace PWCOSTINGV1.Forms
                 LoadCostItem();
             }
         }
-
         private void mtcforGrids_SelectedIndexChanged(object sender, EventArgs e)
         {
             PanelSetup();
@@ -600,6 +598,42 @@ namespace PWCOSTINGV1.Forms
             if (MyState == FormState.View)
             {
                 ControlsManager(true);
+            }
+        }
+
+        private void mbtnLoadMaterials_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void mbtnGenerateLC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void mbtnLoadMaterialsCC_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }

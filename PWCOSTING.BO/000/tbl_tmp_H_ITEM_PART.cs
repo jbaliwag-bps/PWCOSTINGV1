@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using PWCOSTING.BO.Default;
-
 namespace PWCOSTING.BO._000
 {
     [Table("tbl_tmp_H_ITEM_PART")]

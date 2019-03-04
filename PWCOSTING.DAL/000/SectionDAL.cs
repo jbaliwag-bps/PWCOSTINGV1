@@ -85,43 +85,58 @@ namespace PWCOSTING.DAL._000
         }
         public Boolean Save(tbl_000_SECTION record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                db.SectionList.Add(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    db.SectionList.Add(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
         public Boolean Update(tbl_000_SECTION record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                var existrecord = GetByID(record.SECTIONCODE);
-                db.Entry(existrecord).GetDatabaseValues().SetValues(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    var existrecord = GetByID(record.SECTIONCODE);
+                    db.Entry(existrecord).GetDatabaseValues().SetValues(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
         public Boolean Delete(tbl_000_SECTION record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                var existrecord = GetByID(record.SECTIONCODE);
-                db.SectionList.Remove(existrecord);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    var existrecord = GetByID(record.SECTIONCODE);
+                    db.SectionList.Remove(existrecord);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
     }

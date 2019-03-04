@@ -11,6 +11,7 @@ using MetroFramework.Forms;
 using PWCOSTINGV1.Classes;
 using PWCOSTING.BAL._000;
 using PWCOSTING.BO._000;
+using BPSolutionsTools;
 
 namespace PWCOSTINGV1.Forms
 {
@@ -84,9 +85,9 @@ namespace PWCOSTINGV1.Forms
                         assy.ImportBy = UserSettings.Username;
                     }
                 assy.PartName = mtxtPartName.Text;
-                assy.HC = Convert.ToDecimal(mtxtHC.Text);
-                assy.Qty = Convert.ToDecimal(mtxtQty.Text);
-                assy.RATEPERHOUR = Convert.ToDecimal(mtxtRatePerHour.Text);
+                assy.HC = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtHC.Text, 0));
+                assy.Qty = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtQty.Text, 0));
+                assy.RATEPERHOUR = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtRatePerHour.Text, 0));
                 assy.IsLocked = mcbLocked.Checked;
                 assy.UpdatedDate = DateTime.Now;
                 assy.UpdatedBy = UserSettings.Username;

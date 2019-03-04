@@ -90,20 +90,25 @@ namespace PWCOSTING.DAL._000
 
         public Boolean Save(tbl_000_USERGROUP record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                Renew();
-                db.UserGroupList.Add(record);
-                foreach (var usrgrpmnu in record.MenuList)
+                try
                 {
-                    InsertSub(usrgrpmnu, record.UserGroupCode);
+                    Renew();
+                    db.UserGroupList.Add(record);
+                    foreach (var usrgrpmnu in record.MenuList)
+                    {
+                        InsertSub(usrgrpmnu, record.UserGroupCode);
+                    }
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
                 }
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
 
@@ -125,60 +130,70 @@ namespace PWCOSTING.DAL._000
 
         public Boolean Update(tbl_000_USERGROUP record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                //get new instance of context
-                Renew();
-                tbl_000_USERGROUP existrecord = GetByID(record.UserGroupCode);
-                db.Entry(existrecord).CurrentValues.SetValues(record);
-                List<tbl_000_USERGROUP_MENUS> usermenus = db.UserGroupMenuList.Where(m => m.UserGroupCode == record.UserGroupCode).ToList();
-                //insert new menus
-                foreach (var newmenu in record.MenuList)
+                try
                 {
-                    if (usermenus.SingleOrDefault(m => m.MenuID == newmenu.MenuID) == null)
+                    //get new instance of context
+                    Renew();
+                    tbl_000_USERGROUP existrecord = GetByID(record.UserGroupCode);
+                    db.Entry(existrecord).CurrentValues.SetValues(record);
+                    List<tbl_000_USERGROUP_MENUS> usermenus = db.UserGroupMenuList.Where(m => m.UserGroupCode == record.UserGroupCode).ToList();
+                    //insert new menus
+                    foreach (var newmenu in record.MenuList)
                     {
-                        InsertSub(newmenu, record.UserGroupCode);
+                        if (usermenus.SingleOrDefault(m => m.MenuID == newmenu.MenuID) == null)
+                        {
+                            InsertSub(newmenu, record.UserGroupCode);
+                        }
                     }
+                    //edit or remove existing
+                    foreach (var existmenu in usermenus)
+                    {
+                        var newusermenu = record.MenuList.SingleOrDefault(m => m.MenuID == existmenu.MenuID);
+                        if (newusermenu != null)
+                        {
+                            //edit existing
+                            db.Entry(existmenu).CurrentValues.SetValues(newusermenu);
+                        }
+                        else
+                        {
+                            //remove existing
+                            db.UserGroupMenuList.Remove(existmenu);
+                        }
+                    }
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
                 }
-                //edit or remove existing
-                foreach (var existmenu in usermenus)
+                catch (Exception ex)
                 {
-                    var newusermenu = record.MenuList.SingleOrDefault(m => m.MenuID == existmenu.MenuID);
-                    if (newusermenu != null)
-                    {
-                        //edit existing
-                        db.Entry(existmenu).CurrentValues.SetValues(newusermenu);
-                    }
-                    else
-                    {
-                        //remove existing
-                        db.UserGroupMenuList.Remove(existmenu);
-                    }
+                    dbContextTransaction.Rollback();
+                    throw ex;
                 }
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
 
         public Boolean Delete(tbl_000_USERGROUP record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                Renew();
-                var existrecord = GetByID(record.UserGroupCode);
-                var existmenus = db.UserGroupMenuList.Where(m => m.UserGroupCode == record.UserGroupCode).ToList();
-                db.UserGroupMenuList.RemoveRange(existmenus);
-                db.UserGroupList.Remove(existrecord);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    Renew();
+                    var existrecord = GetByID(record.UserGroupCode);
+                    var existmenus = db.UserGroupMenuList.Where(m => m.UserGroupCode == record.UserGroupCode).ToList();
+                    db.UserGroupMenuList.RemoveRange(existmenus);
+                    db.UserGroupList.Remove(existrecord);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
     }

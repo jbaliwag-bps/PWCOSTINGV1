@@ -11,7 +11,7 @@ using MetroFramework.Forms;
 using PWCOSTINGV1.Classes;
 using PWCOSTING.BAL._000;
 using PWCOSTING.BO._000;
-
+using BPSolutionsTools;
 
 namespace PWCOSTINGV1.Forms
 {
@@ -71,19 +71,19 @@ namespace PWCOSTINGV1.Forms
                 {
                     cat.CATCODE = mtxtCategoryCode.Text;
                     cat.CATDESC = mtxtCategoryDesc.Text;
-                    cat.RATECONVERSION = Convert.ToDecimal(mtxtPhp.Text);
-                    cat.FIXEDCHARGELABOR = Convert.ToDecimal(mtxtFCLabor.Text);
-                    cat.FIXEDCHARGEFO = Convert.ToDecimal(mtxtFCFOverhead.Text);
-                    cat.PRODALLOWANCETIME = Convert.ToDecimal(mtxtPTAllowance.Text);
-                    cat.FIXEDRATELOSS = Convert.ToDecimal(mtxtFRLMProcess.Text);
-                    cat.FIXEDRATEPROFIT = Convert.ToDecimal(mtxtFPRate.Text);
-                    cat.YENRATECONVERSION = Convert.ToDecimal(mtxtYen.Text);
-                    cat.FIXEDRATEDEPNMOLD = Convert.ToDecimal(mtxtFCDMold.Text);
-                    cat.FIXEDRATEDEPNFILM = Convert.ToDecimal(mtxtFCDFilm.Text);
-                    cat.OTHERPROCESSCOST = Convert.ToDecimal(mtxtOPCost.Text);
+                    cat.RATECONVERSION = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtPhp.Text, 0));
+                    cat.FIXEDCHARGELABOR = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtFCLabor.Text, 0));
+                    cat.FIXEDCHARGEFO = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtFCFOverhead.Text, 0));
+                    cat.PRODALLOWANCETIME = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtPTAllowance.Text, 0));
+                    cat.FIXEDRATELOSS = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtFRLMProcess.Text, 0));
+                    cat.FIXEDRATEPROFIT = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtFPRate.Text, 0));
+                    cat.YENRATECONVERSION = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtYen.Text, 0));
+                    cat.FIXEDRATEDEPNMOLD = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtFCDMold.Text, 0));
+                    cat.FIXEDRATEDEPNFILM = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtFCDFilm.Text, 0));
+                    cat.OTHERPROCESSCOST = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtOPCost.Text, 0));
                     cat.YEARUSED = UserSettings.LogInYear;
-                    cat.MoldSetup = Convert.ToDecimal(mtxtMoldSetup.Text);
-                    cat.LotSize = Convert.ToDecimal(mtxtLotSize.Text);
+                    cat.MoldSetup = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtMoldSetup.Text, 0));
+                    cat.LotSize = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtLotSize.Text, 0));
                     cat.IsDependent = mcbDependent.Checked;
                     cat.IsActive = mcbActive.Checked;
                 }
@@ -233,10 +233,9 @@ namespace PWCOSTINGV1.Forms
                 Decimal decPhp = Convert.ToDecimal(this.mtxtPhp.Text);
                 mlblPhp.Text = decPhp.ToString();
             }
-            catch (Exception ex)
+            catch
             {
-                MessageHelpers.ShowError(ex.Message);
-                
+                mtxtPhp.Text = "0";
             }
         }
 
@@ -247,10 +246,9 @@ namespace PWCOSTINGV1.Forms
                 Decimal decYen = Convert.ToDecimal(this.mtxtYen.Text);
                 mlblYen.Text = decYen.ToString();
             }
-            catch (Exception ex)
+            catch
             {
-                MessageHelpers.ShowError(ex.Message);
-
+                mtxtYen.Text = "0";
             }
         }
         public frmCategory()

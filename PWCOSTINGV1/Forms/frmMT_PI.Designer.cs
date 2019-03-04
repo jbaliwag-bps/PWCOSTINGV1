@@ -110,7 +110,7 @@
             this.mtxtMoldNo.CustomButton.Visible = false;
             this.mtxtMoldNo.Lines = new string[0];
             this.mtxtMoldNo.Location = new System.Drawing.Point(239, 83);
-            this.mtxtMoldNo.MaxLength = 20;
+            this.mtxtMoldNo.MaxLength = 50;
             this.mtxtMoldNo.Name = "mtxtMoldNo";
             this.mtxtMoldNo.PasswordChar = '\0';
             this.mtxtMoldNo.PromptText = "Mold No.";
@@ -197,12 +197,12 @@
             this.mtxtSPH.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtSPH.CustomButton.UseSelectable = true;
             this.mtxtSPH.CustomButton.Visible = false;
-            this.mtxtSPH.Lines = new string[0];
+            this.mtxtSPH.Lines = new string[] {
+        "0"};
             this.mtxtSPH.Location = new System.Drawing.Point(239, 131);
             this.mtxtSPH.MaxLength = 10;
             this.mtxtSPH.Name = "mtxtSPH";
             this.mtxtSPH.PasswordChar = '\0';
-            this.mtxtSPH.PromptText = "0";
             this.mtxtSPH.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtSPH.SelectedText = "";
             this.mtxtSPH.SelectionLength = 0;
@@ -210,9 +210,9 @@
             this.mtxtSPH.ShortcutsEnabled = true;
             this.mtxtSPH.Size = new System.Drawing.Size(155, 23);
             this.mtxtSPH.TabIndex = 38;
+            this.mtxtSPH.Text = "0";
             this.mtxtSPH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtSPH.UseSelectable = true;
-            this.mtxtSPH.WaterMark = "0";
             this.mtxtSPH.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtSPH.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtSPH.TextChanged += new System.EventHandler(this.mtxtSPH_TextChanged);
@@ -287,7 +287,8 @@
             this.mtxtPPH.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtPPH.CustomButton.UseSelectable = true;
             this.mtxtPPH.CustomButton.Visible = false;
-            this.mtxtPPH.Lines = new string[0];
+            this.mtxtPPH.Lines = new string[] {
+        "0"};
             this.mtxtPPH.Location = new System.Drawing.Point(239, 175);
             this.mtxtPPH.MaxLength = 10;
             this.mtxtPPH.Name = "mtxtPPH";
@@ -300,6 +301,7 @@
             this.mtxtPPH.ShortcutsEnabled = true;
             this.mtxtPPH.Size = new System.Drawing.Size(155, 23);
             this.mtxtPPH.TabIndex = 42;
+            this.mtxtPPH.Text = "0";
             this.mtxtPPH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtPPH.UseSelectable = true;
             this.mtxtPPH.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -360,7 +362,8 @@
             this.mtxtPPG.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtPPG.CustomButton.UseSelectable = true;
             this.mtxtPPG.CustomButton.Visible = false;
-            this.mtxtPPG.Lines = new string[0];
+            this.mtxtPPG.Lines = new string[] {
+        "0"};
             this.mtxtPPG.Location = new System.Drawing.Point(239, 272);
             this.mtxtPPG.MaxLength = 10;
             this.mtxtPPG.Name = "mtxtPPG";
@@ -373,6 +376,7 @@
             this.mtxtPPG.ShortcutsEnabled = true;
             this.mtxtPPG.Size = new System.Drawing.Size(155, 23);
             this.mtxtPPG.TabIndex = 66;
+            this.mtxtPPG.Text = "0";
             this.mtxtPPG.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtPPG.UseSelectable = true;
             this.mtxtPPG.WaterMark = "0";
@@ -394,7 +398,8 @@
             this.mtxtUsage.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtUsage.CustomButton.UseSelectable = true;
             this.mtxtUsage.CustomButton.Visible = false;
-            this.mtxtUsage.Lines = new string[0];
+            this.mtxtUsage.Lines = new string[] {
+        "0"};
             this.mtxtUsage.Location = new System.Drawing.Point(239, 224);
             this.mtxtUsage.MaxLength = 10;
             this.mtxtUsage.Name = "mtxtUsage";
@@ -407,6 +412,7 @@
             this.mtxtUsage.ShortcutsEnabled = true;
             this.mtxtUsage.Size = new System.Drawing.Size(155, 23);
             this.mtxtUsage.TabIndex = 70;
+            this.mtxtUsage.Text = "0";
             this.mtxtUsage.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtUsage.UseSelectable = true;
             this.mtxtUsage.WaterMark = "0";
@@ -437,7 +443,8 @@
             this.mtxtMoldSetupTime.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtMoldSetupTime.CustomButton.UseSelectable = true;
             this.mtxtMoldSetupTime.CustomButton.Visible = false;
-            this.mtxtMoldSetupTime.Lines = new string[0];
+            this.mtxtMoldSetupTime.Lines = new string[] {
+        "0"};
             this.mtxtMoldSetupTime.Location = new System.Drawing.Point(239, 202);
             this.mtxtMoldSetupTime.MaxLength = 25;
             this.mtxtMoldSetupTime.Name = "mtxtMoldSetupTime";
@@ -450,6 +457,7 @@
             this.mtxtMoldSetupTime.ShortcutsEnabled = true;
             this.mtxtMoldSetupTime.Size = new System.Drawing.Size(155, 23);
             this.mtxtMoldSetupTime.TabIndex = 68;
+            this.mtxtMoldSetupTime.Text = "0";
             this.mtxtMoldSetupTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtMoldSetupTime.UseSelectable = true;
             this.mtxtMoldSetupTime.WaterMark = "0";

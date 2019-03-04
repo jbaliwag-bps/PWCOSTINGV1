@@ -73,43 +73,58 @@ namespace PWCOSTING.DAL._000
         }
         public Boolean Save(tbl_000_H_CATEGORY record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                db.CategoryList.Add(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    db.CategoryList.Add(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
         public Boolean Update(tbl_000_H_CATEGORY record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                var existrecord = GetByID(record.CATCODE, record.YEARUSED);
-                db.Entry(existrecord).GetDatabaseValues().SetValues(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    var existrecord = GetByID(record.CATCODE, record.YEARUSED);
+                    db.Entry(existrecord).GetDatabaseValues().SetValues(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
         public Boolean Delete(tbl_000_H_CATEGORY record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                var existrecord = GetByID(record.CATCODE, record.YEARUSED);
-                db.CategoryList.Remove(existrecord);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    var existrecord = GetByID(record.CATCODE, record.YEARUSED);
+                    db.CategoryList.Remove(existrecord);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
     }

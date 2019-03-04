@@ -196,12 +196,12 @@
             this.mtxtMoldSetup.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtMoldSetup.CustomButton.UseSelectable = true;
             this.mtxtMoldSetup.CustomButton.Visible = false;
-            this.mtxtMoldSetup.Lines = new string[0];
+            this.mtxtMoldSetup.Lines = new string[] {
+        "0"};
             this.mtxtMoldSetup.Location = new System.Drawing.Point(225, 116);
             this.mtxtMoldSetup.MaxLength = 32767;
             this.mtxtMoldSetup.Name = "mtxtMoldSetup";
             this.mtxtMoldSetup.PasswordChar = '\0';
-            this.mtxtMoldSetup.PromptText = "0";
             this.mtxtMoldSetup.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtMoldSetup.SelectedText = "";
             this.mtxtMoldSetup.SelectionLength = 0;
@@ -209,9 +209,9 @@
             this.mtxtMoldSetup.ShortcutsEnabled = true;
             this.mtxtMoldSetup.Size = new System.Drawing.Size(155, 23);
             this.mtxtMoldSetup.TabIndex = 37;
+            this.mtxtMoldSetup.Text = "0";
             this.mtxtMoldSetup.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtMoldSetup.UseSelectable = true;
-            this.mtxtMoldSetup.WaterMark = "0";
             this.mtxtMoldSetup.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtMoldSetup.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtMoldSetup.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtMoldSetup_KeyPress);
@@ -239,12 +239,12 @@
             this.mtxtLotSize.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtLotSize.CustomButton.UseSelectable = true;
             this.mtxtLotSize.CustomButton.Visible = false;
-            this.mtxtLotSize.Lines = new string[0];
+            this.mtxtLotSize.Lines = new string[] {
+        "0"};
             this.mtxtLotSize.Location = new System.Drawing.Point(225, 138);
             this.mtxtLotSize.MaxLength = 32767;
             this.mtxtLotSize.Name = "mtxtLotSize";
             this.mtxtLotSize.PasswordChar = '\0';
-            this.mtxtLotSize.PromptText = "0";
             this.mtxtLotSize.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtLotSize.SelectedText = "";
             this.mtxtLotSize.SelectionLength = 0;
@@ -252,9 +252,9 @@
             this.mtxtLotSize.ShortcutsEnabled = true;
             this.mtxtLotSize.Size = new System.Drawing.Size(155, 23);
             this.mtxtLotSize.TabIndex = 39;
+            this.mtxtLotSize.Text = "0";
             this.mtxtLotSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtLotSize.UseSelectable = true;
-            this.mtxtLotSize.WaterMark = "0";
             this.mtxtLotSize.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtLotSize.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtLotSize.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtLotSize_KeyPress);
@@ -340,12 +340,12 @@
             this.mtxtOPCost.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtOPCost.CustomButton.UseSelectable = true;
             this.mtxtOPCost.CustomButton.Visible = false;
-            this.mtxtOPCost.Lines = new string[0];
+            this.mtxtOPCost.Lines = new string[] {
+        "0"};
             this.mtxtOPCost.Location = new System.Drawing.Point(348, 231);
             this.mtxtOPCost.MaxLength = 32767;
             this.mtxtOPCost.Name = "mtxtOPCost";
             this.mtxtOPCost.PasswordChar = '\0';
-            this.mtxtOPCost.PromptText = "0";
             this.mtxtOPCost.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtOPCost.SelectedText = "";
             this.mtxtOPCost.SelectionLength = 0;
@@ -353,9 +353,9 @@
             this.mtxtOPCost.ShortcutsEnabled = true;
             this.mtxtOPCost.Size = new System.Drawing.Size(288, 23);
             this.mtxtOPCost.TabIndex = 24;
+            this.mtxtOPCost.Text = "0";
             this.mtxtOPCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtOPCost.UseSelectable = true;
-            this.mtxtOPCost.WaterMark = "0";
             this.mtxtOPCost.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtOPCost.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtOPCost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtOPCost_KeyPress);
@@ -374,12 +374,12 @@
             this.mtxtPTAllowance.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtPTAllowance.CustomButton.UseSelectable = true;
             this.mtxtPTAllowance.CustomButton.Visible = false;
-            this.mtxtPTAllowance.Lines = new string[0];
+            this.mtxtPTAllowance.Lines = new string[] {
+        "0"};
             this.mtxtPTAllowance.Location = new System.Drawing.Point(348, 187);
             this.mtxtPTAllowance.MaxLength = 32767;
             this.mtxtPTAllowance.Name = "mtxtPTAllowance";
             this.mtxtPTAllowance.PasswordChar = '\0';
-            this.mtxtPTAllowance.PromptText = "0";
             this.mtxtPTAllowance.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtPTAllowance.SelectedText = "";
             this.mtxtPTAllowance.SelectionLength = 0;
@@ -387,9 +387,9 @@
             this.mtxtPTAllowance.ShortcutsEnabled = true;
             this.mtxtPTAllowance.Size = new System.Drawing.Size(288, 23);
             this.mtxtPTAllowance.TabIndex = 23;
+            this.mtxtPTAllowance.Text = "0";
             this.mtxtPTAllowance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtPTAllowance.UseSelectable = true;
-            this.mtxtPTAllowance.WaterMark = "0";
             this.mtxtPTAllowance.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtPTAllowance.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtPTAllowance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtPTAllowance_KeyPress);
@@ -408,12 +408,12 @@
             this.mtxtFRLMProcess.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtFRLMProcess.CustomButton.UseSelectable = true;
             this.mtxtFRLMProcess.CustomButton.Visible = false;
-            this.mtxtFRLMProcess.Lines = new string[0];
+            this.mtxtFRLMProcess.Lines = new string[] {
+        "0"};
             this.mtxtFRLMProcess.Location = new System.Drawing.Point(348, 143);
             this.mtxtFRLMProcess.MaxLength = 32767;
             this.mtxtFRLMProcess.Name = "mtxtFRLMProcess";
             this.mtxtFRLMProcess.PasswordChar = '\0';
-            this.mtxtFRLMProcess.PromptText = "0";
             this.mtxtFRLMProcess.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtFRLMProcess.SelectedText = "";
             this.mtxtFRLMProcess.SelectionLength = 0;
@@ -421,9 +421,9 @@
             this.mtxtFRLMProcess.ShortcutsEnabled = true;
             this.mtxtFRLMProcess.Size = new System.Drawing.Size(288, 23);
             this.mtxtFRLMProcess.TabIndex = 22;
+            this.mtxtFRLMProcess.Text = "0";
             this.mtxtFRLMProcess.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtFRLMProcess.UseSelectable = true;
-            this.mtxtFRLMProcess.WaterMark = "0";
             this.mtxtFRLMProcess.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtFRLMProcess.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtFRLMProcess.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtFRLMProcess_KeyPress);
@@ -442,12 +442,12 @@
             this.mtxtFPRate.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtFPRate.CustomButton.UseSelectable = true;
             this.mtxtFPRate.CustomButton.Visible = false;
-            this.mtxtFPRate.Lines = new string[0];
+            this.mtxtFPRate.Lines = new string[] {
+        "0"};
             this.mtxtFPRate.Location = new System.Drawing.Point(348, 99);
             this.mtxtFPRate.MaxLength = 32767;
             this.mtxtFPRate.Name = "mtxtFPRate";
             this.mtxtFPRate.PasswordChar = '\0';
-            this.mtxtFPRate.PromptText = "0";
             this.mtxtFPRate.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtFPRate.SelectedText = "";
             this.mtxtFPRate.SelectionLength = 0;
@@ -455,9 +455,9 @@
             this.mtxtFPRate.ShortcutsEnabled = true;
             this.mtxtFPRate.Size = new System.Drawing.Size(288, 23);
             this.mtxtFPRate.TabIndex = 21;
+            this.mtxtFPRate.Text = "0";
             this.mtxtFPRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtFPRate.UseSelectable = true;
-            this.mtxtFPRate.WaterMark = "0";
             this.mtxtFPRate.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtFPRate.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtFPRate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtFPRate_KeyPress);
@@ -512,12 +512,12 @@
             this.mtxtFCDFilm.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtFCDFilm.CustomButton.UseSelectable = true;
             this.mtxtFCDFilm.CustomButton.Visible = false;
-            this.mtxtFCDFilm.Lines = new string[0];
+            this.mtxtFCDFilm.Lines = new string[] {
+        "0"};
             this.mtxtFCDFilm.Location = new System.Drawing.Point(15, 231);
             this.mtxtFCDFilm.MaxLength = 32767;
             this.mtxtFCDFilm.Name = "mtxtFCDFilm";
             this.mtxtFCDFilm.PasswordChar = '\0';
-            this.mtxtFCDFilm.PromptText = "0";
             this.mtxtFCDFilm.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtFCDFilm.SelectedText = "";
             this.mtxtFCDFilm.SelectionLength = 0;
@@ -525,9 +525,9 @@
             this.mtxtFCDFilm.ShortcutsEnabled = true;
             this.mtxtFCDFilm.Size = new System.Drawing.Size(288, 23);
             this.mtxtFCDFilm.TabIndex = 16;
+            this.mtxtFCDFilm.Text = "0";
             this.mtxtFCDFilm.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtFCDFilm.UseSelectable = true;
-            this.mtxtFCDFilm.WaterMark = "0";
             this.mtxtFCDFilm.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtFCDFilm.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtFCDFilm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtFCDFilm_KeyPress);
@@ -546,12 +546,12 @@
             this.mtxtFCDMold.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtFCDMold.CustomButton.UseSelectable = true;
             this.mtxtFCDMold.CustomButton.Visible = false;
-            this.mtxtFCDMold.Lines = new string[0];
+            this.mtxtFCDMold.Lines = new string[] {
+        "0"};
             this.mtxtFCDMold.Location = new System.Drawing.Point(15, 187);
             this.mtxtFCDMold.MaxLength = 32767;
             this.mtxtFCDMold.Name = "mtxtFCDMold";
             this.mtxtFCDMold.PasswordChar = '\0';
-            this.mtxtFCDMold.PromptText = "0";
             this.mtxtFCDMold.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtFCDMold.SelectedText = "";
             this.mtxtFCDMold.SelectionLength = 0;
@@ -559,9 +559,9 @@
             this.mtxtFCDMold.ShortcutsEnabled = true;
             this.mtxtFCDMold.Size = new System.Drawing.Size(288, 23);
             this.mtxtFCDMold.TabIndex = 15;
+            this.mtxtFCDMold.Text = "0";
             this.mtxtFCDMold.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtFCDMold.UseSelectable = true;
-            this.mtxtFCDMold.WaterMark = "0";
             this.mtxtFCDMold.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtFCDMold.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtFCDMold.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtFCDMold_KeyPress);
@@ -580,12 +580,12 @@
             this.mtxtFCFOverhead.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtFCFOverhead.CustomButton.UseSelectable = true;
             this.mtxtFCFOverhead.CustomButton.Visible = false;
-            this.mtxtFCFOverhead.Lines = new string[0];
+            this.mtxtFCFOverhead.Lines = new string[] {
+        "0"};
             this.mtxtFCFOverhead.Location = new System.Drawing.Point(15, 143);
             this.mtxtFCFOverhead.MaxLength = 32767;
             this.mtxtFCFOverhead.Name = "mtxtFCFOverhead";
             this.mtxtFCFOverhead.PasswordChar = '\0';
-            this.mtxtFCFOverhead.PromptText = "0";
             this.mtxtFCFOverhead.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtFCFOverhead.SelectedText = "";
             this.mtxtFCFOverhead.SelectionLength = 0;
@@ -593,9 +593,9 @@
             this.mtxtFCFOverhead.ShortcutsEnabled = true;
             this.mtxtFCFOverhead.Size = new System.Drawing.Size(288, 23);
             this.mtxtFCFOverhead.TabIndex = 14;
+            this.mtxtFCFOverhead.Text = "0";
             this.mtxtFCFOverhead.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtFCFOverhead.UseSelectable = true;
-            this.mtxtFCFOverhead.WaterMark = "0";
             this.mtxtFCFOverhead.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtFCFOverhead.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtFCFOverhead.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtFCFOverhead_KeyPress);
@@ -614,12 +614,12 @@
             this.mtxtFCLabor.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtFCLabor.CustomButton.UseSelectable = true;
             this.mtxtFCLabor.CustomButton.Visible = false;
-            this.mtxtFCLabor.Lines = new string[0];
+            this.mtxtFCLabor.Lines = new string[] {
+        "0"};
             this.mtxtFCLabor.Location = new System.Drawing.Point(15, 99);
             this.mtxtFCLabor.MaxLength = 32767;
             this.mtxtFCLabor.Name = "mtxtFCLabor";
             this.mtxtFCLabor.PasswordChar = '\0';
-            this.mtxtFCLabor.PromptText = "0";
             this.mtxtFCLabor.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtFCLabor.SelectedText = "";
             this.mtxtFCLabor.SelectionLength = 0;
@@ -627,9 +627,9 @@
             this.mtxtFCLabor.ShortcutsEnabled = true;
             this.mtxtFCLabor.Size = new System.Drawing.Size(288, 23);
             this.mtxtFCLabor.TabIndex = 13;
+            this.mtxtFCLabor.Text = "0";
             this.mtxtFCLabor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtFCLabor.UseSelectable = true;
-            this.mtxtFCLabor.WaterMark = "0";
             this.mtxtFCLabor.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtFCLabor.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtFCLabor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtFCLabor_KeyPress);
@@ -684,12 +684,12 @@
             this.mtxtYen.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtYen.CustomButton.UseSelectable = true;
             this.mtxtYen.CustomButton.Visible = false;
-            this.mtxtYen.Lines = new string[0];
+            this.mtxtYen.Lines = new string[] {
+        "0"};
             this.mtxtYen.Location = new System.Drawing.Point(506, 41);
             this.mtxtYen.MaxLength = 32767;
             this.mtxtYen.Name = "mtxtYen";
             this.mtxtYen.PasswordChar = '\0';
-            this.mtxtYen.PromptText = "0";
             this.mtxtYen.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtYen.SelectedText = "";
             this.mtxtYen.SelectionLength = 0;
@@ -697,9 +697,9 @@
             this.mtxtYen.ShortcutsEnabled = true;
             this.mtxtYen.Size = new System.Drawing.Size(130, 23);
             this.mtxtYen.TabIndex = 8;
+            this.mtxtYen.Text = "0";
             this.mtxtYen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtYen.UseSelectable = true;
-            this.mtxtYen.WaterMark = "0";
             this.mtxtYen.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtYen.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtYen.TextChanged += new System.EventHandler(this.mtxtYen_TextChanged);
@@ -737,12 +737,12 @@
             this.mtxtPhp.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.mtxtPhp.CustomButton.UseSelectable = true;
             this.mtxtPhp.CustomButton.Visible = false;
-            this.mtxtPhp.Lines = new string[0];
+            this.mtxtPhp.Lines = new string[] {
+        "0"};
             this.mtxtPhp.Location = new System.Drawing.Point(185, 41);
             this.mtxtPhp.MaxLength = 32767;
             this.mtxtPhp.Name = "mtxtPhp";
             this.mtxtPhp.PasswordChar = '\0';
-            this.mtxtPhp.PromptText = "0";
             this.mtxtPhp.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.mtxtPhp.SelectedText = "";
             this.mtxtPhp.SelectionLength = 0;
@@ -750,9 +750,9 @@
             this.mtxtPhp.ShortcutsEnabled = true;
             this.mtxtPhp.Size = new System.Drawing.Size(120, 23);
             this.mtxtPhp.TabIndex = 5;
+            this.mtxtPhp.Text = "0";
             this.mtxtPhp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtPhp.UseSelectable = true;
-            this.mtxtPhp.WaterMark = "0";
             this.mtxtPhp.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtPhp.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtPhp.TextChanged += new System.EventHandler(this.mtxtPhp_TextChanged);

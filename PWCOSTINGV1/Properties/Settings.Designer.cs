@@ -167,5 +167,41 @@ namespace PWCOSTINGV1.Properties {
                 this["strToLoginUser"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Setting {
+            get {
+                return ((string)(this["Setting"]));
+            }
+            set {
+                this["Setting"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool blnIsNeedRefresh {
+            get {
+                return ((bool)(this["blnIsNeedRefresh"]));
+            }
+            set {
+                this["blnIsNeedRefresh"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string sdsd {
+            get {
+                return ((string)(this["sdsd"]));
+            }
+            set {
+                this["sdsd"] = value;
+            }
+        }
     }
 }

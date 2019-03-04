@@ -52,44 +52,60 @@ namespace PWCOSTING.DAL._000
 
         public Boolean Save(tbl_000_COMPANY record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                db.CompanyList.Add(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    db.CompanyList.Add(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
 
         public Boolean Update(tbl_000_COMPANY record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                var existrecord = GetByID(record.ID);               
-                db.Entry(existrecord).CurrentValues.SetValues(record);
-                db.SaveChanges();
-                return true;
-            }catch(Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    var existrecord = GetByID(record.ID);
+                    db.Entry(existrecord).CurrentValues.SetValues(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
 
         public Boolean Delete(int id)
         {
-            try
-            {               
-                var existrecord = GetByID(id);                
-                db.CompanyList.Remove(existrecord);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                throw ex;
+                try
+                {
+                    var existrecord = GetByID(id);
+                    db.CompanyList.Remove(existrecord);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
     }

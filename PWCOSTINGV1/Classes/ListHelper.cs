@@ -45,8 +45,14 @@ namespace PWCOSTINGV1.Classes
                 case "hobbyicon":
                     obj = PWCOSTINGV1.Properties.Resources.hobbyicon;
                     break;
+                case "hobbybicon":
+                    obj = PWCOSTINGV1.Properties.Resources.hobbybicon;
+                    break;
                 case "wipicon":
                     obj = PWCOSTINGV1.Properties.Resources.WIPicon;
+                    break;
+                case "wipbicon":
+                    obj = PWCOSTINGV1.Properties.Resources.WIPbicon;
                     break;
                 case "utilitiesicon":
                     obj = PWCOSTINGV1.Properties.Resources.utilitiesicon40;

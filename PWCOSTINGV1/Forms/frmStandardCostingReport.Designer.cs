@@ -64,7 +64,6 @@
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.mtxtItemDesc = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.mtxtItemNo = new MetroFramework.Controls.MetroTextBox();
             this.mlblItemNo = new MetroFramework.Controls.MetroLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -72,11 +71,12 @@
             this.mdtDate = new MetroFramework.Controls.MetroDateTime();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.mtxtMPT = new MetroFramework.Controls.MetroTextBox();
+            this.mtxtItemNo = new MetroFramework.Controls.MetroTextBox();
             this.SuspendLayout();
             // 
             // mbtnPreview
             // 
-            this.mbtnPreview.Location = new System.Drawing.Point(747, 492);
+            this.mbtnPreview.Location = new System.Drawing.Point(747, 471);
             this.mbtnPreview.Name = "mbtnPreview";
             this.mbtnPreview.Size = new System.Drawing.Size(75, 23);
             this.mbtnPreview.TabIndex = 148;
@@ -86,7 +86,7 @@
             // 
             // mbtnPrint
             // 
-            this.mbtnPrint.Location = new System.Drawing.Point(671, 492);
+            this.mbtnPrint.Location = new System.Drawing.Point(671, 471);
             this.mbtnPrint.Name = "mbtnPrint";
             this.mbtnPrint.Size = new System.Drawing.Size(75, 23);
             this.mbtnPrint.TabIndex = 147;
@@ -96,7 +96,7 @@
             // 
             // mbtnExport
             // 
-            this.mbtnExport.Location = new System.Drawing.Point(595, 492);
+            this.mbtnExport.Location = new System.Drawing.Point(595, 471);
             this.mbtnExport.Name = "mbtnExport";
             this.mbtnExport.Size = new System.Drawing.Size(75, 23);
             this.mbtnExport.TabIndex = 146;
@@ -106,7 +106,7 @@
             // 
             // mbtnGenerate
             // 
-            this.mbtnGenerate.Location = new System.Drawing.Point(519, 492);
+            this.mbtnGenerate.Location = new System.Drawing.Point(519, 471);
             this.mbtnGenerate.Name = "mbtnGenerate";
             this.mbtnGenerate.Size = new System.Drawing.Size(75, 23);
             this.mbtnGenerate.TabIndex = 145;
@@ -117,7 +117,7 @@
             // mcbMPT
             // 
             this.mcbMPT.AutoSize = true;
-            this.mcbMPT.Location = new System.Drawing.Point(519, 425);
+            this.mcbMPT.Location = new System.Drawing.Point(519, 397);
             this.mcbMPT.Name = "mcbMPT";
             this.mcbMPT.Size = new System.Drawing.Size(175, 15);
             this.mcbMPT.TabIndex = 144;
@@ -127,7 +127,7 @@
             // mcbItemTabSheet
             // 
             this.mcbItemTabSheet.AutoSize = true;
-            this.mcbItemTabSheet.Location = new System.Drawing.Point(519, 399);
+            this.mcbItemTabSheet.Location = new System.Drawing.Point(519, 371);
             this.mcbItemTabSheet.Name = "mcbItemTabSheet";
             this.mcbItemTabSheet.Size = new System.Drawing.Size(139, 15);
             this.mcbItemTabSheet.TabIndex = 143;
@@ -137,7 +137,7 @@
             // mcbSMCost
             // 
             this.mcbSMCost.AutoSize = true;
-            this.mcbSMCost.Location = new System.Drawing.Point(519, 373);
+            this.mcbSMCost.Location = new System.Drawing.Point(519, 345);
             this.mcbSMCost.Name = "mcbSMCost";
             this.mcbSMCost.Size = new System.Drawing.Size(143, 15);
             this.mcbSMCost.TabIndex = 142;
@@ -229,7 +229,7 @@
             this.mtxtReviPosition2.CustomButton.UseSelectable = true;
             this.mtxtReviPosition2.CustomButton.Visible = false;
             this.mtxtReviPosition2.Lines = new string[0];
-            this.mtxtReviPosition2.Location = new System.Drawing.Point(302, 390);
+            this.mtxtReviPosition2.Location = new System.Drawing.Point(302, 369);
             this.mtxtReviPosition2.MaxLength = 32767;
             this.mtxtReviPosition2.Name = "mtxtReviPosition2";
             this.mtxtReviPosition2.PasswordChar = '\0';
@@ -259,7 +259,7 @@
             this.mtxtReviName2.CustomButton.UseSelectable = true;
             this.mtxtReviName2.CustomButton.Visible = false;
             this.mtxtReviName2.Lines = new string[0];
-            this.mtxtReviName2.Location = new System.Drawing.Point(125, 390);
+            this.mtxtReviName2.Location = new System.Drawing.Point(125, 369);
             this.mtxtReviName2.MaxLength = 32767;
             this.mtxtReviName2.Name = "mtxtReviName2";
             this.mtxtReviName2.PasswordChar = '\0';
@@ -289,7 +289,7 @@
             this.mtxtReviPosition1.CustomButton.UseSelectable = true;
             this.mtxtReviPosition1.CustomButton.Visible = false;
             this.mtxtReviPosition1.Lines = new string[0];
-            this.mtxtReviPosition1.Location = new System.Drawing.Point(302, 367);
+            this.mtxtReviPosition1.Location = new System.Drawing.Point(302, 346);
             this.mtxtReviPosition1.MaxLength = 32767;
             this.mtxtReviPosition1.Name = "mtxtReviPosition1";
             this.mtxtReviPosition1.PasswordChar = '\0';
@@ -319,7 +319,7 @@
             this.mtxtReviName1.CustomButton.UseSelectable = true;
             this.mtxtReviName1.CustomButton.Visible = false;
             this.mtxtReviName1.Lines = new string[0];
-            this.mtxtReviName1.Location = new System.Drawing.Point(125, 367);
+            this.mtxtReviName1.Location = new System.Drawing.Point(125, 346);
             this.mtxtReviName1.MaxLength = 32767;
             this.mtxtReviName1.Name = "mtxtReviName1";
             this.mtxtReviName1.PasswordChar = '\0';
@@ -349,7 +349,7 @@
             this.mtxtPrepPosition2.CustomButton.UseSelectable = true;
             this.mtxtPrepPosition2.CustomButton.Visible = false;
             this.mtxtPrepPosition2.Lines = new string[0];
-            this.mtxtPrepPosition2.Location = new System.Drawing.Point(302, 336);
+            this.mtxtPrepPosition2.Location = new System.Drawing.Point(302, 315);
             this.mtxtPrepPosition2.MaxLength = 32767;
             this.mtxtPrepPosition2.Name = "mtxtPrepPosition2";
             this.mtxtPrepPosition2.PasswordChar = '\0';
@@ -379,7 +379,7 @@
             this.mtxtPrepName2.CustomButton.UseSelectable = true;
             this.mtxtPrepName2.CustomButton.Visible = false;
             this.mtxtPrepName2.Lines = new string[0];
-            this.mtxtPrepName2.Location = new System.Drawing.Point(125, 336);
+            this.mtxtPrepName2.Location = new System.Drawing.Point(125, 315);
             this.mtxtPrepName2.MaxLength = 32767;
             this.mtxtPrepName2.Name = "mtxtPrepName2";
             this.mtxtPrepName2.PasswordChar = '\0';
@@ -409,7 +409,7 @@
             this.mtxtPrepPosition1.CustomButton.UseSelectable = true;
             this.mtxtPrepPosition1.CustomButton.Visible = false;
             this.mtxtPrepPosition1.Lines = new string[0];
-            this.mtxtPrepPosition1.Location = new System.Drawing.Point(302, 313);
+            this.mtxtPrepPosition1.Location = new System.Drawing.Point(302, 292);
             this.mtxtPrepPosition1.MaxLength = 32767;
             this.mtxtPrepPosition1.Name = "mtxtPrepPosition1";
             this.mtxtPrepPosition1.PasswordChar = '\0';
@@ -439,7 +439,7 @@
             this.mtxtPrepName1.CustomButton.UseSelectable = true;
             this.mtxtPrepName1.CustomButton.Visible = false;
             this.mtxtPrepName1.Lines = new string[0];
-            this.mtxtPrepName1.Location = new System.Drawing.Point(125, 313);
+            this.mtxtPrepName1.Location = new System.Drawing.Point(125, 292);
             this.mtxtPrepName1.MaxLength = 32767;
             this.mtxtPrepName1.Name = "mtxtPrepName1";
             this.mtxtPrepName1.PasswordChar = '\0';
@@ -469,7 +469,7 @@
             this.mtxtApprPosition2.CustomButton.UseSelectable = true;
             this.mtxtApprPosition2.CustomButton.Visible = false;
             this.mtxtApprPosition2.Lines = new string[0];
-            this.mtxtApprPosition2.Location = new System.Drawing.Point(302, 283);
+            this.mtxtApprPosition2.Location = new System.Drawing.Point(302, 262);
             this.mtxtApprPosition2.MaxLength = 32767;
             this.mtxtApprPosition2.Name = "mtxtApprPosition2";
             this.mtxtApprPosition2.PasswordChar = '\0';
@@ -499,7 +499,7 @@
             this.mtxtApprName2.CustomButton.UseSelectable = true;
             this.mtxtApprName2.CustomButton.Visible = false;
             this.mtxtApprName2.Lines = new string[0];
-            this.mtxtApprName2.Location = new System.Drawing.Point(125, 283);
+            this.mtxtApprName2.Location = new System.Drawing.Point(125, 262);
             this.mtxtApprName2.MaxLength = 32767;
             this.mtxtApprName2.Name = "mtxtApprName2";
             this.mtxtApprName2.PasswordChar = '\0';
@@ -530,7 +530,7 @@
             this.mtxtApprPosition1.CustomButton.UseSelectable = true;
             this.mtxtApprPosition1.CustomButton.Visible = false;
             this.mtxtApprPosition1.Lines = new string[0];
-            this.mtxtApprPosition1.Location = new System.Drawing.Point(302, 260);
+            this.mtxtApprPosition1.Location = new System.Drawing.Point(302, 239);
             this.mtxtApprPosition1.MaxLength = 32767;
             this.mtxtApprPosition1.Name = "mtxtApprPosition1";
             this.mtxtApprPosition1.PasswordChar = '\0';
@@ -547,7 +547,7 @@
             // 
             // mbtnCancel
             // 
-            this.mbtnCancel.Location = new System.Drawing.Point(386, 492);
+            this.mbtnCancel.Location = new System.Drawing.Point(386, 471);
             this.mbtnCancel.Name = "mbtnCancel";
             this.mbtnCancel.Size = new System.Drawing.Size(75, 23);
             this.mbtnCancel.TabIndex = 121;
@@ -557,7 +557,7 @@
             // 
             // mbtnModify
             // 
-            this.mbtnModify.Location = new System.Drawing.Point(310, 492);
+            this.mbtnModify.Location = new System.Drawing.Point(310, 471);
             this.mbtnModify.Name = "mbtnModify";
             this.mbtnModify.Size = new System.Drawing.Size(75, 23);
             this.mbtnModify.TabIndex = 120;
@@ -568,7 +568,7 @@
             // metroLabel7
             // 
             this.metroLabel7.AutoSize = true;
-            this.metroLabel7.Location = new System.Drawing.Point(32, 464);
+            this.metroLabel7.Location = new System.Drawing.Point(32, 443);
             this.metroLabel7.Name = "metroLabel7";
             this.metroLabel7.Size = new System.Drawing.Size(39, 19);
             this.metroLabel7.TabIndex = 119;
@@ -577,7 +577,7 @@
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(29, 435);
+            this.metroLabel6.Location = new System.Drawing.Point(29, 414);
             this.metroLabel6.Name = "metroLabel6";
             this.metroLabel6.Size = new System.Drawing.Size(39, 19);
             this.metroLabel6.TabIndex = 118;
@@ -586,7 +586,7 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(32, 367);
+            this.metroLabel5.Location = new System.Drawing.Point(32, 346);
             this.metroLabel5.Name = "metroLabel5";
             this.metroLabel5.Size = new System.Drawing.Size(85, 19);
             this.metroLabel5.TabIndex = 117;
@@ -595,7 +595,7 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(32, 313);
+            this.metroLabel4.Location = new System.Drawing.Point(32, 292);
             this.metroLabel4.Name = "metroLabel4";
             this.metroLabel4.Size = new System.Drawing.Size(85, 19);
             this.metroLabel4.TabIndex = 116;
@@ -626,7 +626,7 @@
             this.mtxtApprName1.CustomButton.UseSelectable = true;
             this.mtxtApprName1.CustomButton.Visible = false;
             this.mtxtApprName1.Lines = new string[0];
-            this.mtxtApprName1.Location = new System.Drawing.Point(125, 260);
+            this.mtxtApprName1.Location = new System.Drawing.Point(125, 239);
             this.mtxtApprName1.MaxLength = 32767;
             this.mtxtApprName1.Name = "mtxtApprName1";
             this.mtxtApprName1.PasswordChar = '\0';
@@ -644,7 +644,7 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(32, 260);
+            this.metroLabel3.Location = new System.Drawing.Point(32, 239);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(89, 19);
             this.metroLabel3.TabIndex = 113;
@@ -691,41 +691,6 @@
             this.metroLabel1.Size = new System.Drawing.Size(74, 19);
             this.metroLabel1.TabIndex = 109;
             this.metroLabel1.Text = "Description";
-            // 
-            // mtxtItemNo
-            // 
-            this.mtxtItemNo.AccessibleDescription = "";
-            this.mtxtItemNo.AccessibleName = "";
-            // 
-            // 
-            // 
-            this.mtxtItemNo.CustomButton.Image = null;
-            this.mtxtItemNo.CustomButton.Location = new System.Drawing.Point(225, 1);
-            this.mtxtItemNo.CustomButton.Name = "";
-            this.mtxtItemNo.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.mtxtItemNo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.mtxtItemNo.CustomButton.TabIndex = 1;
-            this.mtxtItemNo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.mtxtItemNo.CustomButton.UseSelectable = true;
-            this.mtxtItemNo.CustomButton.Visible = false;
-            this.mtxtItemNo.Lines = new string[0];
-            this.mtxtItemNo.Location = new System.Drawing.Point(125, 131);
-            this.mtxtItemNo.MaxLength = 10;
-            this.mtxtItemNo.Name = "mtxtItemNo";
-            this.mtxtItemNo.PasswordChar = '\0';
-            this.mtxtItemNo.PromptText = "Item No.";
-            this.mtxtItemNo.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.mtxtItemNo.SelectedText = "";
-            this.mtxtItemNo.SelectionLength = 0;
-            this.mtxtItemNo.SelectionStart = 0;
-            this.mtxtItemNo.ShortcutsEnabled = true;
-            this.mtxtItemNo.Size = new System.Drawing.Size(247, 23);
-            this.mtxtItemNo.TabIndex = 108;
-            this.mtxtItemNo.UseSelectable = true;
-            this.mtxtItemNo.WaterMark = "Item No.";
-            this.mtxtItemNo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.mtxtItemNo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.mtxtItemNo.TextChanged += new System.EventHandler(this.mtxtItemNo_TextChanged);
             // 
             // mlblItemNo
             // 
@@ -779,7 +744,7 @@
             this.mtxtYear.CustomButton.Visible = false;
             this.mtxtYear.Enabled = false;
             this.mtxtYear.Lines = new string[0];
-            this.mtxtYear.Location = new System.Drawing.Point(125, 429);
+            this.mtxtYear.Location = new System.Drawing.Point(125, 408);
             this.mtxtYear.MaxLength = 32767;
             this.mtxtYear.Name = "mtxtYear";
             this.mtxtYear.PasswordChar = '\0';
@@ -797,7 +762,7 @@
             // mdtDate
             // 
             this.mdtDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.mdtDate.Location = new System.Drawing.Point(125, 454);
+            this.mdtDate.Location = new System.Drawing.Point(125, 433);
             this.mdtDate.MinimumSize = new System.Drawing.Size(0, 29);
             this.mdtDate.Name = "mdtDate";
             this.mdtDate.Size = new System.Drawing.Size(200, 29);
@@ -813,6 +778,7 @@
             this.metroLabel2.Size = new System.Drawing.Size(36, 19);
             this.metroLabel2.TabIndex = 111;
             this.metroLabel2.Text = "MPT";
+            this.metroLabel2.Visible = false;
             // 
             // mtxtMPT
             // 
@@ -845,16 +811,52 @@
             this.mtxtMPT.Text = "16.5600";
             this.mtxtMPT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mtxtMPT.UseSelectable = true;
+            this.mtxtMPT.Visible = false;
             this.mtxtMPT.WaterMark = "0";
             this.mtxtMPT.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.mtxtMPT.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.mtxtMPT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mtxtMPT_KeyPress);
             // 
+            // mtxtItemNo
+            // 
+            this.mtxtItemNo.AccessibleDescription = "";
+            this.mtxtItemNo.AccessibleName = "";
+            // 
+            // 
+            // 
+            this.mtxtItemNo.CustomButton.Image = null;
+            this.mtxtItemNo.CustomButton.Location = new System.Drawing.Point(225, 1);
+            this.mtxtItemNo.CustomButton.Name = "";
+            this.mtxtItemNo.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.mtxtItemNo.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.mtxtItemNo.CustomButton.TabIndex = 1;
+            this.mtxtItemNo.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.mtxtItemNo.CustomButton.UseSelectable = true;
+            this.mtxtItemNo.CustomButton.Visible = false;
+            this.mtxtItemNo.Lines = new string[0];
+            this.mtxtItemNo.Location = new System.Drawing.Point(125, 131);
+            this.mtxtItemNo.MaxLength = 10;
+            this.mtxtItemNo.Name = "mtxtItemNo";
+            this.mtxtItemNo.PasswordChar = '\0';
+            this.mtxtItemNo.PromptText = "Item No.";
+            this.mtxtItemNo.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.mtxtItemNo.SelectedText = "";
+            this.mtxtItemNo.SelectionLength = 0;
+            this.mtxtItemNo.SelectionStart = 0;
+            this.mtxtItemNo.ShortcutsEnabled = true;
+            this.mtxtItemNo.Size = new System.Drawing.Size(247, 23);
+            this.mtxtItemNo.TabIndex = 108;
+            this.mtxtItemNo.UseSelectable = true;
+            this.mtxtItemNo.WaterMark = "Item No.";
+            this.mtxtItemNo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.mtxtItemNo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.mtxtItemNo.TextChanged += new System.EventHandler(this.mtxtItemNo_TextChanged);
+            // 
             // frmStandardCostingReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(859, 574);
+            this.ClientSize = new System.Drawing.Size(859, 537);
             this.Controls.Add(this.mtxtYear);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -950,7 +952,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel3;
         public MetroFramework.Controls.MetroTextBox mtxtItemDesc;
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        public MetroFramework.Controls.MetroTextBox mtxtItemNo;
         private MetroFramework.Controls.MetroLabel mlblItemNo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -958,6 +959,7 @@
         private MetroFramework.Controls.MetroDateTime mdtDate;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroTextBox mtxtMPT;
+        public MetroFramework.Controls.MetroTextBox mtxtItemNo;
 
 
     }

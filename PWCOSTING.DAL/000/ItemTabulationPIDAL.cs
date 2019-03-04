@@ -123,17 +123,22 @@ namespace PWCOSTING.DAL._000
         }
         public Boolean Delete(tbl_000_H_ITEM_TABULATION record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                //var existrecord = GetByID(record.YEARUSED, record.ItemNo, record.PartNo);
-                var existrecord = GetByID(record.DocID);
-                db.ItemTabulationPIList.Remove(existrecord);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    //var existrecord = GetByID(record.YEARUSED, record.ItemNo, record.PartNo);
+                    var existrecord = GetByID(record.DocID);
+                    db.ItemTabulationPIList.Remove(existrecord);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
     }

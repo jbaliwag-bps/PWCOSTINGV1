@@ -72,17 +72,6 @@ namespace PWCOSTING.DAL._000
                 throw ex;
             }
         }
-        //public Boolean IsExistID(int yearused, string itemno, string partno)
-        //{
-        //    try
-        //    {
-        //        return GetByID(yearused, itemno, partno) != null;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
         public Boolean IsExistID(long docid)
         {
             try
@@ -134,17 +123,22 @@ namespace PWCOSTING.DAL._000
         }
         public Boolean Delete(tbl_000_H_ITEM_TABULATION_VP record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                //var existrecord = GetByID(record.YEARUSED, record.ItemNo, record.PartNo);
-                var existrecord = GetByID(record.DocID);
-                db.ItemTabulationVPList.Remove(existrecord);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    //var existrecord = GetByID(record.YEARUSED, record.ItemNo, record.PartNo);
+                    var existrecord = GetByID(record.DocID);
+                    db.ItemTabulationVPList.Remove(existrecord);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
     }

@@ -79,7 +79,7 @@ namespace PWCOSTINGV1.Forms
         {
             try
             {
-
+                FormHelpers.CursorWait(true);
                 var frm = new frmUserProfile();
                 switch (Mystate)
                 {
@@ -100,6 +100,10 @@ namespace PWCOSTINGV1.Forms
             {
                 MessageHelpers.ShowError(ex.Message);
             }
+            finally
+            {
+                FormHelpers.CursorWait(false);
+            }
         }
         #endregion
         public frmUserList()
@@ -108,7 +112,6 @@ namespace PWCOSTINGV1.Forms
             Userbal = new UserBAL();
             FormHelpers.FormatForm(this.Controls);
         }
-
         private void listTS_ItemClicked_1(object sender, ToolStripItemClickedEventArgs e)
         {
             var strtag = e.ClickedItem.Tag;
@@ -195,7 +198,7 @@ namespace PWCOSTINGV1.Forms
         }
         private void listTSFooter_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            PagingByTS(e);
+                PagingByTS(e);
         }
 
     }

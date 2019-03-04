@@ -12,6 +12,8 @@ using MetroFramework.Forms;
 using PWCOSTING.BAL._000;
 using PWCOSTINGV1.Classes;
 using PWCOSTING.BO._000;
+using PWCOSTING.BAL;
+using PWCOSTINGV1.Helpers;
 
 namespace PWCOSTINGV1.Forms
 {
@@ -36,6 +38,7 @@ namespace PWCOSTINGV1.Forms
 
         int yused = UserSettings.LogInYear;
 
+        private Manual rptdetails = new Manual();
         long rowcount = 0;
         long pagetotal = 0;
         int minrowcount = 18;
@@ -95,6 +98,7 @@ namespace PWCOSTINGV1.Forms
         {
             try
             {
+                FormHelpers.CursorWait(true);
                 var frm = new frmItem();
                 switch (Mystate)
                 {
@@ -113,6 +117,10 @@ namespace PWCOSTINGV1.Forms
             catch (Exception ex)
             {
                 MessageHelpers.ShowError(ex.Message);
+            }
+            finally
+            {
+                FormHelpers.CursorWait(false);
             }
         }
         public frmItemList()
@@ -133,8 +141,6 @@ namespace PWCOSTINGV1.Forms
             tassylist = new List<tbl_000_H_ITEM_TABULATION_ASSY>();
             tmptlist = new List<tbl_000_H_ITEM_MPT>();
             tfdclist = new List<tbl_000_H_ITEM_FDC>();
-            FormHelpers.FormatForm(this.Controls);
-            RefreshGrid();
         }
 
         private void frmItemList_Load(object sender, EventArgs e)
@@ -144,6 +150,7 @@ namespace PWCOSTINGV1.Forms
 
         private void listTS_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            var itemno = "";
             var strtag = e.ClickedItem.Tag;
             if (strtag != null)
             {
@@ -180,7 +187,7 @@ namespace PWCOSTINGV1.Forms
                             FormHelpers.ShowDialog(frm2);
                             break;
                         case "quote":
-                            var itemno = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colItemNo"].Value.ToString();
+                            itemno = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colItemNo"].Value.ToString();
                             if (MessageHelpers.ShowQuestion("Quote item " + itemno +"?") == System.Windows.Forms.DialogResult.Yes)
                             {
                                 QuoteItem(itemno);

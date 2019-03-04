@@ -18,16 +18,20 @@
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ProductName>PW Costing V1</ProductName>
+    <PublisherName>Microsoft</PublisherName>
+    <SuiteName>--</SuiteName>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -55,7 +59,22 @@
   <PropertyGroup>
     <ApplicationIcon>Tamiya.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>953C77EB632270C4C9E0661E9513B6EF3A65CB2B</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>PWCOSTINGV1_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutomaticUpdater">
+      <HintPath>Libraries\AutomaticUpdater.dll</HintPath>
+    </Reference>
     <Reference Include="BPSolutionsTools, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\BPSolutionsTools.dll</HintPath>
@@ -103,6 +122,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Web.Services" />
@@ -126,6 +146,12 @@
     <Compile Include="Classes\ReportTable.cs" />
     <Compile Include="Classes\strArrays.cs" />
     <Compile Include="Classes\Grid.cs" />
+    <Compile Include="Forms\frmPriceListComparisonReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPriceListComparisonReport.Designer.cs">
+      <DependentUpon>frmPriceListComparisonReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\frmExistingItemLoad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,6 +423,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\rpt_PreviewItemDetails.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rpt_PreviewItemDetails.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\rpt_PriceListComparison.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rpt_PriceListComparison.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Reports\rpt_Component.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -473,6 +513,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmComponentList.resx">
       <DependentUpon>frmComponentList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPriceListComparisonReport.resx">
+      <DependentUpon>frmPriceListComparisonReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpers\frmExistingItemLoad.resx">
       <DependentUpon>frmExistingItemLoad.cs</DependentUpon>
@@ -596,6 +639,16 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpt_PreviewItemDetails.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rpt_PreviewItemDetails.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpt_PriceListComparison.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rpt_PriceListComparison.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rpt_Component.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rpt_Component.cs</LastGenOutput>
@@ -640,14 +693,6 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rpt_VarianceCosting.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="DataBase\PWCOSTINGDB_2018050801.bak" />
-    <None Include="Documents\Import Templates\Assy\Assy_ImportTest1.xlsx" />
-    <None Include="Documents\Import Templates\Comp\Comp_ImportTest1.xlsx" />
-    <None Include="Documents\Import Templates\Item\18651-000.xls" />
-    <None Include="Documents\Import Templates\Item\26521-000.xls" />
-    <None Include="Documents\Import Templates\Item\57881-000.xls" />
-    <None Include="Documents\Import Templates\PI\PI_ImportTest1.xlsx" />
-    <None Include="Documents\Import Templates\VP\VP_ImportTest1.xlsx" />
     <None Include="packages.config" />
     <None Include="packages.zip" />
     <None Include="Properties\Settings.settings">
@@ -711,6 +756,7 @@
     <None Include="Images\Hopstarter-Scrap-Preview-Docment.ico" />
     <None Include="Images\last page.png" />
     <None Include="Images\hobbyicon.png" />
+    <None Include="Images\hobbybicon.png" />
     <Content Include="Images\Magnifying-glass-icon.png" />
     <Content Include="Images\new-file-icon.png" />
     <None Include="Images\ok-icon.png" />
@@ -731,6 +777,7 @@
     <None Include="Resources\binoculars-icon.png" />
     <None Include="Images\WIPicon.png" />
     <None Include="Images\_WIPicon.png" />
+    <None Include="Images\WIPbicon.png" />
     <Content Include="Libraries\MetroFramework.Design.dll" />
     <Content Include="Libraries\MetroFramework.dll" />
     <Content Include="Libraries\MetroFramework.Fonts.dll" />
@@ -783,6 +830,8 @@
     <None Include="Resources\signofficon40.png" />
     <None Include="Resources\deleteicon_new.jpg" />
     <None Include="Resources\first page.png" />
+    <None Include="Resources\hobbybicon.bmp" />
+    <Content Include="Releases\sample.txt" />
     <Content Include="Tamiya.ico" />
   </ItemGroup>
   <ItemGroup>

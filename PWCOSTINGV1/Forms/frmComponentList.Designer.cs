@@ -50,6 +50,15 @@
             this.toolStriptxtSearch = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.mgridList = new MetroFramework.Controls.MetroGrid();
+            this.listTSFooter = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tstxtRowRange = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
+            this.tslblRowCount = new System.Windows.Forms.ToolStripLabel();
             this.colDocID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPartNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSectionDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,15 +72,6 @@
             this.colLastUpdated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUpdatedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIsLocked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.listTSFooter = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.tstxtRowRange = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
-            this.tslblRowCount = new System.Windows.Forms.ToolStripLabel();
             this.listTS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mgridList)).BeginInit();
             this.listTSFooter.SuspendLayout();
@@ -292,127 +292,6 @@
             this.mgridList.Tag = "list";
             this.mgridList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mgridList_CellDoubleClick);
             // 
-            // colDocID
-            // 
-            this.colDocID.DataPropertyName = "DocID";
-            this.colDocID.HeaderText = "Doc ID";
-            this.colDocID.Name = "colDocID";
-            this.colDocID.ReadOnly = true;
-            this.colDocID.Visible = false;
-            // 
-            // colPartNo
-            // 
-            this.colPartNo.DataPropertyName = "PartNo";
-            this.colPartNo.HeaderText = "Part No.";
-            this.colPartNo.MinimumWidth = 100;
-            this.colPartNo.Name = "colPartNo";
-            this.colPartNo.ReadOnly = true;
-            // 
-            // colSectionDesc
-            // 
-            this.colSectionDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colSectionDesc.DataPropertyName = "PartName";
-            this.colSectionDesc.HeaderText = "Name";
-            this.colSectionDesc.MinimumWidth = 150;
-            this.colSectionDesc.Name = "colSectionDesc";
-            this.colSectionDesc.ReadOnly = true;
-            // 
-            // colWholeQty
-            // 
-            this.colWholeQty.DataPropertyName = "WholeQty";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.colWholeQty.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colWholeQty.HeaderText = "Wh. Qty";
-            this.colWholeQty.Name = "colWholeQty";
-            this.colWholeQty.ReadOnly = true;
-            this.colWholeQty.Width = 75;
-            // 
-            // colWholeUnit
-            // 
-            this.colWholeUnit.DataPropertyName = "WholeUnit";
-            this.colWholeUnit.HeaderText = "Wh. Unit";
-            this.colWholeUnit.Name = "colWholeUnit";
-            this.colWholeUnit.ReadOnly = true;
-            this.colWholeUnit.Width = 75;
-            // 
-            // colConQty
-            // 
-            this.colConQty.DataPropertyName = "ConversionQty";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.colConQty.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colConQty.HeaderText = "Con. Qty";
-            this.colConQty.Name = "colConQty";
-            this.colConQty.ReadOnly = true;
-            this.colConQty.Width = 75;
-            // 
-            // colConUnit
-            // 
-            this.colConUnit.DataPropertyName = "ConversionUnit";
-            this.colConUnit.HeaderText = "Con. Unit";
-            this.colConUnit.Name = "colConUnit";
-            this.colConUnit.ReadOnly = true;
-            // 
-            // colWholePrice
-            // 
-            this.colWholePrice.DataPropertyName = "WholePrice";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.colWholePrice.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colWholePrice.HeaderText = "Whole Price";
-            this.colWholePrice.Name = "colWholePrice";
-            this.colWholePrice.ReadOnly = true;
-            // 
-            // colConversionPrice
-            // 
-            this.colConversionPrice.DataPropertyName = "ConversionPrice";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.colConversionPrice.DefaultCellStyle = dataGridViewCellStyle5;
-            this.colConversionPrice.HeaderText = "Con. Price";
-            this.colConversionPrice.Name = "colConversionPrice";
-            this.colConversionPrice.ReadOnly = true;
-            // 
-            // colPreviousPrice
-            // 
-            this.colPreviousPrice.DataPropertyName = "PreviousPrice";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.colPreviousPrice.DefaultCellStyle = dataGridViewCellStyle6;
-            this.colPreviousPrice.HeaderText = "Prev. Price";
-            this.colPreviousPrice.Name = "colPreviousPrice";
-            this.colPreviousPrice.ReadOnly = true;
-            // 
-            // colLastUpdated
-            // 
-            this.colLastUpdated.DataPropertyName = "UpdatedDate";
-            this.colLastUpdated.HeaderText = "Last Updated";
-            this.colLastUpdated.Name = "colLastUpdated";
-            this.colLastUpdated.ReadOnly = true;
-            // 
-            // colUpdatedBy
-            // 
-            this.colUpdatedBy.DataPropertyName = "UpdatedBy";
-            this.colUpdatedBy.HeaderText = "Updated By";
-            this.colUpdatedBy.Name = "colUpdatedBy";
-            this.colUpdatedBy.ReadOnly = true;
-            // 
-            // colIsLocked
-            // 
-            this.colIsLocked.DataPropertyName = "IsLocked";
-            this.colIsLocked.HeaderText = "Locked";
-            this.colIsLocked.Name = "colIsLocked";
-            this.colIsLocked.ReadOnly = true;
-            this.colIsLocked.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colIsLocked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colIsLocked.Width = 50;
-            // 
             // listTSFooter
             // 
             this.listTSFooter.BackColor = System.Drawing.Color.Transparent;
@@ -499,6 +378,127 @@
             this.tslblRowCount.Name = "tslblRowCount";
             this.tslblRowCount.Size = new System.Drawing.Size(86, 35);
             this.tslblRowCount.Text = "toolStripLabel2";
+            // 
+            // colDocID
+            // 
+            this.colDocID.DataPropertyName = "DocID";
+            this.colDocID.HeaderText = "Doc ID";
+            this.colDocID.Name = "colDocID";
+            this.colDocID.ReadOnly = true;
+            this.colDocID.Visible = false;
+            // 
+            // colPartNo
+            // 
+            this.colPartNo.DataPropertyName = "PartNo";
+            this.colPartNo.HeaderText = "Part No.";
+            this.colPartNo.MinimumWidth = 100;
+            this.colPartNo.Name = "colPartNo";
+            this.colPartNo.ReadOnly = true;
+            // 
+            // colSectionDesc
+            // 
+            this.colSectionDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colSectionDesc.DataPropertyName = "PartName";
+            this.colSectionDesc.HeaderText = "Name";
+            this.colSectionDesc.MinimumWidth = 150;
+            this.colSectionDesc.Name = "colSectionDesc";
+            this.colSectionDesc.ReadOnly = true;
+            // 
+            // colWholeQty
+            // 
+            this.colWholeQty.DataPropertyName = "WholeQty";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.colWholeQty.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colWholeQty.HeaderText = "Wh. Qty";
+            this.colWholeQty.Name = "colWholeQty";
+            this.colWholeQty.ReadOnly = true;
+            this.colWholeQty.Width = 75;
+            // 
+            // colWholeUnit
+            // 
+            this.colWholeUnit.DataPropertyName = "WholeUnit";
+            this.colWholeUnit.HeaderText = "Wh. Unit";
+            this.colWholeUnit.Name = "colWholeUnit";
+            this.colWholeUnit.ReadOnly = true;
+            this.colWholeUnit.Width = 75;
+            // 
+            // colConQty
+            // 
+            this.colConQty.DataPropertyName = "ConversionQty";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.colConQty.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colConQty.HeaderText = "Con. Qty";
+            this.colConQty.Name = "colConQty";
+            this.colConQty.ReadOnly = true;
+            this.colConQty.Width = 75;
+            // 
+            // colConUnit
+            // 
+            this.colConUnit.DataPropertyName = "ConversionUnit";
+            this.colConUnit.HeaderText = "Con. Unit";
+            this.colConUnit.Name = "colConUnit";
+            this.colConUnit.ReadOnly = true;
+            // 
+            // colWholePrice
+            // 
+            this.colWholePrice.DataPropertyName = "WholePrice";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N4";
+            dataGridViewCellStyle4.NullValue = null;
+            this.colWholePrice.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colWholePrice.HeaderText = "Whole Price";
+            this.colWholePrice.Name = "colWholePrice";
+            this.colWholePrice.ReadOnly = true;
+            // 
+            // colConversionPrice
+            // 
+            this.colConversionPrice.DataPropertyName = "ConversionPrice";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N4";
+            dataGridViewCellStyle5.NullValue = null;
+            this.colConversionPrice.DefaultCellStyle = dataGridViewCellStyle5;
+            this.colConversionPrice.HeaderText = "Con. Price";
+            this.colConversionPrice.Name = "colConversionPrice";
+            this.colConversionPrice.ReadOnly = true;
+            // 
+            // colPreviousPrice
+            // 
+            this.colPreviousPrice.DataPropertyName = "PreviousPrice";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N4";
+            dataGridViewCellStyle6.NullValue = null;
+            this.colPreviousPrice.DefaultCellStyle = dataGridViewCellStyle6;
+            this.colPreviousPrice.HeaderText = "Prev. Price";
+            this.colPreviousPrice.Name = "colPreviousPrice";
+            this.colPreviousPrice.ReadOnly = true;
+            // 
+            // colLastUpdated
+            // 
+            this.colLastUpdated.DataPropertyName = "UpdatedDate";
+            this.colLastUpdated.HeaderText = "Last Updated";
+            this.colLastUpdated.Name = "colLastUpdated";
+            this.colLastUpdated.ReadOnly = true;
+            // 
+            // colUpdatedBy
+            // 
+            this.colUpdatedBy.DataPropertyName = "UpdatedBy";
+            this.colUpdatedBy.HeaderText = "Updated By";
+            this.colUpdatedBy.Name = "colUpdatedBy";
+            this.colUpdatedBy.ReadOnly = true;
+            // 
+            // colIsLocked
+            // 
+            this.colIsLocked.DataPropertyName = "IsLocked";
+            this.colIsLocked.HeaderText = "Locked";
+            this.colIsLocked.Name = "colIsLocked";
+            this.colIsLocked.ReadOnly = true;
+            this.colIsLocked.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colIsLocked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colIsLocked.Width = 50;
             // 
             // frmComponentList
             // 

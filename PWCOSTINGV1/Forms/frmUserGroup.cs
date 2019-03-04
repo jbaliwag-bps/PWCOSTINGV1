@@ -11,6 +11,7 @@ using MetroFramework.Forms;
 using PWCOSTINGV1.Classes;
 using PWCOSTING.BAL._000;
 using PWCOSTING.BO._000;
+using BPSolutionsTools;
 
 namespace PWCOSTINGV1.Forms
 {
@@ -21,8 +22,8 @@ namespace PWCOSTINGV1.Forms
         public string groupid { get; set;  }
         public frmUserGroupList MyCaller { get; set; }
 
-        UserGroupBAL compbal;
-        tbl_000_USERGROUP comp;
+        UserGroupBAL usrgrpbal;
+        tbl_000_USERGROUP usrgrp;
         ErrorProviderExtended err;
         #endregion  
 
@@ -39,12 +40,12 @@ namespace PWCOSTINGV1.Forms
         {
             try
             {
-                if (comp.MenuList == null)
+                if (usrgrp.MenuList == null)
                 {
-                     comp.MenuList = new List<tbl_000_USERGROUP_MENUS>();
+                     usrgrp.MenuList = new List<tbl_000_USERGROUP_MENUS>();
                 }
                 mgridRights.DataSource = new List<tbl_000_USERGROUP_MENUS>();
-                mgridRights.DataSource = comp.MenuList;
+                mgridRights.DataSource = usrgrp.MenuList;
             }
             catch (Exception ex)
             {
@@ -61,7 +62,7 @@ namespace PWCOSTINGV1.Forms
                     {
                         foreach (tbl_000_USERGROUP_MENUS userright in UserRights)
                         {
-                            comp.MenuList.Add(userright);
+                            usrgrp.MenuList.Add(userright);
                         }
                         RefreshList();
                     }                    
@@ -72,14 +73,14 @@ namespace PWCOSTINGV1.Forms
                 throw ex;
             }
         }
-        private void Removeright(int menuID)
+        private void Removeright(string usrgrpcode, int menuID)
         {
             try
             {
-                var userright = comp.MenuList.SingleOrDefault(m => m.MenuID == menuID);
+                var userright = usrgrp.MenuList.SingleOrDefault(m => m.MenuID == menuID && m.UserGroupCode == usrgrpcode);
                 if (userright != null)
                 {
-                    comp.MenuList.Remove(userright);
+                    usrgrp.MenuList.Remove(userright);
                     RefreshList();
                 }
             }
@@ -96,7 +97,7 @@ namespace PWCOSTINGV1.Forms
                 switch (MyState)
                 {
                     case FormState.Add:
-                        comp.GroupID = Guid.NewGuid().ToString();
+                        usrgrp.GroupID = Guid.NewGuid().ToString();
                         LockFields(false);
                         strheader += " - New";
                         break;
@@ -141,22 +142,22 @@ namespace PWCOSTINGV1.Forms
             {
                 if (IsSave)
                 {
-                    comp.UserGroupCode = mtxtGroupCode.Text;
-                    comp.UserGroupDesc = mtxtGroupDesc.Text;
-                    comp.Remarks = mtxtRemarks.Text;                    
-                    comp.IsActive = mcbActive.Checked;   
+                    usrgrp.UserGroupCode = mtxtGroupCode.Text;
+                    usrgrp.UserGroupDesc = mtxtGroupDesc.Text;
+                    usrgrp.Remarks = mtxtRemarks.Text;
+                    usrgrp.IsActive = mcbActive.Checked;   
                  
                 }
                 else
                 {
-                    comp = compbal.GetByID(groupid);
+                    usrgrp = usrgrpbal.GetByID(groupid);
                     RefreshList();
-                    if (comp != null)
+                    if (usrgrp != null)
                     {
-                        mtxtGroupCode.Text=comp.UserGroupCode;
-                        mtxtGroupDesc.Text=comp.UserGroupDesc;
-                        mtxtRemarks.Text=comp.Remarks;
-                        mcbActive.Checked=comp.IsActive;    
+                        mtxtGroupCode.Text = usrgrp.UserGroupCode;
+                        mtxtGroupDesc.Text = usrgrp.UserGroupDesc;
+                        mtxtRemarks.Text = usrgrp.Remarks;
+                        mcbActive.Checked = usrgrp.IsActive;    
                     }
                     else
                     {
@@ -191,7 +192,7 @@ namespace PWCOSTINGV1.Forms
                     if (MyState == FormState.Add)
                     {
                         strmsg = "Saving Failed!";
-                        if (compbal.Save(comp))
+                        if (usrgrpbal.Save(usrgrp))
                         {
                             strmsg = "Saving Successful!";
                             blnsuccess = true;
@@ -200,7 +201,7 @@ namespace PWCOSTINGV1.Forms
                     if (MyState == FormState.Edit)
                     {
                         strmsg = "Updating Failed!";
-                        if (compbal.Update(comp))
+                        if (usrgrpbal.Update(usrgrp))
                         {
                             strmsg = "Updating Successful!";
                             blnsuccess = true;
@@ -246,8 +247,8 @@ namespace PWCOSTINGV1.Forms
         public frmUserGroup()
         {
             InitializeComponent();
-            compbal = new UserGroupBAL();
-            comp = new tbl_000_USERGROUP();
+            usrgrpbal = new UserGroupBAL();
+            usrgrp = new tbl_000_USERGROUP();
             err = new ErrorProviderExtended();
         }
 
@@ -283,7 +284,7 @@ namespace PWCOSTINGV1.Forms
             try
             {
                 var frm = new frmSearchListMenu();
-                frm.AddedList = comp.MenuList;
+                frm.AddedList = usrgrp.MenuList;
                 frm.UserGroupCaller = this;
                 FormHelpers.ShowDialog(frm);
             }
@@ -311,18 +312,30 @@ namespace PWCOSTINGV1.Forms
 
         private void metroButton2_Click(object sender, EventArgs e)
         {
+            FormHelpers.CursorWait(true);
             try
             {
                 if (mgridRights.SelectedRows.Count < 1)
                 {
                     throw new Exception("No selected User Rights!");
                 }
-                var selIndex = mgridRights.SelectedRows[0].Cells["colMenuID"].Value;
-                
+                else
+                {
+                    var usrgrpcode = BPSUtilitiesV1.NZ(mgridRights.SelectedRows[0].Cells["colUserGroupCode"].Value, "").ToString();
+                    var menuid = Convert.ToInt32(BPSUtilitiesV1.NZ(mgridRights.SelectedRows[0].Cells["colMenuID"].Value, 0));
+                    if (usrgrpcode != "" && menuid != 0)
+                    {
+                        Removeright(usrgrpcode, menuid);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageHelpers.ShowError(ex.Message);
+            }
+            finally
+            {
+                FormHelpers.CursorWait(false);
             }
         }
     }

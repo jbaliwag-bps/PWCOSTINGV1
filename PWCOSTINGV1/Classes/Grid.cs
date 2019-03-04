@@ -14,29 +14,44 @@ namespace PWCOSTINGV1.Classes
     {
         public static void UniqueRow(DataGridView dgv, string cellname)
         {
-            string initialnamevalue = dgv.Rows[0].Cells[cellname].Value.ToString();
-            for (int i = 1; i < dgv.Rows.Count; i++)
+            try
             {
-                if (BPSUtilitiesV1.NZ(dgv.Rows[i].Cells[cellname].Value, "").ToString() == initialnamevalue)
+                string initialnamevalue = dgv.Rows[0].Cells[cellname].Value.ToString();
+                for (int i = 1; i < dgv.Rows.Count; i++)
                 {
-                    dgv.Rows.RemoveAt(i);
+                    if (BPSUtilitiesV1.NZ(dgv.Rows[i].Cells[cellname].Value, "").ToString() == initialnamevalue)
+                    {
+                        dgv.Rows.RemoveAt(i);
+                    }
+                    else
+                        initialnamevalue = BPSUtilitiesV1.NZ(dgv.Rows[i].Cells[cellname].Value, "").ToString();
                 }
-                else
-                    initialnamevalue = BPSUtilitiesV1.NZ(dgv.Rows[i].Cells[cellname].Value, "").ToString();
+            }
+            catch
+            {
+
             }
         }
         //For Paging
         public static DataTable Pager(DataGridView dgv, long _take, int _skip)
         {
-            if (_skip != 1)
-                _skip = Convert.ToInt32((_skip - 1) * _take);
-            else _skip = 0;
-
-            DataTable _DataTable = (dgv.DataSource as DataTable).AsEnumerable().Skip(_skip).CopyToDataTable();
-            DataTable cloneDataTable = _DataTable.Clone();
-            for (int i = 0; i < _take; i++)
+            DataTable cloneDataTable = new DataTable();
+            try
             {
-                cloneDataTable.ImportRow(_DataTable.Rows[i]);
+                if (_skip != 1)
+                    _skip = Convert.ToInt32((_skip - 1) * _take);
+                else _skip = 0;
+
+                DataTable _DataTable = (dgv.DataSource as DataTable).AsEnumerable().Skip(_skip).CopyToDataTable();
+                cloneDataTable = _DataTable.Clone();
+                for (int i = 0; i < _take; i++)
+                {
+                    cloneDataTable.ImportRow(_DataTable.Rows[i]);
+                }
+            }
+            catch
+            {
+
             }
             return cloneDataTable;
         }
@@ -44,44 +59,66 @@ namespace PWCOSTINGV1.Classes
         //For searching record
         public static DataTable PageRandom(DataGridView dgv, long _take, string strtosearch, string tosearch1, string tosearch2)
        {
-            DataTable dt = new DataTable();
-            DataView dv = ((DataTable)dgv.DataSource).DefaultView;
-            dv.RowFilter = string.Format(tosearch1 + " LIKE '%{0}%' or " + tosearch2 + " LIKE '%{0}%'", BPSolutionsTools.BPSUtilitiesV1.NZ(strtosearch, ""));
-            dt = dv.ToTable();
-            DataTable cloneDataTable = dt.Clone();
+           DataTable cloneDataTable = new DataTable();
+           try
+           {
+               DataTable dt = new DataTable();
+               DataView dv = ((DataTable)dgv.DataSource).DefaultView;
+               dv.RowFilter = string.Format(tosearch1 + " LIKE '%{0}%' or " + tosearch2 + " LIKE '%{0}%'", BPSolutionsTools.BPSUtilitiesV1.NZ(strtosearch, ""));
+               dt = dv.ToTable();
+               cloneDataTable = dt.Clone();
 
-            if (dt.Rows.Count < _take)
-            {
-                _take = dt.Rows.Count;
-            }
-                for (int i = 0; i < _take; i++)
-                {
-                    cloneDataTable.ImportRow(dt.Rows[i]);
-                }
-            var test = cloneDataTable.Rows.Count;
-            return cloneDataTable;
+               if (dt.Rows.Count < _take)
+               {
+                   _take = dt.Rows.Count;
+               }
+               for (int i = 0; i < _take; i++)
+               {
+                   cloneDataTable.ImportRow(dt.Rows[i]);
+               }
+               var test = cloneDataTable.Rows.Count;
+           }
+           catch
+           {
+
+           }
+           return cloneDataTable;
         }
         public static void tsButtonManager(ToolStrip ts, bool isLocked)
         {
-            var items = ts.Items;
-            foreach (ToolStripButton tsbtn in items.OfType<ToolStripButton>().AsEnumerable())
+            try
             {
-                if (tsbtn.Name.Contains("_"))
+                var items = ts.Items;
+                foreach (ToolStripButton tsbtn in items.OfType<ToolStripButton>().AsEnumerable())
                 {
-                    tsbtn.Enabled = !isLocked;
+                    if (tsbtn.Name.Contains("_"))
+                    {
+                        tsbtn.Enabled = !isLocked;
+                    }
                 }
+            }
+            catch
+            {
+
             }
         }
         public static void ListCheck(DataGridView dgv, ToolStrip ts)
         {
-            bool isLocked = true;
-            if (dgv.RowCount > 0)
+            try
             {
-                dgv.Rows[0].Cells[1].Selected = true;
-                isLocked = false;
+                bool isLocked = true;
+                if (dgv.RowCount > 0)
+                {
+                    dgv.Rows[0].Cells[1].Selected = true;
+                    isLocked = false;
+                }
+                //Disable the tsbutton if the grid contains no row(s)
+                tsButtonManager(ts, isLocked);
             }
-            //Disable the tsbutton if the grid contains no row(s)
-            tsButtonManager(ts, isLocked);
+            catch
+            {
+
+            }
         }
     }
 }

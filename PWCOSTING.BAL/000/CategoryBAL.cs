@@ -74,10 +74,6 @@ namespace PWCOSTING.BAL._000
                 {
                     throw new Exception("Invalid Parameter");
                 }
-                if (catdal.IsExistCatDesc(record.CATDESC))
-                {
-                    throw new Exception("Description already taken!");
-                }
                 if (catdal.IsExistID(record.CATCODE, record.YEARUSED))
                 {
                     throw new Exception("Code already taken!");

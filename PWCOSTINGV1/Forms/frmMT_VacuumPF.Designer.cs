@@ -139,7 +139,7 @@
             this.mtxtPartNo.CustomButton.Visible = false;
             this.mtxtPartNo.Lines = new string[0];
             this.mtxtPartNo.Location = new System.Drawing.Point(239, 83);
-            this.mtxtPartNo.MaxLength = 10;
+            this.mtxtPartNo.MaxLength = 50;
             this.mtxtPartNo.Name = "mtxtPartNo";
             this.mtxtPartNo.PasswordChar = '\0';
             this.mtxtPartNo.PromptText = "Part No.";

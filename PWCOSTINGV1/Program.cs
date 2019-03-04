@@ -28,7 +28,6 @@ namespace PWCOSTINGV1
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMDI());
         }
-
         private static void SetTheme()
         {
             MyFormStyles.MyStyle = MetroThemeStyle.Light;
@@ -65,6 +64,8 @@ namespace PWCOSTINGV1
                 compbal = new CompanyBAL();
                 AppSettings.CompanyProfile = compbal.GetByID(1);
                 AppSettings.AppConnected = true;
+                Preloader.Preload(); //Preload Report
+                //Cache.Refresh();
                 t.Abort(); //close splash
             }
             catch (Exception ex)

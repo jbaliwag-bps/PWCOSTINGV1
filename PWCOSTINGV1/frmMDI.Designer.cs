@@ -34,6 +34,7 @@
             this.asdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.msmMain = new MetroFramework.Components.MetroStyleManager(this.components);
             this.imglstMain = new System.Windows.Forms.ImageList(this.components);
+            this.miniToolStrip = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.msmMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,6 +73,17 @@
             this.imglstMain.Images.SetKeyName(8, "utilitiesicon");
             this.imglstMain.Images.SetKeyName(9, "metrouiicon");
             this.imglstMain.Images.SetKeyName(10, "hobbyicon");
+            this.imglstMain.Images.SetKeyName(11, "hobbybicon");
+            this.imglstMain.Images.SetKeyName(12, "WIPbicon");
+            // 
+            // miniToolStrip
+            // 
+            this.miniToolStrip.AutoSize = false;
+            this.miniToolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.miniToolStrip.Location = new System.Drawing.Point(137, 42);
+            this.miniToolStrip.Name = "miniToolStrip";
+            this.miniToolStrip.Size = new System.Drawing.Size(18, 23);
+            this.miniToolStrip.TabIndex = 0;
             // 
             // frmMDI
             // 
@@ -106,6 +118,7 @@
         private MetroFramework.Components.MetroStyleManager msmMain;
         private System.Windows.Forms.ImageList imglstMain;
         private System.Windows.Forms.ToolStripMenuItem asdfToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip miniToolStrip;
 
 
 

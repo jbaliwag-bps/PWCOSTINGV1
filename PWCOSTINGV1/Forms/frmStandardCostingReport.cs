@@ -114,12 +114,12 @@ namespace PWCOSTINGV1.Forms
                             mtxtApprName1.Text = s.SignName;
                             mtxtApprPosition1.Text = s.SignPosition;
                         }
-                        else if (s.RecID == (minid+1))
+                        else if (s.RecID == (minid + 1))
                         {
                             mtxtApprName2.Text = s.SignName;
                             mtxtApprPosition2.Text = s.SignPosition;
                         }
-                        else if (s.RecID == (minid+2))
+                        else if (s.RecID == (minid + 2))
                         {
                             mtxtPrepName1.Text = s.SignName;
                             mtxtPrepPosition1.Text = s.SignPosition;
@@ -334,7 +334,6 @@ namespace PWCOSTINGV1.Forms
                     break;
             }
         }
-
         private void mbtnCancel_Click(object sender, EventArgs e)
         {
             err.Clear();
@@ -345,46 +344,20 @@ namespace PWCOSTINGV1.Forms
                     break;
             }
         }
-
-        private Boolean Is2017Format()
-        {
-            Boolean _Is2017Format = false;
-            if (mcbPriceQuot.Checked)
-            {
-                if (mcbF2017Purge.Checked)
-                {
-                    if (mcbWFreight.Checked && mcbWMPT.Checked)
-                    {
-                        if (mcbSMCost.Checked)
-                        {
-                            _Is2017Format = true;
-                        }
-                    }
-                }
-            }
-            return _Is2017Format;
-        }
         private void mbtnGenerate_Click(object sender, EventArgs e)
         {
             var msg_succ = "Generating Successful!";
             try
             {
                 FormHelpers.CursorWait(true);
-                if (Is2017Format())
+                dtgnrtd = rptdetails.SP_GenerateQuot(mtxtItemNo.Text, UserSettings.LogInYear, mdtDate.Value, this.Text, Convert.ToDecimal(mtxtMPT.Text));
+                if (dtgnrtd != null && dtgnrtd.Rows.Count > 0)
                 {
-                    dtgnrtd = rptdetails.SP_GenerateQuot(mtxtItemNo.Text, UserSettings.LogInYear, mdtDate.Value, this.Text, Convert.ToDecimal(mtxtMPT.Text));
-                    if (dtgnrtd != null && dtgnrtd.Rows.Count > 0)
-                    {
-                        MessageHelpers.ShowInfo(msg_succ);
-                    }
-                    else
-                    {
-                        throw new Exception("No Data Generated!");
-                    }
+                    MessageHelpers.ShowInfo(msg_succ);
                 }
                 else
                 {
-                    throw new Exception("This Format is not yet available!");
+                    throw new Exception("No Data Generated!");
                 }
             }
             catch (Exception ex)
@@ -399,24 +372,45 @@ namespace PWCOSTINGV1.Forms
 
         private void mbtnExport_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                FormHelpers.CursorWait(true);
+            }
+            catch (Exception ex)
+            {
+                MessageHelpers.ShowError(ex.Message);
+            }
+            finally
+            {
+                FormHelpers.CursorWait(false);
+            }
         }
 
         private void mbtnPrint_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                FormHelpers.CursorWait(true);
+            }
+            catch (Exception ex)
+            {
+                MessageHelpers.ShowError(ex.Message);
+            }
+            finally
+            {
+                FormHelpers.CursorWait(false);
+            }
         }
 
         private void mbtnPreview_Click(object sender, EventArgs e)
         {
             try
             {
+                string itemno = mtxtItemNo.Text;
                 FormHelpers.CursorWait(true);
+                PreviewFPR(itemno, "rpt_PreviewItemDetails.rpt", "sp_ItemDetailsMain");
                 PreviewF2017("rpt_StandardCostingF2017.rpt");
-                Task.Factory.StartNew(() =>
-                {
-                    PreviewFSMT("rpt_StandardCostingFSMT.rpt");
-                }, TaskCreationOptions.None);
+                PreviewFSMT("rpt_StandardCostingFSMT.rpt", "sp_SMTRaw2017");
             }
             catch (Exception ex)
             {
@@ -441,22 +435,44 @@ namespace PWCOSTINGV1.Forms
             }
             frv1.Text = "Standard Costing Report";
             frv1.StartPosition = FormStartPosition.CenterScreen;
-            frv1.ShowDialog();
+            FormHelpers.ShowForm(frv1);
         }
-        private void PreviewFSMT(string strRptName)
+        private void PreviewFSMT(string strRptName, string spname)
         {
             frm_ReportViewer frv2 = new frm_ReportViewer();
             frv2.report = new ReportTable();
             frv2.report.ReportName = strRptName;
             frv2.report.ReportPath = ObjectFinder.ReportPath;
-            frv2.report.SourceTable = rptdetails.SP_SMTRaw2017(mtxtItemNo.Text, UserSettings.LogInYear);
+            frv2.report.SourceTable = rptdetails.SP_SMTRaw2017(spname, mtxtItemNo.Text, UserSettings.LogInYear);
             if (frv2.report.SourceTable == null || frv2.report.SourceTable.Rows.Count == 0)
             {
                 throw new Exception("Report no Data!");
             }
             frv2.Text = "Standard Costing Report";
             frv2.StartPosition = FormStartPosition.CenterScreen;
-            frv2.ShowDialog();
+            FormHelpers.ShowForm(frv2);
+        }
+        private void PreviewFPR(string itemno, string strRptName, string spname)
+        {
+            if (strRptName == "")
+            {
+                throw new Exception("No Report Available!");
+            }
+            frm_ReportViewer frv3 = new frm_ReportViewer();
+            frv3.report = new ReportTable();
+            frv3.report.ReportName = strRptName;
+            frv3.report.ReportPath = ObjectFinder.ReportPath;
+            frv3.report.SourceTable = rptdetails.SP_PreviewItemDetails(spname, itemno, UserSettings.LogInYear);
+            frv3.report.SubDataSources = rptdetails.SP_PreviewItemDetails("sp_ItemDetailsPI", itemno, UserSettings.LogInYear);
+            frv3.report.SubDataSources1 = rptdetails.SP_PreviewItemDetails("sp_ItemDetailsVP", itemno, UserSettings.LogInYear);
+            frv3.report.SubDataSources2 = rptdetails.SP_PreviewItemDetails("sp_ItemDetailsAssy", itemno, UserSettings.LogInYear);
+            if (frv3.report.SourceTable == null || frv3.report.SourceTable.Rows.Count == 0)
+            {
+                throw new Exception("Report no Data!");
+            }
+            frv3.Text = "Item Details Report";
+            frv3.StartPosition = FormStartPosition.CenterScreen;
+            FormHelpers.ShowForm(frv3);
         }
         private void mtxtMPT_KeyPress(object sender, KeyPressEventArgs e)
         {

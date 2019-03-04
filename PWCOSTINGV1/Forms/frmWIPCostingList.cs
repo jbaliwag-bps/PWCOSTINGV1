@@ -118,6 +118,7 @@ namespace PWCOSTINGV1.Forms
         {
             try
             {
+                FormHelpers.CursorWait(true);
                 var frm = new frmWIPCosting();
                 var ext = frm.Text;
                 switch (MyState)
@@ -143,6 +144,10 @@ namespace PWCOSTINGV1.Forms
             catch (Exception ex)
             {
                 MessageHelpers.ShowError(ex.Message);
+            }
+            finally
+            {
+                FormHelpers.CursorWait(false);
             }
         }
         private void DeleteSub(string itemno, string partno)
@@ -204,6 +209,7 @@ namespace PWCOSTINGV1.Forms
         {
             try
             {
+                FormHelpers.CursorWait(true);
                 var recid = Convert.ToInt64(mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colRecID"].Value);
                 var itemno = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colItemNo"].Value.ToString();
                 var partno = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colPartNo"].Value.ToString();
@@ -211,7 +217,6 @@ namespace PWCOSTINGV1.Forms
                 {
                     throw new Exception("No Report Available!");
                 }
-                FormHelpers.CursorWait(true);
                 frm_ReportViewer frv = new frm_ReportViewer();
                 frv.report = new ReportTable();
                 frv.report.ReportName = strRptName;

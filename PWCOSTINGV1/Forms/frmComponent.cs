@@ -11,7 +11,7 @@ using MetroFramework.Forms;
 using PWCOSTINGV1.Classes;
 using PWCOSTING.BAL._000;
 using PWCOSTING.BO._000;
-
+using BPSolutionsTools;
 namespace PWCOSTINGV1.Forms
 {
     public partial class frmComponent : MetroForm
@@ -86,13 +86,13 @@ namespace PWCOSTINGV1.Forms
                         com.ImportBy = UserSettings.Username;
                     }
                     com.PartName = mtxtPartName.Text;
-                    com.WholeQty = Convert.ToDecimal(mtxtWholeQty.Text);
+                    com.WholeQty = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtWholeQty.Text, 0));
                     com.WholeUnit = mtxtWholeUnit.Text;
-                    com.ConversionQty = Convert.ToDecimal(mtxtConversionQty.Text);
+                    com.ConversionQty = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtConversionQty.Text, 0));
                     com.ConversionUnit = mtxtConversionUnit.Text;
-                    com.WholePrice = Convert.ToDecimal(mtxtWholePrice.Text);
-                    com.ConversionPrice = Convert.ToDecimal(mtxtConversionPrice.Text);
-                    com.PreviousPrice = Convert.ToDecimal(mtxtPreviousPrice.Text);
+                    com.WholePrice = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtWholePrice.Text, 0));
+                    com.ConversionPrice = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtConversionPrice.Text, 0));
+                    com.PreviousPrice = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtPreviousPrice.Text,0));
                     com.IsLocked = mcbLocked.Checked;
                     com.ExpDate = DateTime.Now;
                     com.UpdatedDate = DateTime.Now;
@@ -106,11 +106,11 @@ namespace PWCOSTINGV1.Forms
                         mtxtPartNo.Text = com.PartNo;
                         mtxtPartName.Text = com.PartName;
                         mcbLocked.Checked = com.IsLocked;
-                        mtxtPreviousPrice.Text = String.Format("{0:n2}", com.PreviousPrice);
-                        mtxtWholePrice.Text = String.Format("{0:n2}",com.WholePrice);
+                        mtxtPreviousPrice.Text = String.Format("{0:n4}", com.PreviousPrice);
+                        mtxtWholePrice.Text = String.Format("{0:n4}",com.WholePrice);
                         mtxtWholeQty.Text = String.Format("{0:n2}", com.WholeQty);
                         mtxtWholeUnit.Text = com.WholeUnit;
-                        mtxtConversionPrice.Text = String.Format("{0:n2}",com.ConversionPrice);
+                        mtxtConversionPrice.Text = String.Format("{0:n4}",com.ConversionPrice);
                         mtxtConversionQty.Text = String.Format("{0:n2}",com.ConversionQty);
                         mtxtConversionUnit.Text = com.ConversionUnit;
                     }
@@ -127,23 +127,16 @@ namespace PWCOSTINGV1.Forms
         }
         private void LockFields(Boolean IsLocked)
         {
-            try
-            {
-                mtxtPartNo.ReadOnly = IsLocked;
-                mtxtPartName.ReadOnly = IsLocked;
-                mcbLocked.Enabled = !IsLocked;
-                mtxtPreviousPrice.ReadOnly = IsLocked;
-                mtxtWholePrice.ReadOnly = IsLocked;
-                mtxtWholeQty.ReadOnly = IsLocked;
-                mtxtWholeUnit.ReadOnly = IsLocked;
-                mtxtConversionPrice.ReadOnly = IsLocked;
-                mtxtConversionQty.ReadOnly = IsLocked;
-                mtxtConversionUnit.ReadOnly = IsLocked;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            mtxtPartNo.ReadOnly = IsLocked;
+            mtxtPartName.ReadOnly = IsLocked;
+            mcbLocked.Enabled = !IsLocked;
+            mtxtPreviousPrice.ReadOnly = IsLocked;
+            mtxtWholePrice.ReadOnly = IsLocked;
+            mtxtWholeQty.ReadOnly = IsLocked;
+            mtxtWholeUnit.ReadOnly = IsLocked;
+            mtxtConversionPrice.ReadOnly = IsLocked;
+            mtxtConversionQty.ReadOnly = IsLocked;
+            mtxtConversionUnit.ReadOnly = IsLocked;
         }
         private void SaveRecord()
         {

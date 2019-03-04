@@ -76,7 +76,7 @@
             // 
             this.metroCheckBox1.AutoSize = true;
             this.metroCheckBox1.FontWeight = MetroFramework.MetroCheckBoxWeight.Bold;
-            this.metroCheckBox1.Location = new System.Drawing.Point(103, 216);
+            this.metroCheckBox1.Location = new System.Drawing.Point(103, 215);
             this.metroCheckBox1.Name = "metroCheckBox1";
             this.metroCheckBox1.Size = new System.Drawing.Size(135, 15);
             this.metroCheckBox1.TabIndex = 153;
@@ -126,7 +126,7 @@
             // 
             this.mcboCategory.FormattingEnabled = true;
             this.mcboCategory.ItemHeight = 23;
-            this.mcboCategory.Location = new System.Drawing.Point(103, 176);
+            this.mcboCategory.Location = new System.Drawing.Point(103, 174);
             this.mcboCategory.Name = "mcboCategory";
             this.mcboCategory.Size = new System.Drawing.Size(193, 29);
             this.mcboCategory.TabIndex = 158;

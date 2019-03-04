@@ -25,7 +25,7 @@ namespace PWCOSTING.BAL
             return based.SP_dtGenerateQuot(itemno, loginyear, _date, rptname, hrs); 
         }
         public DataTable SP_Signatory(string rptname) { return based.SP_Signatory(rptname); }
-        public DataTable SP_SMTRaw2017(string itemno, int loginyear) { return based.SP_SMTRaw2017(itemno, loginyear); }
+        public DataTable SP_SMTRaw2017(string spname, string itemno, int loginyear) { return based.SP_Dynamic2(spname, itemno, loginyear); }
         public DataTable SP_GeneratePriceList(int loginyear, string catcode) { return based.SP_GeneratePriceList(loginyear, catcode); }
         public DataTable SP_GeneratePriceListWDetails(string spname, int loginyear) { return based.SP_Dynamic1(spname, loginyear); }
         public DataTable SP_GenerateVariance(int month, int year) { return based.SP_GenerateVariance(month, year); }
@@ -43,5 +43,13 @@ namespace PWCOSTING.BAL
             return based.SP_Dynamic1(spname, loginyear);
         }
         //
+        public DataTable SP_PreviewItemDetails(string spname, string itemno, int loginyear)
+        {
+            return based.SP_Dynamic2(spname, itemno, loginyear);
+        }
+        public DataTable SP_GeneratePriceListComparison(int year1, int year2, string catcode)
+        {
+            return based.SP_GeneratePriceListComparison(year1, year2, catcode);
+        }
     }
 }

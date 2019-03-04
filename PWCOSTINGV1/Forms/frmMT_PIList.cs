@@ -89,6 +89,7 @@ namespace PWCOSTINGV1.Forms
         {
             try
             {
+                FormHelpers.CursorWait(true);
                 var frmpi = new frmMT_PI();
                 switch (MyState)
                 {
@@ -108,6 +109,10 @@ namespace PWCOSTINGV1.Forms
             catch (Exception ex)
             {
                 MessageHelpers.ShowError(ex.Message);
+            }
+            finally
+            {
+                FormHelpers.CursorWait(false);
             }
         }
 

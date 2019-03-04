@@ -341,7 +341,7 @@
             this.mtcItem.Location = new System.Drawing.Point(19, 152);
             this.mtcItem.Multiline = true;
             this.mtcItem.Name = "mtcItem";
-            this.mtcItem.SelectedIndex = 1;
+            this.mtcItem.SelectedIndex = 0;
             this.mtcItem.Size = new System.Drawing.Size(1171, 402);
             this.mtcItem.TabIndex = 65;
             this.mtcItem.UseSelectable = true;

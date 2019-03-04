@@ -9,8 +9,7 @@ using System.Data.Entity.Infrastructure;
 using PWCOSTING.BO._000;
 using PWCOSTING.BO._100;
 using PWCOSTING.BO.Default;
-
-
+using System.Data.Entity.ModelConfiguration.Conventions;
 namespace PWCOSTING.DAL
 {
     public class AppDBContext : DbContext
@@ -21,6 +20,14 @@ namespace PWCOSTING.DAL
             base.Configuration.LazyLoadingEnabled = false;
             base.Configuration.ProxyCreationEnabled = false;
         }
+
+        //Override the Decimal Precision of EF
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
+            modelBuilder.Conventions.Add(new DecimalPropertyConvention(18, 4)); //default: (18,2)
+        }
+
         //Default Entities
         public DbSet<tbl_MENU> MenuList { get; set; }
         public DbSet<tbl_YEAR> YearList { get; set; }

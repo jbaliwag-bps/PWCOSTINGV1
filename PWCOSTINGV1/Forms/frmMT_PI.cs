@@ -11,6 +11,7 @@ using MetroFramework.Forms;
 using PWCOSTINGV1.Classes;
 using PWCOSTING.BAL._000;
 using PWCOSTING.BO._000;
+using BPSolutionsTools;
 
 namespace PWCOSTINGV1.Forms
 {
@@ -24,19 +25,6 @@ namespace PWCOSTINGV1.Forms
         PlasticInjectionBAL pibal;
         tbl_000_H_PI pi;
         ErrorProviderExtended err;
-        private void SetControlValidation()
-        {
-            err.Controls.Clear();
-            err.Controls.Add(mtxtMoldNo, "Required");
-            err.Controls.Add(mtxtMoldName, "Required");
-            err.Controls.Add(mtxtOz, "Required");
-            err.Controls.Add(mtxtPPG, "Required");
-            err.Controls.Add(mtxtSPH, "Required");
-            err.Controls.Add(mtxtCavity, "Required");
-            err.Controls.Add(mtxtPPH, "Required");
-
-            err.CheckAndShowSummaryErrorMessage();
-        }
 
         private void Init_Form()
         {
@@ -110,13 +98,13 @@ namespace PWCOSTINGV1.Forms
                   pi.MoldNo = mtxtMoldNo.Text;
                   pi.MoldName = mtxtMoldName.Text;
                   pi.Oz = mtxtOz.Text;
-                  pi.Cavity = Convert.ToDecimal(mtxtCavity.Text);
-                  pi.PurgePerG = Convert.ToDecimal(mtxtPPG.Text);
-                  pi.SPH = Convert.ToDecimal(mtxtSPH.Text);
-                  pi.Cavity = Convert.ToDecimal(mtxtCavity.Text);
-                  pi.PPH = Convert.ToDecimal(mtxtPPH.Text);
-                  pi.MolSetUpTime = Convert.ToDecimal(mtxtMoldSetupTime.Text);
-                  pi.Usage = Convert.ToDecimal(mtxtUsage.Text);
+                  pi.Cavity = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtCavity.Text, 0));
+                  pi.SPH = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtSPH.Text, 0));
+                  pi.PPH = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtPPH.Text, 0));
+                  pi.Cavity = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtCavity.Text, 0));
+                  pi.MolSetUpTime = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtMoldSetupTime.Text, 0));
+                  pi.Usage = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtUsage.Text, 0));
+                  pi.PurgePerG = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtPPG.Text, 0));
                   pi.IsLocked = mcbLocked.Checked;
                   pi.UpdatedDate = DateTime.Now;
                   pi.UpdatedBy = UserSettings.Username;

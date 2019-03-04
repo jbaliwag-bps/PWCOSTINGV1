@@ -16,6 +16,8 @@ namespace PWCOSTINGV1.Classes
         //Reusable for textbox
         public static void _KeyPress(object sender, KeyPressEventArgs e)
         {
+            try
+            {
                 if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
                 {
                     e.Handled = true;
@@ -34,31 +36,50 @@ namespace PWCOSTINGV1.Classes
                         e.Handled = true;
                     }
                 }
+            }
+            catch
+            {
+
+            }
         }
         public static void _KeyPress_NoPoint(object sender, KeyPressEventArgs e)
         {
+            try
+            {
                 if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 {
                     e.Handled = true;
                 }
+            }
+            catch
+            {
+
+            }
         }
         //For DatagridView
         public static void DatagridView(DataGridView dgv, object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            e.Control.KeyPress -= new KeyPressEventHandler(_KeyPress);
-
-            List<string> strictedformat = new List<string>();
-            strictedformat.Add("N0");
-            strictedformat.Add("N2");
-            strictedformat.Add("N4");
-
-            if (strictedformat.Contains(dgv.CurrentCell.OwningColumn.DefaultCellStyle.Format))
+            try
             {
-                TextBox tb = e.Control as TextBox;
-                if (tb != null)
+                e.Control.KeyPress -= new KeyPressEventHandler(_KeyPress);
+
+                List<string> strictedformat = new List<string>();
+                strictedformat.Add("N0");
+                strictedformat.Add("N2");
+                strictedformat.Add("N4");
+
+                if (strictedformat.Contains(dgv.CurrentCell.OwningColumn.DefaultCellStyle.Format))
                 {
-                    tb.KeyPress += new KeyPressEventHandler(_KeyPress);
+                    TextBox tb = e.Control as TextBox;
+                    if (tb != null)
+                    {
+                        tb.KeyPress += new KeyPressEventHandler(_KeyPress);
+                    }
                 }
+            }
+            catch
+            {
+
             }
         }
     }

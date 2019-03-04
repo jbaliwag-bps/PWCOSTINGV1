@@ -11,6 +11,7 @@ using MetroFramework.Forms;
 using PWCOSTINGV1.Classes;
 using PWCOSTING.BAL._000;
 using PWCOSTING.BO._000;
+using BPSolutionsTools;
 
 namespace PWCOSTINGV1.Forms
 {
@@ -71,7 +72,7 @@ namespace PWCOSTINGV1.Forms
                 {
                     fxsp.RecType = mcboType.SelectedItem.ToString();
                     fxsp.EffectiveDate = Convert.ToDateTime(mdtpEffectiveDate.Value.Date);
-                    fxsp.Rate = Convert.ToDecimal(mtxtRate.Text);
+                    fxsp.Rate = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtRate.Text, 0));
                     //For Testing
                     fxsp.YearUsed = UserSettings.LogInYear;
                     fxsp.CreatedBy = UserSettings.Username;

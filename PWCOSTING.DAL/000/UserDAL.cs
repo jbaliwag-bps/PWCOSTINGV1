@@ -114,50 +114,65 @@ namespace PWCOSTING.DAL._000
 
         public Boolean Save(tbl_000_USER record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                Renew();
-                record.Password = ComputePassword(record.Password, Convert.ToDateTime(record.DateCreated));
-                db.UserList.Add(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    Renew();
+                    record.Password = ComputePassword(record.Password, Convert.ToDateTime(record.DateCreated));
+                    db.UserList.Add(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
 
         public Boolean Update(tbl_000_USER record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                Renew();
-                var existrecord = GetByUsername(record.Username);
-                record.Password = ComputePassword(record.Password, Convert.ToDateTime(record.DateCreated));
-                db.Entry(existrecord).CurrentValues.SetValues(record);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    Renew();
+                    var existrecord = GetByUsername(record.Username);
+                    record.Password = ComputePassword(record.Password, Convert.ToDateTime(record.DateCreated));
+                    db.Entry(existrecord).CurrentValues.SetValues(record);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
 
         public Boolean Delete(tbl_000_USER record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                Renew();
-                var existrecord = GetByUsername(record.Username);
-                db.UserList.Remove(existrecord);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    Renew();
+                    var existrecord = GetByUsername(record.Username);
+                    db.UserList.Remove(existrecord);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
 

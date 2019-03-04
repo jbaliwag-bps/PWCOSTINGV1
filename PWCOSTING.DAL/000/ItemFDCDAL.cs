@@ -123,16 +123,21 @@ namespace PWCOSTING.DAL._000
         }
         public Boolean Delete(tbl_000_H_ITEM_FDC record)
         {
-            try
+            using (var dbContextTransaction = db.Database.BeginTransaction())
             {
-                var existrecord = GetByID(record.YEARUSED, record.ItemNo, record.DepnType);
-                db.ItemFDCList.Remove(existrecord);
-                db.SaveChanges();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                try
+                {
+                    var existrecord = GetByID(record.YEARUSED, record.ItemNo, record.DepnType);
+                    db.ItemFDCList.Remove(existrecord);
+                    db.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    throw ex;
+                }
             }
         }
     }

@@ -44,6 +44,26 @@ namespace PWCOSTING.DAL
             }
             return dttemp;
         }
+        public DataTable SP_Dynamic2(string spname, string itemno, int loginyear)
+        {
+            dttemp = new DataTable();
+            using (con = new SqlConnection(Common.ConnectionString))
+            {
+                con.Open();
+                using (cmd = new SqlCommand(spname, con))
+                {
+                    var prms = cmd.Parameters;
+                    prms.Clear();
+                    prms.Add(new SqlParameter("@YEARUSED", loginyear));
+                    prms.Add(new SqlParameter("@ItemNo", itemno));
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dttemp);
+                }
+                con.Close();
+            }
+            return dttemp;
+        }
         //Generate /Quotation
         public DataTable SP_dtGenerateQuot(string itemno, int loginyear, DateTime _date, string rptname, Decimal hrs)
         {
@@ -81,27 +101,6 @@ namespace PWCOSTING.DAL
                     var prms = cmd.Parameters;
                     prms.Clear();
                     prms.Add(new SqlParameter("@ReportName", rptname));
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    da = new SqlDataAdapter(cmd);
-                    da.Fill(dttemp);
-                }
-                con.Close();
-            }
-            return dttemp;
-        }
-        public DataTable SP_SMTRaw2017(string itemno, int loginyear)
-        {
-            string spname = "sp_SMTRaw2017";
-            dttemp = new DataTable();
-            using (con = new SqlConnection(Common.ConnectionString))
-            {
-                con.Open();
-                using (cmd = new SqlCommand(spname, con))
-                {
-                    var prms = cmd.Parameters;
-                    prms.Clear();
-                    prms.Add(new SqlParameter("@YEARUSED", loginyear));
-                    prms.Add(new SqlParameter("@ItemNo", itemno));
                     cmd.CommandType = CommandType.StoredProcedure;
                     da = new SqlDataAdapter(cmd);
                     da.Fill(dttemp);
@@ -186,6 +185,26 @@ namespace PWCOSTING.DAL
                     prms.Add(new SqlParameter("@YEARUSED", loginyear));
                     prms.Add(new SqlParameter("@ItemNo", itemno));
                     prms.Add(new SqlParameter("@PartNo", partno));
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    da = new SqlDataAdapter(cmd);
+                    da.Fill(dttemp);
+                }
+                con.Close();
+            }
+            return dttemp;
+        }
+        public DataTable SP_GeneratePriceListComparison(int year1, int year2, string catcode)
+        {
+            dttemp = new DataTable();
+            using (con = new SqlConnection(Common.ConnectionString))
+            {
+                using (cmd = new SqlCommand("sp_GeneratePriceListComparison", con))
+                {
+                    var prms = cmd.Parameters;
+                    prms.Clear();
+                    prms.Add(new SqlParameter("@YEARUSED1", year1));
+                    prms.Add(new SqlParameter("@YEARUSED2", year2));
+                    prms.Add(new SqlParameter("CATCODE", catcode));
                     cmd.CommandType = CommandType.StoredProcedure;
                     da = new SqlDataAdapter(cmd);
                     da.Fill(dttemp);

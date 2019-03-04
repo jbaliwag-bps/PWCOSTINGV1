@@ -74,7 +74,7 @@ namespace PWCOSTINGV1.Forms
 
         private void frm_Importer_Load(object sender, EventArgs e)
         {
-            metroLabel1.Text = "NOTE: If Overwrite Existing is checked it will overwrite all data \r\n that are in the previous and also in the current logged in year.";
+            metroLabel1.Text = "NOTES: \r\n If Overwrite Existing is checked it will overwrite items \r\n that are in the previous and also in the current logged in year.\r\n Please close the file before importing.";
         }
 
         private void mbtnOpenFile_Click(object sender, EventArgs e)

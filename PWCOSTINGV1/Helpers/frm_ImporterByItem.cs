@@ -50,7 +50,7 @@ namespace PWCOSTINGV1.Forms
         }
         private void frm_ImporterByItem_Load(object sender, EventArgs e)
         {
-            metroLabel1.Text = "NOTE: If Overwrite Existing is checked it will overwrite items \r\n that are in the previous and also in the current logged in year.";
+            metroLabel1.Text = "NOTES: \r\n If Overwrite Existing is checked it will overwrite items \r\n that are in the previous and also in the current logged in year.\r\n Please close the file before importing.";
         }
 
         private void mbtnOpenFile_Click(object sender, EventArgs e)
@@ -96,22 +96,21 @@ namespace PWCOSTINGV1.Forms
                     int prefixcountstart = 0;
                     int prefixcountstop = 1; 
                     if (itemaddress.Length >= 5)
-                    {
                         prefixcountstop = 2;
-                    }
                     string prefx = itemaddress.Substring(prefixcountstart, prefixcountstop);
                     var parentrow = tmpdatalist.Where(w => w.ItemAddress == prefx).FirstOrDefault();
                     if (parentrow == null)
-                        throw new Exception("Child row have no Parent row!");
+                        throw new Exception("Child row have no Parent row, please check the addresses!");
                     Bagging = parentrow.PartName;
                 }
-                else
+            else
             {
                 var currentrow = tmpdatalist.Where(w => w.ItemAddress == itemaddress).FirstOrDefault();
                 Bagging = currentrow.PartName;
             }
             return Bagging;
         }
+
         private void GetExclData(string FilePath)
       {
             try
@@ -135,6 +134,7 @@ namespace PWCOSTINGV1.Forms
                             }
                         }
                         );
+
                     if (result.Tables.Count > 0)
                     {
                         dttemp = new DataTable();
@@ -163,16 +163,17 @@ namespace PWCOSTINGV1.Forms
                             tmpdata.ItemVendor = "";
                             tmpdata.Bagging = "";
                             tmpdatalist_cleaned.Add(tmpdata);
-
                         }
                         foreach (tbl_tmp_H_ITEM_PART tc in tmpdatalist)
                         {
-                            if (tc.PartNo == "REVISED PORTION")
+                            string strend = "REVISED PORTION";
+                            if (tc.PartNo == strend || tc.PartName == strend || tc.Process == strend)
                             {
                                 break;
                             }
                             if (tc.PartNo == null || tc.PartNo == "") continue;
                             if (tc.ItemAddress.ToUpper() == "Y") continue;
+                            if (tc.ItemAddress == null || tc.ItemAddress == "") continue;
                             tc.Bagging = Bagging(tc.ItemAddress);
                             tmpdatalist_cleaned.Add(tc);
                          }

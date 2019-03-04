@@ -117,8 +117,6 @@ namespace PWCOSTINGV1.Forms
             lblTotalOPTime.Text = CalculateTotal(mgridListPI, "colOperatingTime").ToString();
             lblTotalSTDRateHour.Text = CalculateTotal(mgridListAssy, "colSTDRATEperHour").ToString();
             lblTotalAmount.Text = CalculateTotal(mgridListCL, "colAmount").ToString();
-
-
         }
         private void MainItem()
         {
@@ -140,7 +138,7 @@ namespace PWCOSTINGV1.Forms
             {
                 item.state = "update";
             }
-
+            
             item.Description = mtxtItemDesc.Text;
             item.CatCode = BPSUtilitiesV1.NZ(mcboCatCode.SelectedValue, "").ToString();
             item.CatDesc = mcboCatCode.Text;

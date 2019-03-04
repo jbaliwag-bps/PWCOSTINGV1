@@ -46,6 +46,15 @@ namespace PWCOSTINGV1.Helpers
                             //_report.ReportDoc.Subreports["subrptPlated"].SetDataSource(_report.SubDataSources4);
                         }
                         break;
+                    case "rpt_PreviewItemDetails.rpt":
+                        if (_report.ReportDoc.Subreports.Count > 0)
+                        {
+                            _report.ReportDoc.Subreports["subrptItemDetailsPI"].SetDataSource(_report.SubDataSources);
+                            _report.ReportDoc.Subreports["subrptItemDetailsVP"].SetDataSource(_report.SubDataSources1);
+                            //Sorry typo "subrptItemDetaisAssy" instead of "subrptItemDetailsAssy"
+                            _report.ReportDoc.Subreports["subrptItemDetaisAssy"].SetDataSource(_report.SubDataSources2);
+                        }
+                        break;
                 }
                 CRViewer.ReportSource = _report.ReportDoc;
             }
