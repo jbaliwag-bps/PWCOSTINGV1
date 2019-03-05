@@ -152,6 +152,12 @@
     <Compile Include="Forms\frmPriceListComparisonReport.Designer.cs">
       <DependentUpon>frmPriceListComparisonReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frm_CopierCat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frm_CopierCat.Designer.cs">
+      <DependentUpon>frm_CopierCat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\frmExistingItemLoad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -516,6 +522,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPriceListComparisonReport.resx">
       <DependentUpon>frmPriceListComparisonReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frm_CopierCat.resx">
+      <DependentUpon>frm_CopierCat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpers\frmExistingItemLoad.resx">
       <DependentUpon>frmExistingItemLoad.cs</DependentUpon>

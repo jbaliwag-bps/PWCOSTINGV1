@@ -24,6 +24,7 @@ namespace PWCOSTINGV1.Forms
     {
         public frmWIPCosting MyCaller_WIP { get; set; }
         public frm_Copier MyCaller_Copier { get; set; }
+        public frm_CopierCat MyCaller_CopierCat { get; set; }
         public frmItem MyCaller { get; set; }
         public frmStandardCostingReport MyCaller_scr { get; set; }
         ComponentBAL combal;
@@ -38,6 +39,7 @@ namespace PWCOSTINGV1.Forms
         tbl_000_SECTION sect;
         ItemBAL itembal;
         tbl_000_H_ITEM item;
+        tbl_000_H_CATEGORY cat;
 
         public Boolean IsPrevious = false;
         public int PreviousYear { get; set; }
@@ -205,6 +207,7 @@ namespace PWCOSTINGV1.Forms
             sect = new tbl_000_SECTION();
             itembal = new ItemBAL();
             item = new tbl_000_H_ITEM();
+            cat = new tbl_000_H_CATEGORY();
 
             comlist = new List<tbl_000_H_PART>();
         }
@@ -290,6 +293,9 @@ namespace PWCOSTINGV1.Forms
                                 MyCaller_WIP.mtxtItemNo.Text = item.ItemNo;
                                 MyCaller_WIP.mtxtItemDesc.Text = item.Description;
                             }
+                            break;
+                        case "CAT":
+                            MyCaller_CopierCat.mtxtCatCode.Text = cat.CATCODE;
                             break;
                     }
                 }

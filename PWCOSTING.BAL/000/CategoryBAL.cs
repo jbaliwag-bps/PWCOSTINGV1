@@ -123,5 +123,46 @@ namespace PWCOSTING.BAL._000
                 throw ex;
             }
         }
+        public HashSet<string> GetCatCodes(int yearused)
+        {
+            try
+            {
+                return catdal.GetCatCodes(yearused);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Boolean CopyByCat(int yearusedfrom, int yearusedto, string catcode, Boolean IsOverwrite)
+        {
+            try
+            {
+                var exist = GetByID(catcode, yearusedto);
+                if (!IsOverwrite)
+                {
+                    if (exist != null)
+                    {
+                        throw new Exception("Record already exists!");
+                    }
+                }
+                return catdal.CopyByCat(yearusedfrom, yearusedto, catcode, IsOverwrite);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Boolean CopyCatByYear(int yearusedfrom, int yearusedto, Boolean IsOverwrite)
+        {
+            try
+            {
+                return catdal.CopyCatByYear(yearusedfrom, yearusedto, IsOverwrite);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

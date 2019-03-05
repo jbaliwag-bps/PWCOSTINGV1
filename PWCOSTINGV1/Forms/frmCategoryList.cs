@@ -25,7 +25,7 @@ namespace PWCOSTINGV1.Forms
         int minrowcount = 17;
         int currentpage = 1;
         DataGridView dgvorig = new DataGridView();
-        private void Init_Form()
+        public void Init_Form()
         {
             FormHelpers.FormatForm(this.Controls);
             RefreshGrid();
@@ -146,6 +146,10 @@ namespace PWCOSTINGV1.Forms
                             PageManager(1);
                             break;
                         case "copy":
+                            var frm = new frm_CopierCat();
+                            frm.Text = "Copy Previous Category";
+                            frm.MyCaller_cat = this;
+                            FormHelpers.ShowDialog(frm);
                             break;
                     }
 

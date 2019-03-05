@@ -17,11 +17,11 @@ using BPSolutionsTools;
 
 namespace PWCOSTINGV1.Forms
 {
-    public partial class frm_Copier : MetroForm
+    public partial class frm_CopierCat : MetroForm
     {
-        public frmItemList MyCaller_itm { get; set; }
-        ItemBAL itmbal;
-        tbl_000_H_ITEM itm;
+        public frmCategoryList MyCaller_cat { get; set; }
+        CategoryBAL catbal;
+        tbl_000_H_CATEGORY cat;
         int selyear;
         string msg = "";
         string msgval_success = "Copying Successful!";
@@ -29,42 +29,43 @@ namespace PWCOSTINGV1.Forms
         {
             selyear = Convert.ToInt32(BPSUtilitiesV1.NZ(mcboYear.SelectedValue, 0));
             AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
-            var source = itmbal.GetItemNos(selyear);
+            var source = catbal.GetCatCodes(selyear);
             foreach (string i in source)
             {
                 collection.Add(i);
             }
-            mtxtItemNo.AutoCompleteMode = AutoCompleteMode.Suggest;
-            mtxtItemNo.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            mtxtItemNo.AutoCompleteCustomSource = collection;
+            mtxtCatCode.AutoCompleteMode = AutoCompleteMode.Suggest;
+            mtxtCatCode.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            mtxtCatCode.AutoCompleteCustomSource = collection;
         }
-        private void mtxtItemNo_TextChanged(object sender, EventArgs e)
+        private void mtxtCatCode_TextChanged(object sender, EventArgs e)
         {
-            string selecteditemno = BPSUtilitiesV1.NZ(mtxtItemNo.Text, "").ToString();
-            itm = itmbal.GetByID(selyear, selecteditemno);
-            if (itm != null)
+            string selectedcatcode = BPSUtilitiesV1.NZ(mtxtCatCode.Text, "").ToString();
+            cat = catbal.GetByID(selectedcatcode, selyear);
+            if (cat != null)
             {
-                mtxtItemDesc.Text = BPSUtilitiesV1.NZ(itm.Description, "").ToString();
+                mtxtCatDesc.Text = BPSUtilitiesV1.NZ(cat.CATDESC, "").ToString();
             }
         }
         private void RefreshCBox()
         {
             try
             {
-              ListHelper.FillMetroCombo(mcboYear, itmbal.GetAll().Select(i => new { i.YEARUSED }).Distinct().OrderByDescending(m => m.YEARUSED).Where(i => i.YEARUSED != UserSettings.LogInYear && i.YEARUSED < UserSettings.LogInYear).ToList(), "YEARUSED", "YEARUSED");
+                ListHelper.FillMetroCombo(mcboYear, catbal.GetAll().Select(i => new { i.YEARUSED }).Distinct().OrderByDescending(m => m.YEARUSED).Where(i => i.YEARUSED != UserSettings.LogInYear && i.YEARUSED < UserSettings.LogInYear).ToList(), "YEARUSED", "YEARUSED");
             }
             catch (Exception ex)
             {
                 MessageHelpers.ShowError(ex.Message);
             }
         }
-        public frm_Copier()
+        public frm_CopierCat()
         {
             InitializeComponent();
-            itmbal = new ItemBAL();
-            itm = new tbl_000_H_ITEM();
+            catbal = new CategoryBAL();
+            cat = new tbl_000_H_CATEGORY();
         }
-        private void frm_Copier_Load(object sender, EventArgs e)
+
+        private void frm_CopierCat_Load(object sender, EventArgs e)
         {
             RefreshCBox();
             FilltxtAutoComplete();
@@ -83,31 +84,15 @@ namespace PWCOSTINGV1.Forms
             {
                 if (rdbtn.Name == "metroRadioButton1")
                 {
-                    mtxtItemNo.Enabled = false;
-                    mtxtItemDesc.Enabled = false;
+                    mtxtCatCode.Enabled = false;
+                    mtxtCatDesc.Enabled = false;
                     mbtnViewList.Enabled = false;
                 }
                 else
                 {
-                    mtxtItemNo.Enabled = true;
-                    mtxtItemDesc.Enabled = true;
+                    mtxtCatCode.Enabled = true;
+                    mtxtCatDesc.Enabled = true;
                     mbtnViewList.Enabled = true;
-                }
-            }
-        }
-        private void metroRadioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (metroRadioButton1.Checked)
-            {
-                if (MessageHelpers.ShowQuestion("This operation is crucial, do you want to continue?") == System.Windows.Forms.DialogResult.Yes)
-                {
-                    forRDO(metroRadioButton1);
-                }
-                else
-                {
-                    metroRadioButton1.Checked = false;
-                    forRDO(metroRadioButton2);
-                    metroRadioButton2.Checked = true;
                 }
             }
         }
@@ -116,64 +101,62 @@ namespace PWCOSTINGV1.Forms
         {
             forRDO(metroRadioButton2);
         }
-        private void CopyByItem(Boolean IsOverwrite)
+        private void CopyByCat(Boolean IsOverwrite)
         {
-
-            if (itmbal.CopyByItem(selyear, UserSettings.LogInYear, mtxtItemNo.Text, UserSettings.Username, IsOverwrite))
+            if (catbal.CopyByCat(selyear, UserSettings.LogInYear, mtxtCatCode.Text, IsOverwrite))
             {
                 MessageHelpers.ShowInfo(msgval_success);
-                MyCaller_itm.Init_Form();
             }
         }
-        private void CopyByYear(Boolean IsOverwrite)
+        private void CopyCatByYear(Boolean IsOverwrite)
         {
-
-            if (itmbal.CopyItemByYear(selyear, UserSettings.LogInYear, UserSettings.Username, IsOverwrite))
+            if (catbal.CopyCatByYear(selyear, UserSettings.LogInYear, IsOverwrite))
             {
                 MessageHelpers.ShowInfo(msgval_success);
-                MyCaller_itm.Init_Form();
+                MyCaller_cat.Init_Form();
             }
         }
-        private void CopyItem()
+        private void CopyCategory()
         {
             try
             {
                 FormHelpers.CursorWait(true);
                 if (!mcbOverWrite.Checked)
                 {
-                    msg = "This process will copy previous items from the selected year to the current logged in year. Do you want to continue?";
+                    msg = "This process will copy previous category from the selected year to the current logged in year. Do you want to continue?";
                     if (MessageHelpers.ShowQuestion(msg) == DialogResult.Yes)
                     {
                         if (metroRadioButton2.Checked)
                         {
-                            CopyByItem(false);
+                            CopyByCat(false);
                             this.Close();
                         }
                         else
                         {
-                            CopyByYear(false);
+                            CopyCatByYear(false);
                             this.Close();
                         }
                     }
-                }
-                else
-                {
-                    msg = "This process will remove the existing items and replace it. Do you want to continue?";
-                    if (MessageHelpers.ShowQuestion(msg) == DialogResult.Yes)
+                    else
                     {
-                        if (metroRadioButton2.Checked)
+                        msg = "This process will remove the existing categories and replace it. Do you want to continue?";
+                        if (MessageHelpers.ShowQuestion(msg) == DialogResult.Yes)
                         {
-                            CopyByItem(true);
-                            this.Close();
-                        }
-                        else
-                        {
-                            CopyByYear(true);
-                            this.Close();
+                            if (metroRadioButton2.Checked)
+                            {
+                                CopyByCat(true);
+                                this.Close();
+                            }
+                            else
+                            {
+                                CopyCatByYear(true);
+                                this.Close();
+                            }
                         }
                     }
                 }
             }
+
             catch (Exception ex)
             {
                 MessageHelpers.ShowError(ex.Message);
@@ -183,9 +166,9 @@ namespace PWCOSTINGV1.Forms
                 FormHelpers.CursorWait(false);
             }
         }
-        private void mbtnOk_Click(object sender, EventArgs e)
+        private void metroRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            CopyItem();
+            
         }
 
         private void mbtnCancel_Click(object sender, EventArgs e)
@@ -196,12 +179,17 @@ namespace PWCOSTINGV1.Forms
         private void mbtnViewList_Click(object sender, EventArgs e)
         {
             var frm = new frm_DynamicList();
-            frm.KindOfList = "ITEM";
-            frm.Text = "List of Items in Year " +selyear.ToString();
+            frm.KindOfList = "CAT";
+            frm.Text = "List of Categories in Year " + selyear.ToString();
             frm.IsPrevious = true;
             frm.PreviousYear = selyear;
-            frm.MyCaller_Copier = this;
+            frm.MyCaller_CopierCat = this;
             FormHelpers.ShowDialog(frm);
+        }
+
+        private void mbtnOk_Click(object sender, EventArgs e)
+        {
+            CopyCategory();
         }
     }
 }

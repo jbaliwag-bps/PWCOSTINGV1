@@ -5,12 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using PWCOSTING.BO._000;
 using BPSolutionsTools.BPSUtilities;
+using System.Data.Sql;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace PWCOSTING.DAL._000
 {
     public class CategoryDAL
     {
         AppDBContext db;
+        SqlConnection con;
+        SqlCommand cmd;
         public CategoryDAL()
         {
             db = new AppDBContext();
@@ -125,6 +130,74 @@ namespace PWCOSTING.DAL._000
                     dbContextTransaction.Rollback();
                     throw ex;
                 }
+            }
+        }
+        public HashSet<string> GetCatCodes(int yearused)
+        {
+            try
+            {
+                var hashed = new HashSet<string>(db.CategoryList.AsNoTracking().Distinct().OrderBy(o => o.CATCODE).
+                    Where(w => w.YEARUSED == yearused).Select(s => s.CATCODE).ToList());
+                return hashed;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Boolean CopyByCat(int yearusedfrom, int yearusedto, string catcode, Boolean IsOverwrite)
+        {
+            try
+            {
+                string spname = "sp_CopyByCat";
+                using (con = new SqlConnection(Common.ConnectionString))
+                {
+                    con.Open();
+                    using (cmd = new SqlCommand(spname, con))
+                    {
+                        var prms = cmd.Parameters;
+                        prms.Clear();
+                        prms.Add(new SqlParameter("@YEARUSEDFROM", yearusedfrom));
+                        prms.Add(new SqlParameter("@YEARUSEDTO", yearusedto));
+                        prms.Add(new SqlParameter("@CatCode", catcode));
+                        prms.Add(new SqlParameter("@IsOverwrite", IsOverwrite));
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Boolean CopyCatByYear(int yearusedfrom, int yearusedto, Boolean IsOverwrite)
+        {
+            try
+            {
+                string spname = "sp_CopyCatByYear";
+                using (con = new SqlConnection(Common.ConnectionString))
+                {
+                    con.Open();
+                    using (cmd = new SqlCommand(spname, con))
+                    {
+                        var prms = cmd.Parameters;
+                        prms.Clear();
+                        prms.Add(new SqlParameter("@YEARUSEDFROM", yearusedfrom));
+                        prms.Add(new SqlParameter("@YEARUSEDTO", yearusedto));
+                        prms.Add(new SqlParameter("@IsOverwrite", IsOverwrite));
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.ExecuteNonQuery();
+                    }
+                    con.Close();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
     }
