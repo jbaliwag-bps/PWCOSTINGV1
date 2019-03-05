@@ -74,8 +74,6 @@ namespace PWCOSTINGV1.Forms
                     existassy = assybal.GetAll().Where(w => w.YEARUSED == UserSettings.LogInYear && w.PartNo == mtxtPartNo.Text).FirstOrDefault();
                     if (existassy == null)
                     {
-                        assy.YEARUSED = UserSettings.LogInYear;
-                        assy.PartNo = mtxtPartNo.Text;
                         assy.CreatedDate = DateTime.Now;
                         assy.CreatedBy = UserSettings.Username;
                         assy.IsCopied = false;
@@ -84,13 +82,15 @@ namespace PWCOSTINGV1.Forms
                         assy.ImportDate = DateTime.Now;
                         assy.ImportBy = UserSettings.Username;
                     }
-                assy.PartName = mtxtPartName.Text;
-                assy.HC = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtHC.Text, 0));
-                assy.Qty = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtQty.Text, 0));
-                assy.RATEPERHOUR = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtRatePerHour.Text, 0));
-                assy.IsLocked = mcbLocked.Checked;
-                assy.UpdatedDate = DateTime.Now;
-                assy.UpdatedBy = UserSettings.Username;
+                    assy.YEARUSED = UserSettings.LogInYear;
+                    assy.PartNo = mtxtPartNo.Text;
+                    assy.PartName = mtxtPartName.Text;
+                    assy.HC = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtHC.Text, 0));
+                    assy.Qty = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtQty.Text, 0));
+                    assy.RATEPERHOUR = Convert.ToDecimal(BPSUtilitiesV1.NZ(mtxtRatePerHour.Text, 0));
+                    assy.IsLocked = mcbLocked.Checked;
+                    assy.UpdatedDate = DateTime.Now;
+                    assy.UpdatedBy = UserSettings.Username;
                 }
                 else
                 {

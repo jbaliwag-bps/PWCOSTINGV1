@@ -104,10 +104,10 @@ namespace PWCOSTING.BAL._000
                 {
                     throw new Exception("No. already taken!");
                 }
-                if (assydal.IsExistName(record.YEARUSED, record.PartName))
-                {
-                    throw new Exception("Name already taken!");
-                }
+                //if (assydal.IsExistName(record.YEARUSED, record.PartName))
+                //{
+                //    throw new Exception("Name already taken!");
+                //}
                 return assydal.Save(record);
             }
             catch (Exception ex)
