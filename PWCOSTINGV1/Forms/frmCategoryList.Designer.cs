@@ -186,7 +186,6 @@
             this.toolStripButton2.Text = "&Copy";
             this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.toolStripButton2.ToolTipText = "Copy Previous";
-            this.toolStripButton2.Visible = false;
             // 
             // mgridList
             // 

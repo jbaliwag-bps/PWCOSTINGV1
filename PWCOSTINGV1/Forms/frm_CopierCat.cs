@@ -129,34 +129,33 @@ namespace PWCOSTINGV1.Forms
                         if (metroRadioButton2.Checked)
                         {
                             CopyByCat(false);
-                            this.Close();
                         }
                         else
                         {
                             CopyCatByYear(false);
-                            this.Close();
                         }
+                        MyCaller_cat.RefreshGrid();
+                        this.Close();
                     }
-                    else
+                }
+                else
+                {
+                    msg = "This process will remove the existing categories and replace it. Do you want to continue?";
+                    if (MessageHelpers.ShowQuestion(msg) == DialogResult.Yes)
                     {
-                        msg = "This process will remove the existing categories and replace it. Do you want to continue?";
-                        if (MessageHelpers.ShowQuestion(msg) == DialogResult.Yes)
+                        if (metroRadioButton2.Checked)
                         {
-                            if (metroRadioButton2.Checked)
-                            {
-                                CopyByCat(true);
-                                this.Close();
-                            }
-                            else
-                            {
-                                CopyCatByYear(true);
-                                this.Close();
-                            }
+                            CopyByCat(true);
                         }
+                        else
+                        {
+                            CopyCatByYear(true);
+                        }
+                        MyCaller_cat.RefreshGrid();
+                        this.Close();
                     }
                 }
             }
-
             catch (Exception ex)
             {
                 MessageHelpers.ShowError(ex.Message);
@@ -168,7 +167,19 @@ namespace PWCOSTINGV1.Forms
         }
         private void metroRadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            
+            if (metroRadioButton1.Checked)
+            {
+                if (MessageHelpers.ShowQuestion("This operation is crucial, do you want to continue?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    forRDO(metroRadioButton1);
+                }
+                else
+                {
+                    metroRadioButton1.Checked = false;
+                    forRDO(metroRadioButton2);
+                    metroRadioButton2.Checked = true;
+                }
+            }
         }
 
         private void mbtnCancel_Click(object sender, EventArgs e)
@@ -178,13 +189,25 @@ namespace PWCOSTINGV1.Forms
 
         private void mbtnViewList_Click(object sender, EventArgs e)
         {
-            var frm = new frm_DynamicList();
-            frm.KindOfList = "CAT";
-            frm.Text = "List of Categories in Year " + selyear.ToString();
-            frm.IsPrevious = true;
-            frm.PreviousYear = selyear;
-            frm.MyCaller_CopierCat = this;
-            FormHelpers.ShowDialog(frm);
+            try
+            {
+                FormHelpers.CursorWait(true);
+                var frm = new frm_DynamicList();
+                frm.KindOfList = "CAT";
+                frm.Text = "List of Categories in Year " + selyear.ToString();
+                frm.IsPrevious = true;
+                frm.PreviousYear = selyear;
+                frm.MyCaller_CopierCat = this;
+                FormHelpers.ShowDialog(frm);
+            }
+            catch (Exception ex)
+            {
+                MessageHelpers.ShowError(ex.Message);
+            }
+            finally
+            {
+                FormHelpers.CursorWait(false);
+            }
         }
 
         private void mbtnOk_Click(object sender, EventArgs e)

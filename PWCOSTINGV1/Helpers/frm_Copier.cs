@@ -147,13 +147,12 @@ namespace PWCOSTINGV1.Forms
                         if (metroRadioButton2.Checked)
                         {
                             CopyByItem(false);
-                            this.Close();
                         }
                         else
                         {
                             CopyByYear(false);
-                            this.Close();
                         }
+                        this.Close();
                     }
                 }
                 else
@@ -164,13 +163,12 @@ namespace PWCOSTINGV1.Forms
                         if (metroRadioButton2.Checked)
                         {
                             CopyByItem(true);
-                            this.Close();
                         }
                         else
                         {
                             CopyByYear(true);
-                            this.Close();
                         }
+                        this.Close();
                     }
                 }
             }

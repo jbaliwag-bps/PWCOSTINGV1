@@ -310,9 +310,9 @@
         public MetroFramework.Controls.MetroComboBox mcboYear;
         public MetroFramework.Controls.MetroTextBox mtxtCatCode;
         private MetroFramework.Controls.MetroButton mbtnViewList;
-        private MetroFramework.Controls.MetroTextBox mtxtCatDesc;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel mlblItemNo;
         private MetroFramework.Controls.MetroLabel mlblInstruction;
+        public MetroFramework.Controls.MetroTextBox mtxtCatDesc;
     }
 }

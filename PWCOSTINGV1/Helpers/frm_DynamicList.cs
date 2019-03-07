@@ -39,7 +39,9 @@ namespace PWCOSTINGV1.Forms
         tbl_000_SECTION sect;
         ItemBAL itembal;
         tbl_000_H_ITEM item;
+        CategoryBAL catbal;
         tbl_000_H_CATEGORY cat;
+
 
         public Boolean IsPrevious = false;
         public int PreviousYear { get; set; }
@@ -146,16 +148,42 @@ namespace PWCOSTINGV1.Forms
                         var list_ITEM = itembal.GetAll().Select(i => new
                         {
                             i.DocID,
-                            a_YEARUSED = i.YEARUSED,
-                            b_ItemNo = i.ItemNo,
-                            c_Description = i.Description,
-                            d_IsLocked = i.IsLocked
-                        }).Where(w => w.a_YEARUSED == yeartouse).Distinct().OrderBy(m => m.c_Description).ToList();
+                            i.YEARUSED,
+                            i.ItemNo,
+                            i.Description,
+                            i.IsLocked
+                        }).Where(w => w.YEARUSED == yeartouse).Distinct().OrderBy(m => m.Description).ToList();
                         DataTable itmTable = new DataTable();
-                        using (var reader = ObjectReader.Create(list_ITEM))
+                        using (var reader = ObjectReader.Create(list_ITEM, 
+                            "DocID",
+                            "YEARUSED",
+                            "ItemNo",
+                            "Description",
+                            "IsLocked"))
                         {
                             itmTable.Load(reader);
                             mgridList.DataSource = itmTable;
+                        }
+                        break;
+                    #endregion
+                    #region 
+                    case "CAT":
+                        var list_CAT = catbal.GetAll().Select(i => new
+                        {
+                            DocID = i.RecID,
+                            i.YEARUSED,
+                            Code = i.CATCODE,
+                            Description = i.CATDESC
+                        }).Where(w => w.YEARUSED == PreviousYear).Distinct().OrderBy(m => m.Code).ToList();
+                        DataTable catTable = new DataTable();
+                        using (var reader = ObjectReader.Create(list_CAT, 
+                            "DocID", 
+                            "YEARUSED",
+                            "Code",
+                            "Description"))
+                        {
+                            catTable.Load(reader);
+                            mgridList.DataSource = catTable;
                         }
                         break;
                     #endregion
@@ -190,6 +218,9 @@ namespace PWCOSTINGV1.Forms
                     mgridList.Columns[1].Visible = false;
                     mgridList.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                     break;
+                case "CAT":
+                    mgridList.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    break;
             }
         }
         public frm_DynamicList()
@@ -207,6 +238,7 @@ namespace PWCOSTINGV1.Forms
             sect = new tbl_000_SECTION();
             itembal = new ItemBAL();
             item = new tbl_000_H_ITEM();
+            catbal = new CategoryBAL();
             cat = new tbl_000_H_CATEGORY();
 
             comlist = new List<tbl_000_H_PART>();
@@ -295,7 +327,10 @@ namespace PWCOSTINGV1.Forms
                             }
                             break;
                         case "CAT":
+                            var ccode = mgridList.SelectedRows[i].Cells[2].Value.ToString();
+                            cat = catbal.GetByID(ccode, PreviousYear);
                             MyCaller_CopierCat.mtxtCatCode.Text = cat.CATCODE;
+                            MyCaller_CopierCat.mtxtCatDesc.Text = cat.CATDESC;
                             break;
                     }
                 }
@@ -319,7 +354,7 @@ namespace PWCOSTINGV1.Forms
                 switch (KindOfList)
                 {
                     case "ITEM":
-                        (mgridList.DataSource as DataTable).DefaultView.RowFilter = string.Format("b_ItemNo LIKE '{0}%' or c_Description LIKE '{0}%'", BPSolutionsTools.BPSUtilitiesV1.NZ(strtosearch, ""));
+                        (mgridList.DataSource as DataTable).DefaultView.RowFilter = string.Format("ItemNo LIKE '{0}%' or Description LIKE '{0}%'", BPSolutionsTools.BPSUtilitiesV1.NZ(strtosearch, ""));
                         break;
                 }
             }
