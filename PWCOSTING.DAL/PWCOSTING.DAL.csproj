@@ -72,6 +72,7 @@
     <Compile Include="000\ItemTabulationPIDAL.cs" />
     <Compile Include="000\ItemTabulationVPDAL.cs" />
     <Compile Include="000\ItemMPTDAL.cs" />
+    <Compile Include="000\MODRCDAL.cs" />
     <Compile Include="000\PlasticInjectionDAL.cs" />
     <Compile Include="000\ProcessSetupDAL.cs" />
     <Compile Include="000\SignatoryDAL.cs" />

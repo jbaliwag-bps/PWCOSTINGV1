@@ -52,6 +52,7 @@
     <Compile Include="000\ItemTabulationAssyBAL.cs" />
     <Compile Include="000\ItemTabulationPIBAL.cs" />
     <Compile Include="000\ItemTabulationVPBAL.cs" />
+    <Compile Include="000\MODRCBAL.cs" />
     <Compile Include="000\PlasticInjectionBAL.cs" />
     <Compile Include="000\ProcessSetupBAL.cs" />
     <Compile Include="000\SignatoryBAL.cs" />

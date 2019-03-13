@@ -66,5 +66,6 @@ namespace PWCOSTING.DAL
         public DbSet<tbl_100_WIP_COSTING_CC> WIPLaborColorCodeList { get; set; }
         public DbSet<tbl_100_WIP_COSTING_ITEM> WIPCostingItemList { get; set; }
         public DbSet<tbl_100_WIP_COST> WIPCostingList { get; set; }
+        public DbSet<tbl_000_MODRC> MODRCList { get; set; }
     }
 }

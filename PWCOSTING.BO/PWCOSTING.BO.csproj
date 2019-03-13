@@ -61,6 +61,7 @@
     <Compile Include="000\tbl_000_H_PART.cs" />
     <Compile Include="000\tbl_000_H_PI.cs" />
     <Compile Include="000\tbl_000_H_VP.cs" />
+    <Compile Include="000\tbl_000_MODRC.cs" />
     <Compile Include="000\tbl_000_PROCESS.cs" />
     <Compile Include="000\tbl_000_SECTION.cs" />
     <Compile Include="000\tbl_000_USERGROUP.cs" />

@@ -14,35 +14,47 @@ using PWCOSTING.BO._000;
 
 namespace PWCOSTINGV1.Forms
 {
-    public partial class frmSection : MetroForm
+    public partial class frmMODRC : MetroForm
     {
         public FormState MyState { get; set; }
-        public string SectionCode { get; set; }
-        public frmSectionList MyCaller { get; set; }
+        public string mrcode { get; set; }
+        public frmMODRCList MyCaller { get; set; }
 
-        SectionBAL sectbal;
-        tbl_000_SECTION sect;
+        MODRCBAL mrbal;
+        tbl_000_MODRC modrc;
         ErrorProviderExtended err;
 
         private void SetControlValidation()
         {
             err.Controls.Clear();
-            err.Controls.Add(mtxtSectionCode, "Required");
-            err.Controls.Add(mtxtSectionDesc, "Required");
+            err.Controls.Add(mtxtCode, "Required");
+            err.Controls.Add(mtxtTime, "Required");
             err.CheckAndShowSummaryErrorMessage();
+        }
+        private Boolean IsValid()
+        {
+            try
+            {
+                return err.CheckAndShowSummaryErrorMessage();
+            }
+            catch (Exception ex)
+            {
+                MessageHelpers.ShowWarning(ex.Message);
+                return false;
+            }
         }
         private void Init_Form()
         {
             try
             {
-                var strheader = "Section";
+                var strheader = "MOD/RC";
                 switch (MyState)
                 {
                     case FormState.Add:
                         LockFields(false);
                         strheader += " - New";
                         break;
-                    case FormState.Edit:
+                    case FormState.Edit:    
                     case FormState.View:
                         AssignRecord(false);
                         LockFields(false);
@@ -55,7 +67,7 @@ namespace PWCOSTINGV1.Forms
                         }
                         else
                         {
-                            mtxtSectionCode.ReadOnly = true;
+                            mtxtCode.ReadOnly = true;
                             mbtnSave.Text = "Update";
                             strheader += " - Edit";
                         }
@@ -74,22 +86,25 @@ namespace PWCOSTINGV1.Forms
             {
                 if (IsSave)
                 {
-                    sect.SECTIONCODE = mtxtSectionCode.Text;
-                    sect.SECTIONDESC = mtxtSectionDesc.Text;
-                    sect.IsActive = mcbActive.Checked;
-                    sect.ISCOSTING = mcbCosting.Checked;
-                    sect.SUPERVISOR = mtxtSectionSupervisor.Text;
+                    modrc.MODRCCode = mtxtCode.Text;
+                    modrc.Description = mtxtDesc.Text;
+                    modrc.IsActive = mcbActive.Checked;
+                    modrc.IsCosting = mcbCosting.Checked;
+                    modrc.Time = Convert.ToDecimal(mtxtTime.Text);
+                    modrc.DateCreated = DateTime.Now;
+                    modrc.DateUpdated = DateTime.Now;
+                    modrc.DateDeactivated = DateTime.Now;
                 }
                 else
                 {
-                    sect = sectbal.GetByID(SectionCode);
-                    if (sect != null)
+                    modrc = mrbal.GetByID(mrcode);
+                    if (modrc != null)
                     {
-                        mtxtSectionCode.Text = sect.SECTIONCODE.ToString();
-                        mtxtSectionDesc.Text = sect.SECTIONDESC;
-                        mtxtSectionSupervisor.Text = sect.SUPERVISOR;
-                        mcbActive.Checked = sect.IsActive;
-                        mcbCosting.Checked = sect.ISCOSTING;
+                        mtxtCode.Text = modrc.MODRCCode;
+                        mtxtDesc.Text = modrc.Description;
+                        mcbActive.Checked = modrc.IsActive;
+                        mcbCosting.Checked = modrc.IsCosting;
+                        mtxtTime.Text = modrc.Time.ToString();
                     }
                     else
                     {
@@ -106,15 +121,15 @@ namespace PWCOSTINGV1.Forms
         {
             mcbActive.Enabled = !IsLocked;
             mcbCosting.Enabled = !IsLocked;
-            mtxtSectionCode.ReadOnly = IsLocked;
-            mtxtSectionDesc.ReadOnly = IsLocked;
-            mtxtSectionSupervisor.ReadOnly = IsLocked;
+            mtxtCode.ReadOnly = IsLocked;
+            mtxtDesc.ReadOnly = IsLocked;
+            mtxtTime.ReadOnly = IsLocked;
         }
         private void SaveRecord()
         {
             try
             {
-                 FormHelpers.CursorWait(true);
+                FormHelpers.CursorWait(true);
                 if (IsValid())
                 {
                     var isSuccess = false;
@@ -124,14 +139,14 @@ namespace PWCOSTINGV1.Forms
                     {
                         case FormState.Add:
                             msg = "Saving";
-                            if (sectbal.Save(sect))
+                            if (mrbal.Save(modrc))
                             {
                                 isSuccess = true;
                             }
                             break;
                         case FormState.Edit:
                             msg = "Updating";
-                            if (sectbal.Update(sect))
+                            if (mrbal.Update(modrc))
                             {
                                 isSuccess = true;
                             }
@@ -157,38 +172,43 @@ namespace PWCOSTINGV1.Forms
             {
                 FormHelpers.CursorWait(false);
             }
-            
+
         }
-        private Boolean IsValid()
-        {
-            try
-            {
-                return err.CheckAndShowSummaryErrorMessage();
-            }
-            catch (Exception ex)
-            {
-                MessageHelpers.ShowWarning(ex.Message);
-                return false;
-            }
-        }
-        public frmSection()
+        public frmMODRC()
         {
             InitializeComponent();
-            sectbal = new SectionBAL();
-            sect = new tbl_000_SECTION();
+            mrbal = new MODRCBAL();
+            modrc = new tbl_000_MODRC();
             err = new ErrorProviderExtended();
         }
-
-        private void frmSection_Load(object sender, EventArgs e)
+        public void ChbxSetting(Boolean IsChecked)
+        {
+            if (mcbActive.Checked == IsChecked)
+            {
+                mcbActive.Text = "Active";
+            }
+            else
+            {
+                mcbActive.Text = "Inactive";
+            }
+            if (mcbCosting.Checked == IsChecked)
+            {
+                mcbCosting.Text = "Yes";
+            }
+            else
+            {
+                mcbCosting.Text = "No";
+            }
+        }
+        private void MODRC_Load(object sender, EventArgs e)
         {
             Init_Form();
             ChbxSetting(true);
         }
 
-        private void mbtnCancel_Click(object sender, EventArgs e)
+        private void mtxtTime_KeyPress(object sender, KeyPressEventArgs e)
         {
-            this.Close();
-
+            NumbersOnly._KeyPress(sender, e);
         }
 
         private void mbtnSave_Click(object sender, EventArgs e)
@@ -212,29 +232,10 @@ namespace PWCOSTINGV1.Forms
                     break;
                 case FormState.View:
                     MyState = FormState.Edit;
-                    SectionCode = sect.SECTIONCODE;
-                    sectbal = new SectionBAL();
+                    mrcode = modrc.MODRCCode;
+                    mrbal = new MODRCBAL();
                     Init_Form();
                     break;
-            }
-        }
-        public void ChbxSetting(Boolean IsChecked)
-        {
-            if (mcbActive.Checked == IsChecked)
-            {
-                mcbActive.Text = "Active";
-            }
-            else
-            {
-                mcbActive.Text = "Inactive";
-            }
-            if (mcbCosting.Checked == IsChecked)
-            {
-                mcbCosting.Text = "Yes";
-            }
-            else
-            {
-                mcbCosting.Text = "No";
             }
         }
 
@@ -246,11 +247,6 @@ namespace PWCOSTINGV1.Forms
         private void mcbCosting_CheckedChanged(object sender, EventArgs e)
         {
             ChbxSetting(true);
-        }
-
-        private void metroLabel1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

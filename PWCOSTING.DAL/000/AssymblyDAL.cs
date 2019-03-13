@@ -25,7 +25,6 @@ namespace PWCOSTING.DAL._000
         {
             try
             {
-                db = new AppDBContext();
                 return db.AssymblyList.AsNoTracking().ToList();
             }
             catch (Exception ex)

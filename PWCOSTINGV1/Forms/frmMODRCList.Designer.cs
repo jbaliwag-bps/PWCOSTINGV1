@@ -1,6 +1,6 @@
 ﻿namespace PWCOSTINGV1.Forms
 {
-    partial class frmSectionList
+    partial class frmMODRCList
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.listTS = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this._toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this._toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -39,11 +40,10 @@
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStriptxtSearch = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.listTS = new System.Windows.Forms.ToolStrip();
             this.mgridList = new MetroFramework.Controls.MetroGrid();
             this.colRecID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSectionCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSectionDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMODRCCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.listTSFooter = new System.Windows.Forms.ToolStrip();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
@@ -58,6 +58,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.mgridList)).BeginInit();
             this.listTSFooter.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // listTS
+            // 
+            this.listTS.BackColor = System.Drawing.Color.Transparent;
+            this.listTS.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.listTS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this._toolStripButton2,
+            this._toolStripButton3,
+            this._toolStripButton4,
+            this.toolStripSeparator1,
+            this.toolStripButton5,
+            this.toolStriptxtSearch,
+            this.toolStripLabel1});
+            this.listTS.Location = new System.Drawing.Point(20, 60);
+            this.listTS.Name = "listTS";
+            this.listTS.Size = new System.Drawing.Size(893, 43);
+            this.listTS.TabIndex = 5;
+            this.listTS.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.listTS_ItemClicked);
             // 
             // toolStripButton1
             // 
@@ -143,25 +162,6 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(16, 40);
             this.toolStripLabel1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // listTS
-            // 
-            this.listTS.BackColor = System.Drawing.Color.Transparent;
-            this.listTS.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.listTS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this._toolStripButton2,
-            this._toolStripButton3,
-            this._toolStripButton4,
-            this.toolStripSeparator1,
-            this.toolStripButton5,
-            this.toolStriptxtSearch,
-            this.toolStripLabel1});
-            this.listTS.Location = new System.Drawing.Point(20, 60);
-            this.listTS.Name = "listTS";
-            this.listTS.Size = new System.Drawing.Size(893, 43);
-            this.listTS.TabIndex = 4;
-            this.listTS.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.listTS_ItemClicked);
-            // 
             // mgridList
             // 
             this.mgridList.AllowUserToAddRows = false;
@@ -171,29 +171,29 @@
             this.mgridList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mgridList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.mgridList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mgridList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mgridList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.mgridList.ColumnHeadersHeight = 25;
             this.mgridList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.mgridList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colRecID,
-            this.colSectionCode,
-            this.colSectionDesc,
+            this.colMODRCCode,
+            this.colDescription,
             this.colIsActive});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mgridList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mgridList.DefaultCellStyle = dataGridViewCellStyle5;
             this.mgridList.Dock = System.Windows.Forms.DockStyle.Top;
             this.mgridList.EnableHeadersVisualStyles = false;
             this.mgridList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -202,19 +202,19 @@
             this.mgridList.Name = "mgridList";
             this.mgridList.ReadOnly = true;
             this.mgridList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mgridList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mgridList.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.mgridList.RowHeadersWidth = 25;
             this.mgridList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.mgridList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mgridList.Size = new System.Drawing.Size(893, 437);
-            this.mgridList.TabIndex = 7;
+            this.mgridList.TabIndex = 8;
             this.mgridList.Tag = "list";
             this.mgridList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mgridList_CellDoubleClick);
             // 
@@ -226,22 +226,22 @@
             this.colRecID.ReadOnly = true;
             this.colRecID.Visible = false;
             // 
-            // colSectionCode
+            // colMODRCCode
             // 
-            this.colSectionCode.DataPropertyName = "SECTIONCODE";
-            this.colSectionCode.HeaderText = "Code";
-            this.colSectionCode.MinimumWidth = 100;
-            this.colSectionCode.Name = "colSectionCode";
-            this.colSectionCode.ReadOnly = true;
+            this.colMODRCCode.DataPropertyName = "MODRCCode";
+            this.colMODRCCode.HeaderText = "Code";
+            this.colMODRCCode.MinimumWidth = 100;
+            this.colMODRCCode.Name = "colMODRCCode";
+            this.colMODRCCode.ReadOnly = true;
             // 
-            // colSectionDesc
+            // colDescription
             // 
-            this.colSectionDesc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colSectionDesc.DataPropertyName = "SECTIONDESC";
-            this.colSectionDesc.HeaderText = "Description";
-            this.colSectionDesc.MinimumWidth = 150;
-            this.colSectionDesc.Name = "colSectionDesc";
-            this.colSectionDesc.ReadOnly = true;
+            this.colDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDescription.DataPropertyName = "Description";
+            this.colDescription.HeaderText = "Description";
+            this.colDescription.MinimumWidth = 150;
+            this.colDescription.Name = "colDescription";
+            this.colDescription.ReadOnly = true;
             // 
             // colIsActive
             // 
@@ -268,7 +268,7 @@
             this.listTSFooter.Location = new System.Drawing.Point(20, 540);
             this.listTSFooter.Name = "listTSFooter";
             this.listTSFooter.Size = new System.Drawing.Size(893, 38);
-            this.listTSFooter.TabIndex = 64;
+            this.listTSFooter.TabIndex = 65;
             this.listTSFooter.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.listTSFooter_ItemClicked);
             // 
             // toolStripButton9
@@ -335,12 +335,11 @@
             // tslblRowCount
             // 
             this.tslblRowCount.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tslblRowCount.IsLink = true;
             this.tslblRowCount.Name = "tslblRowCount";
             this.tslblRowCount.Size = new System.Drawing.Size(86, 35);
             this.tslblRowCount.Text = "toolStripLabel2";
             // 
-            // frmSectionList
+            // frmMODRCList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -348,14 +347,11 @@
             this.Controls.Add(this.listTSFooter);
             this.Controls.Add(this.mgridList);
             this.Controls.Add(this.listTS);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "frmSectionList";
+            this.Name = "frmMODRCList";
             this.Resizable = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Tag = "list";
-            this.Text = "List of MOD/RC";
-            this.Load += new System.EventHandler(this.frmSectionList_Load);
+            this.Text = "MOD/RC";
+            this.Load += new System.EventHandler(this.frmMODRCList_Load);
             this.listTS.ResumeLayout(false);
             this.listTS.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mgridList)).EndInit();
@@ -368,6 +364,7 @@
 
         #endregion
 
+        private System.Windows.Forms.ToolStrip listTS;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton _toolStripButton2;
         private System.Windows.Forms.ToolStripButton _toolStripButton3;
@@ -376,7 +373,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripTextBox toolStriptxtSearch;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStrip listTS;
         private MetroFramework.Controls.MetroGrid mgridList;
         private System.Windows.Forms.ToolStrip listTSFooter;
         private System.Windows.Forms.ToolStripButton toolStripButton9;
@@ -388,8 +384,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton12;
         private System.Windows.Forms.ToolStripLabel tslblRowCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRecID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSectionCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSectionDesc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMODRCCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colIsActive;
     }
 }

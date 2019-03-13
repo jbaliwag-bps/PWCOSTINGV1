@@ -146,6 +146,12 @@
     <Compile Include="Classes\ReportTable.cs" />
     <Compile Include="Classes\strArrays.cs" />
     <Compile Include="Classes\Grid.cs" />
+    <Compile Include="Forms\frmMODRCList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMODRCList.Designer.cs">
+      <DependentUpon>frmMODRCList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmPriceListComparisonReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -157,6 +163,12 @@
     </Compile>
     <Compile Include="Forms\frm_CopierCat.Designer.cs">
       <DependentUpon>frm_CopierCat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMODRC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMODRC.Designer.cs">
+      <DependentUpon>frmMODRC.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\frmExistingItemLoad.cs">
       <SubType>Form</SubType>
@@ -332,24 +344,6 @@
     <Compile Include="Forms\frmVarianceCostingReport.Designer.cs">
       <DependentUpon>frmVarianceCostingReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmWIPCosting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmWIPCosting.designer.cs">
-      <DependentUpon>frmWIPCosting.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmWIPCostingList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmWIPCostingList.Designer.cs">
-      <DependentUpon>frmWIPCostingList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\_frmWIPCosting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\_frmWIPCosting.Designer.cs">
-      <DependentUpon>_frmWIPCosting.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpers\frm_Copier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -520,11 +514,17 @@
     <EmbeddedResource Include="Forms\frmComponentList.resx">
       <DependentUpon>frmComponentList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMODRCList.resx">
+      <DependentUpon>frmMODRCList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPriceListComparisonReport.resx">
       <DependentUpon>frmPriceListComparisonReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_CopierCat.resx">
       <DependentUpon>frm_CopierCat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMODRC.resx">
+      <DependentUpon>frmMODRC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpers\frmExistingItemLoad.resx">
       <DependentUpon>frmExistingItemLoad.cs</DependentUpon>
@@ -597,15 +597,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmVarianceCostingReport.resx">
       <DependentUpon>frmVarianceCostingReport.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmWIPCosting.resx">
-      <DependentUpon>frmWIPCosting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmWIPCostingList.resx">
-      <DependentUpon>frmWIPCostingList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\_frmWIPCosting.resx">
-      <DependentUpon>_frmWIPCosting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpers\frm_Copier.resx">
       <DependentUpon>frm_Copier.cs</DependentUpon>

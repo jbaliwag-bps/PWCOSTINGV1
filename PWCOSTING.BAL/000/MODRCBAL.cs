@@ -8,61 +8,33 @@ using PWCOSTING.DAL._000;
 
 namespace PWCOSTING.BAL._000
 {
-    public class SectionBAL
+    public class MODRCBAL
     {
-        SectionDAL compdal;
-        public SectionBAL()
+        MODRCDAL mrdal;
+        public MODRCBAL()
         {
-            compdal = new SectionDAL();
+            mrdal = new MODRCDAL();
         }
-
-        public List<tbl_000_SECTION> GetAll()
+        public List<tbl_000_MODRC> GetAll()
         {
             try
             {
-                return compdal.GetAll();
+                return mrdal.GetAll();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public tbl_000_SECTION GetByID(string sectioncode)
+        public tbl_000_MODRC GetByID(string modrccode)
         {
             try
             {
-                if (sectioncode == null)
+                if (modrccode == null)
                 {
                     throw new Exception("Invalid Parameter!");
                 }
-                var exist = compdal.GetByID(sectioncode);
-                return exist;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public List<tbl_000_SECTION> GetByNo(string sectioncode)
-        {
-            try
-            {
-                return compdal.GetByNo(sectioncode);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public tbl_000_SECTION GetBySectionDesc(string sectiondesc)
-        {
-            try
-            {
-                if (sectiondesc == null)
-                {
-                    throw new Exception("Invalid Parameter!");
-                }
-                var exist = compdal.GetBySectionDesc(sectiondesc);
+                var exist = mrdal.GetByID(modrccode);
                 if (exist == null)
                 {
                     throw new Exception("Record does not exist!");
@@ -74,7 +46,7 @@ namespace PWCOSTING.BAL._000
                 throw ex;
             }
         }
-        public Boolean Save(tbl_000_SECTION record)
+        public Boolean Save(tbl_000_MODRC record)
         {
             try
             {
@@ -82,41 +54,22 @@ namespace PWCOSTING.BAL._000
                 {
                     throw new Exception("Invalid Parameter!");
                 }
-                if (compdal.IsExistSectionDesc(record.SECTIONDESC))
+                if (mrdal.IsExistDesc(record.Description))
                 {
                     throw new Exception("Description already taken!");
                 }
-                if (compdal.IsExistID(record.SECTIONCODE))
+                if (mrdal.IsExistID(record.MODRCCode))
                 {
                     throw new Exception("Code already taken!");
                 }
-                return compdal.Save(record);
+                return mrdal.Save(record);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public Boolean Update(tbl_000_SECTION record)
-        {
-            try
-            {
-                if (record == null)
-                {
-                    throw new Exception("Invalid Parameter");
-                }
-                if (!compdal.IsExistID(record.SECTIONCODE))
-                {
-                    throw new Exception("Record does not exist!");
-                }
-                return compdal.Update(record);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public Boolean Delete(tbl_000_SECTION record)
+        public Boolean Update(tbl_000_MODRC record)
         {
             try
             {
@@ -124,17 +77,35 @@ namespace PWCOSTING.BAL._000
                 {
                     throw new Exception("Invalid Parameter!");
                 }
-                if (!compdal.IsExistID(record.SECTIONCODE))
+                if (!mrdal.IsExistID(record.MODRCCode))
                 {
                     throw new Exception("Record does not exist!");
                 }
-                return compdal.Delete(record);
+                return mrdal.Update(record);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
+        public Boolean Delete(tbl_000_MODRC record)
+        {
+            try
+            {
+                if (record == null)
+                {
+                    throw new Exception("Invalid Parameter!");
+                }
+                if (!mrdal.IsExistID(record.MODRCCode))
+                {
+                    throw new Exception("Record does not exist!");
+                }
+                return mrdal.Delete(record);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -12,14 +12,13 @@ using MetroFramework.Forms;
 using PWCOSTING.BAL._000;
 using PWCOSTINGV1.Classes;
 using PWCOSTING.BO._000;
-
 namespace PWCOSTINGV1.Forms
 {
-    public partial class frmSectionList : MetroForm
+    public partial class frmMODRCList : MetroForm
     {
         public frmItem MyCaller { get; set; }
-        SectionBAL Sectionbal;
-        tbl_000_SECTION sect;
+        MODRCBAL mrbal;
+        tbl_000_MODRC modrc;
         long rowcount = 0;
         long pagetotal = 0;
         int minrowcount = 18;
@@ -37,25 +36,24 @@ namespace PWCOSTINGV1.Forms
         {
             try
             {
-                var list = Sectionbal.GetAll().Distinct().OrderBy(m => m.SECTIONDESC).ToList();
-                DataTable sectTable = new DataTable();
+                var list = mrbal.GetAll().Distinct().OrderBy(o => o.Description).ToList();
+                DataTable mrTable = new DataTable();
                 using (var reader = ObjectReader.Create(list,
                     "RecID",
-                    "SECTIONCODE",
-                    "SECTIONDESC",
+                    "MODRCCode",
+                    "Description",
                     "IsActive"))
                 {
-                    sectTable.Load(reader);
-                    mgridList.DataSource = sectTable;
+                    mrTable.Load(reader);
+                    mgridList.DataSource = mrTable;
                 }
                 dgvorig.DataSource = mgridList.DataSource;
                 Grid.ListCheck(mgridList, listTS);
                 tslblRowCount.Text = "Number of Records:    " + list.Count + "       ";
-
             }
             catch (Exception ex)
             {
-                MessageHelpers.ShowError(ex.Message);
+                throw ex;
             }
         }
         private void PageManager(int pagenum)
@@ -78,15 +76,15 @@ namespace PWCOSTINGV1.Forms
             try
             {
                 FormHelpers.CursorWait(true);
-                var frm = new frmSection();
+                var frm = new frmMODRC();
                 switch (Mystate)
                 {
                     case FormState.Add:
                         break;
                     case FormState.Edit:
                     case FormState.View:
-                        var scode = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colSectionCode"].Value.ToString();
-                        frm.SectionCode = scode;
+                        var mrcode = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colMODRCCode"].Value.ToString();
+                        frm.mrcode = mrcode;
                         break;
                 }
                 frm.MyState = Mystate;
@@ -102,60 +100,60 @@ namespace PWCOSTINGV1.Forms
                 FormHelpers.CursorWait(false);
             }
         }
-        public frmSectionList()
+        public frmMODRCList()
         {
             InitializeComponent();
-            Sectionbal = new SectionBAL();
+            mrbal = new MODRCBAL();
         }
 
-        private void frmSectionList_Load(object sender, EventArgs e)
+        private void frmMODRCList_Load(object sender, EventArgs e)
         {
             Init_Form();
         }
 
         private void listTS_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-                var strtag = e.ClickedItem.Tag;
-                if (strtag != null)
+            var strtag = e.ClickedItem.Tag;
+            if (strtag != null)
+            {
+                if (strtag.ToString() != "")
                 {
-                    if (strtag.ToString() != "")
+                    switch (strtag.ToString().ToLower())
                     {
-                        switch (strtag.ToString().ToLower())
-                        {
-                            case "new":
-                                ShowEntryForm(FormState.Add);
-                                break;
-                            case "edit":
-                                ShowEntryForm(FormState.Edit);
-                                break;
-                            case "delete":
-                                DeleteRecord();
-                                break;
-                            case "view":
-                                ShowEntryForm(FormState.View);
-                                break;
-                            case "refresh":
-                                RefreshGrid();
-                                PageManager(1);
-                                break;
-                        }
-
+                        case "new":
+                            ShowEntryForm(FormState.Add);
+                            break;
+                        case "edit":
+                            ShowEntryForm(FormState.Edit);
+                            break;
+                        case "delete":
+                            DeleteRecord();
+                            break;
+                        case "view":
+                            ShowEntryForm(FormState.View);
+                            break;
+                        case "refresh":
+                            RefreshGrid();
+                            PageManager(1);
+                            break;
                     }
 
                 }
+
+            }
         }
         public void DeleteRecord()
         {
             try
             {
-                var sectioncode = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colSectionCode"].Value.ToString();
+                var sectioncode = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colMODRCCode"].Value.ToString();
                 string scode = sectioncode;
                 if (MessageHelpers.ShowQuestion("Are you sure you want to delete record?") == System.Windows.Forms.DialogResult.Yes)
                 {
                     var DeletingisSuccess = false;
                     var msg = "Deleting";
-                    sect = Sectionbal.GetByID(sectioncode);
-                    if (Sectionbal.Delete(sect))
+                    modrc = mrbal.GetByID(sectioncode);
+                    if (mrbal.Delete(modrc))
                     {
                         DeletingisSuccess = true;
                     }
@@ -186,17 +184,12 @@ namespace PWCOSTINGV1.Forms
             string strtosearch = toolStriptxtSearch.Text;
             try
             {
-                mgridList.DataSource = Grid.PageRandom(dgvorig, minrowcount, strtosearch, "SECTIONCODE", "SECTIONDESC");
+                mgridList.DataSource = Grid.PageRandom(dgvorig, minrowcount, strtosearch, "MODRCCode", "Description");
             }
             catch (Exception ex)
             {
                 MessageHelpers.ShowError(ex.Message);
             }
-        }
-
-        private void mgridList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            ShowEntryForm(FormState.View);
         }
         private void PagingByTS(ToolStripItemClickedEventArgs e)
         {
@@ -228,6 +221,11 @@ namespace PWCOSTINGV1.Forms
                 }
             }
         }
+        private void mgridList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ShowEntryForm(FormState.View);
+        }
+
         private void listTSFooter_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             PagingByTS(e);

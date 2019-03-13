@@ -22,7 +22,6 @@ namespace PWCOSTINGV1.Forms
 {
     public partial class frm_DynamicList : MetroForm
     {
-        public frmWIPCosting MyCaller_WIP { get; set; }
         public frm_Copier MyCaller_Copier { get; set; }
         public frm_CopierCat MyCaller_CopierCat { get; set; }
         public frmItem MyCaller { get; set; }
@@ -319,11 +318,6 @@ namespace PWCOSTINGV1.Forms
                             {
                             MyCaller_scr.mtxtItemNo.Text = item.ItemNo;
                             MyCaller_scr.mtxtItemDesc.Text = item.Description;
-                            }
-                            else if(MyCaller_WIP != null)
-                            {
-                                MyCaller_WIP.mtxtItemNo.Text = item.ItemNo;
-                                MyCaller_WIP.mtxtItemDesc.Text = item.Description;
                             }
                             break;
                         case "CAT":
