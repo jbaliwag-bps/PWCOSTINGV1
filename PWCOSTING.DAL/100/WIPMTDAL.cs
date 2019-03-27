@@ -5,63 +5,68 @@ using System.Text;
 using System.Threading.Tasks;
 using PWCOSTING.BO._100;
 using BPSolutionsTools.BPSUtilities;
-using BPSolutionsTools;
-using System.Data.Entity;
 
 namespace PWCOSTING.DAL._100
 {
-    public class WIPCCodeDAL
+    public class WIPMTDAL
     {
         AppDBContext db;
-        public WIPCCodeDAL()
+        public WIPMTDAL()
         {
             db = new AppDBContext();
         }
-        public List<tbl_100_WIP_COSTING_CC> GetAll()
+        public List<tbl_100_WIP_MT> GetAll()
         {
             try
             {
-                db = new AppDBContext();
-                return db.WIPLaborColorCodeList.AsNoTracking().ToList();
+                return db.WIPMTList.AsNoTracking().ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public tbl_100_WIP_COSTING_CC GetByID(long recid)
+        public List<tbl_100_WIP_MT> GetByYear(int yearused)
         {
             try
             {
-                return db.WIPLaborColorCodeList.AsNoTracking().Where(w => w.RecID == recid).FirstOrDefault();
+                return GetAll().Where(w => w.YEARUSED == yearused).ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public List<tbl_100_WIP_COSTING_CC> GetByYear(string itemno, int yearused)
+        public tbl_100_WIP_MT GetByID(int yearused, string partno)
         {
             try
             {
-                return GetAll().Where(w => w.ItemNo == itemno && w.YEARUSED == yearused).ToList();
+                return db.WIPMTList.Where(w => w.YEARUSED == yearused && w.PartNo == partno).FirstOrDefault();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public Boolean Save(List<tbl_100_WIP_COSTING_CC> records)
+        public Boolean IsExistID(int yearused, string partno)
+        {
+            try
+            {
+                return GetByID(yearused, partno) != null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Boolean Save(tbl_100_WIP_MT record)
         {
             using (var dbContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    foreach (tbl_100_WIP_COSTING_CC record in records)
-                    {
-                        db.WIPLaborColorCodeList.Add(record);
-                        db.SaveChanges();
-                    }
+                    db.WIPMTList.Add(record);
+                    db.SaveChanges();
                     dbContextTransaction.Commit();
                     return true;
                 }
@@ -72,25 +77,15 @@ namespace PWCOSTING.DAL._100
                 }
             }
         }
-        public Boolean Update(List<tbl_100_WIP_COSTING_CC> records)
+        public Boolean Update(tbl_100_WIP_MT record)
         {
             using (var dbContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    foreach (tbl_100_WIP_COSTING_CC record in records)
-                    {
-                        if (record.state == "update")
-                        {
-                            db.Entry(record).State = EntityState.Modified;
-                            db.SaveChanges();
-                        }
-                        else if (record.state == "add")
-                        {
-                            db.WIPLaborColorCodeList.Add(record);
-                            db.SaveChanges();
-                        }
-                    }
+                    var existrecord = GetByID(record.YEARUSED, record.PartNo);
+                    db.Entry(existrecord).GetDatabaseValues().SetValues(record);
+                    db.SaveChanges();
                     dbContextTransaction.Commit();
                     return true;
                 }
@@ -101,18 +96,16 @@ namespace PWCOSTING.DAL._100
                 }
             }
         }
-        public Boolean Delete(List<tbl_100_WIP_COSTING_CC> records)
+        public Boolean Delete(tbl_100_WIP_MT record)
         {
             using (var dbContextTransaction = db.Database.BeginTransaction())
             {
                 try
                 {
-                    foreach (tbl_100_WIP_COSTING_CC record in records)
-                    {
-                        var existrecord = GetByID(record.RecID);
-                        db.WIPLaborColorCodeList.Remove(existrecord);
-                        db.SaveChanges();
-                    }
+                    var existrecord = GetByID(record.YEARUSED, record.PartNo);
+                    db.WIPMTList.Attach(existrecord);
+                    db.WIPMTList.Remove(existrecord);
+                    db.SaveChanges();
                     dbContextTransaction.Commit();
                     return true;
                 }

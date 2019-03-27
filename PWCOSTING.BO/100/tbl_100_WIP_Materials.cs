@@ -7,39 +7,28 @@ using System.ComponentModel;
 
 namespace PWCOSTING.BO._100
 {
-    [Table("tbl_100_WIP_COSTING_COLORCODE")]
-    public class tbl_100_WIP_COSTING_CC
+    [Table("tbl_100_WIP_Materials")]
+    public class tbl_100_WIP_Materials
     {
         [NotMapped]
         [Browsable(false)]
         public string state { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Key]
         public Int64 RecID { get; set; }
-        [Browsable(false)]
+        [Key, Column(Order = 1)]
         public int YEARUSED { get; set; }
-        [Browsable(false)]
+        [Key, Column(Order = 2)]
         public string ItemNo { get; set; }
-        [Browsable(false)]
+        [Key, Column(Order = 3)]
         public string PartNo { get; set; }
+        [Key, Column(Order = 4)]
         public string MatCode { get; set; }
-        public string MatDescription { get; set; }
+        public string MatDescroption { get; set; }
         public Decimal Usage { get; set; }
         public string UnitType { get; set; }
         public Decimal UnitPrice { get; set; }
-        [Browsable(false)]
         public Decimal Amount { get; set; }
-        [Browsable(false)]
         public string Address { get; set; }
-        [Browsable(false)]
-        public Decimal Ratio { get; set; }
-        [Browsable(false)]
-        public Decimal TotalMaterial { get; set; }
-        [Browsable(false)]
-        public string KartCode { get; set; }
-        public Decimal Total { get; set; }
-        [Browsable(false)]
-        public string Ref_Add { get; set; }
     }
 }

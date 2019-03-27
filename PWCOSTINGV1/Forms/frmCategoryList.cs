@@ -162,7 +162,6 @@ namespace PWCOSTINGV1.Forms
             {
                 FormHelpers.CursorWait(true);
                 var categorycode = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colCATCODE"].Value.ToString();
-                string ccode = categorycode;
                 var cyearused = UserSettings.LogInYear;
                 int yearused = Convert.ToInt32(cyearused);
                 if (MessageHelpers.ShowQuestion("Are you sure you want to delete record?") == System.Windows.Forms.DialogResult.Yes)

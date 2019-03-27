@@ -40,8 +40,9 @@ namespace PWCOSTINGV1.Forms
                 DataTable mrTable = new DataTable();
                 using (var reader = ObjectReader.Create(list,
                     "RecID",
-                    "MODRCCode",
+                    "SectionCode",
                     "Description",
+                    "Time",
                     "IsActive"))
                 {
                     mrTable.Load(reader);
@@ -83,7 +84,7 @@ namespace PWCOSTINGV1.Forms
                         break;
                     case FormState.Edit:
                     case FormState.View:
-                        var mrcode = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colMODRCCode"].Value.ToString();
+                        var mrcode = mgridList.Rows[mgridList.SelectedCells[0].RowIndex].Cells["colSectionCode"].Value.ToString();
                         frm.mrcode = mrcode;
                         break;
                 }

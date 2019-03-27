@@ -158,6 +158,30 @@
     <Compile Include="Forms\frmPriceListComparisonReport.Designer.cs">
       <DependentUpon>frmPriceListComparisonReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmWIPCosting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmWIPCosting.Designer.cs">
+      <DependentUpon>frmWIPCosting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmWIPCostingList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmWIPCostingList.Designer.cs">
+      <DependentUpon>frmWIPCostingList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmWIPMT1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmWIPMT1.Designer.cs">
+      <DependentUpon>frmWIPMT1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmWIPMT1List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmWIPMT1List.Designer.cs">
+      <DependentUpon>frmWIPMT1List.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frm_CopierCat.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -519,6 +543,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPriceListComparisonReport.resx">
       <DependentUpon>frmPriceListComparisonReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmWIPCosting.resx">
+      <DependentUpon>frmWIPCosting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmWIPCostingList.resx">
+      <DependentUpon>frmWIPCostingList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmWIPMT1.resx">
+      <DependentUpon>frmWIPMT1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmWIPMT1List.resx">
+      <DependentUpon>frmWIPMT1List.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frm_CopierCat.resx">
       <DependentUpon>frm_CopierCat.cs</DependentUpon>

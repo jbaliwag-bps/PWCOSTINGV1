@@ -86,7 +86,7 @@ namespace PWCOSTINGV1.Forms
             {
                 if (IsSave)
                 {
-                    modrc.MODRCCode = mtxtCode.Text;
+                    modrc.SectionCode = mtxtCode.Text;
                     modrc.Description = mtxtDesc.Text;
                     modrc.IsActive = mcbActive.Checked;
                     modrc.IsCosting = mcbCosting.Checked;
@@ -100,7 +100,7 @@ namespace PWCOSTINGV1.Forms
                     modrc = mrbal.GetByID(mrcode);
                     if (modrc != null)
                     {
-                        mtxtCode.Text = modrc.MODRCCode;
+                        mtxtCode.Text = modrc.SectionCode;
                         mtxtDesc.Text = modrc.Description;
                         mcbActive.Checked = modrc.IsActive;
                         mcbCosting.Checked = modrc.IsCosting;
@@ -232,7 +232,7 @@ namespace PWCOSTINGV1.Forms
                     break;
                 case FormState.View:
                     MyState = FormState.Edit;
-                    mrcode = modrc.MODRCCode;
+                    mrcode = modrc.SectionCode;
                     mrbal = new MODRCBAL();
                     Init_Form();
                     break;

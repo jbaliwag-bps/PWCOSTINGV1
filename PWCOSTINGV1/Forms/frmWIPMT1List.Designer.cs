@@ -1,6 +1,6 @@
 ﻿namespace PWCOSTINGV1.Forms
 {
-    partial class frmMODRCList
+    partial class frmWIPMT1List
     {
         /// <summary>
         /// Required designer variable.
@@ -28,33 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.listTS = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this._toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this._toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this._toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStriptxtSearch = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.mgridList = new MetroFramework.Controls.MetroGrid();
             this.listTSFooter = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.tstxtRowRange = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.tslblRowCount = new System.Windows.Forms.ToolStripLabel();
             this.colRecID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSectionCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIsActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colPartNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPartName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUsage = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVendor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mcboProcess = new MetroFramework.Controls.MetroComboBox();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.listTS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mgridList)).BeginInit();
             this.listTSFooter.SuspendLayout();
@@ -69,14 +73,16 @@
             this._toolStripButton2,
             this._toolStripButton3,
             this._toolStripButton4,
-            this.toolStripSeparator1,
+            this.toolStripSeparator2,
             this.toolStripButton5,
             this.toolStriptxtSearch,
-            this.toolStripLabel1});
+            this.toolStripLabel1,
+            this.toolStripSeparator1,
+            this.toolStripButton2});
             this.listTS.Location = new System.Drawing.Point(20, 60);
             this.listTS.Name = "listTS";
             this.listTS.Size = new System.Drawing.Size(893, 43);
-            this.listTS.TabIndex = 5;
+            this.listTS.TabIndex = 9;
             this.listTS.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.listTS_ItemClicked);
             // 
             // toolStripButton1
@@ -127,10 +133,10 @@
             this._toolStripButton4.Text = "&View";
             this._toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripSeparator1
+            // toolStripSeparator2
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 43);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 43);
             // 
             // toolStripButton5
             // 
@@ -163,6 +169,24 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(16, 40);
             this.toolStripLabel1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 43);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.AutoSize = false;
+            this.toolStripButton2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton2.Image = global::PWCOSTINGV1.Properties.Resources.copy_prev_icon;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(50, 40);
+            this.toolStripButton2.Tag = "copy";
+            this.toolStripButton2.Text = "&Copy";
+            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton2.ToolTipText = "Copy Previous";
+            // 
             // mgridList
             // 
             this.mgridList.AllowUserToAddRows = false;
@@ -172,30 +196,30 @@
             this.mgridList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.mgridList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.mgridList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mgridList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mgridList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.mgridList.ColumnHeadersHeight = 25;
             this.mgridList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.mgridList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colRecID,
-            this.colSectionCode,
-            this.colDescription,
-            this.colTime,
-            this.colIsActive});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mgridList.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colPartNo,
+            this.colPartName,
+            this.colUsage,
+            this.colVendor});
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mgridList.DefaultCellStyle = dataGridViewCellStyle11;
             this.mgridList.Dock = System.Windows.Forms.DockStyle.Top;
             this.mgridList.EnableHeadersVisualStyles = false;
             this.mgridList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -204,20 +228,20 @@
             this.mgridList.Name = "mgridList";
             this.mgridList.ReadOnly = true;
             this.mgridList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.mgridList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.mgridList.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.mgridList.RowHeadersWidth = 25;
             this.mgridList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.mgridList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mgridList.Size = new System.Drawing.Size(893, 437);
-            this.mgridList.TabIndex = 8;
-            this.mgridList.Tag = "list";
+            this.mgridList.TabIndex = 10;
+            this.mgridList.Tag = "";
             this.mgridList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mgridList_CellDoubleClick);
             // 
             // listTSFooter
@@ -225,41 +249,41 @@
             this.listTSFooter.BackColor = System.Drawing.Color.Transparent;
             this.listTSFooter.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.listTSFooter.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton9,
-            this.toolStripButton10,
+            this.toolStripButton6,
+            this.toolStripButton7,
             this.toolStripSeparator4,
             this.tstxtRowRange,
             this.toolStripSeparator3,
-            this.toolStripButton11,
-            this.toolStripButton12,
+            this.toolStripButton8,
+            this.toolStripButton9,
             this.tslblRowCount});
             this.listTSFooter.Location = new System.Drawing.Point(20, 540);
             this.listTSFooter.Name = "listTSFooter";
             this.listTSFooter.Size = new System.Drawing.Size(893, 38);
-            this.listTSFooter.TabIndex = 65;
+            this.listTSFooter.TabIndex = 63;
             this.listTSFooter.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.listTSFooter_ItemClicked);
             // 
-            // toolStripButton9
+            // toolStripButton6
             // 
-            this.toolStripButton9.AutoSize = false;
-            this.toolStripButton9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton9.Image = global::PWCOSTINGV1.Properties.Resources.first_page;
-            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(35, 35);
-            this.toolStripButton9.Tag = "first";
-            this.toolStripButton9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton6.AutoSize = false;
+            this.toolStripButton6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton6.Image = global::PWCOSTINGV1.Properties.Resources.first_page;
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(35, 35);
+            this.toolStripButton6.Tag = "first";
+            this.toolStripButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripButton10
+            // toolStripButton7
             // 
-            this.toolStripButton10.AutoSize = false;
-            this.toolStripButton10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton10.Image = global::PWCOSTINGV1.Properties.Resources.prev;
-            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton10.Name = "toolStripButton10";
-            this.toolStripButton10.Size = new System.Drawing.Size(35, 35);
-            this.toolStripButton10.Tag = "prev";
-            this.toolStripButton10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton7.AutoSize = false;
+            this.toolStripButton7.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton7.Image = global::PWCOSTINGV1.Properties.Resources.prev;
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(35, 35);
+            this.toolStripButton7.Tag = "prev";
+            this.toolStripButton7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // toolStripSeparator4
             // 
@@ -278,27 +302,27 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 38);
             // 
-            // toolStripButton11
+            // toolStripButton8
             // 
-            this.toolStripButton11.AutoSize = false;
-            this.toolStripButton11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton11.Image = global::PWCOSTINGV1.Properties.Resources.next;
-            this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton11.Name = "toolStripButton11";
-            this.toolStripButton11.Size = new System.Drawing.Size(35, 35);
-            this.toolStripButton11.Tag = "next";
-            this.toolStripButton11.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton8.AutoSize = false;
+            this.toolStripButton8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton8.Image = global::PWCOSTINGV1.Properties.Resources.next;
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(35, 35);
+            this.toolStripButton8.Tag = "next";
+            this.toolStripButton8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
-            // toolStripButton12
+            // toolStripButton9
             // 
-            this.toolStripButton12.AutoSize = false;
-            this.toolStripButton12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripButton12.Image = global::PWCOSTINGV1.Properties.Resources.last_page;
-            this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton12.Name = "toolStripButton12";
-            this.toolStripButton12.Size = new System.Drawing.Size(35, 35);
-            this.toolStripButton12.Tag = "last";
-            this.toolStripButton12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton9.AutoSize = false;
+            this.toolStripButton9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButton9.Image = global::PWCOSTINGV1.Properties.Resources.last_page;
+            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton9.Name = "toolStripButton9";
+            this.toolStripButton9.Size = new System.Drawing.Size(35, 35);
+            this.toolStripButton9.Tag = "last";
+            this.toolStripButton9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             // 
             // tslblRowCount
             // 
@@ -315,55 +339,71 @@
             this.colRecID.ReadOnly = true;
             this.colRecID.Visible = false;
             // 
-            // colSectionCode
+            // colPartNo
             // 
-            this.colSectionCode.DataPropertyName = "SectionCode";
-            this.colSectionCode.HeaderText = "Code";
-            this.colSectionCode.MinimumWidth = 100;
-            this.colSectionCode.Name = "colSectionCode";
-            this.colSectionCode.ReadOnly = true;
-            this.colSectionCode.Width = 200;
+            this.colPartNo.DataPropertyName = "PartNo";
+            this.colPartNo.HeaderText = "Part No.";
+            this.colPartNo.Name = "colPartNo";
+            this.colPartNo.ReadOnly = true;
             // 
-            // colDescription
+            // colPartName
             // 
-            this.colDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDescription.DataPropertyName = "Description";
-            this.colDescription.HeaderText = "Description";
-            this.colDescription.MinimumWidth = 150;
-            this.colDescription.Name = "colDescription";
-            this.colDescription.ReadOnly = true;
+            this.colPartName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPartName.DataPropertyName = "PartName";
+            this.colPartName.HeaderText = "Name";
+            this.colPartName.Name = "colPartName";
+            this.colPartName.ReadOnly = true;
             // 
-            // colTime
+            // colUsage
             // 
-            this.colTime.DataPropertyName = "Time";
-            this.colTime.HeaderText = "Production Time";
-            this.colTime.MinimumWidth = 100;
-            this.colTime.Name = "colTime";
-            this.colTime.ReadOnly = true;
-            this.colTime.Width = 200;
+            this.colUsage.DataPropertyName = "Usage";
+            this.colUsage.HeaderText = "Usage";
+            this.colUsage.Name = "colUsage";
+            this.colUsage.ReadOnly = true;
             // 
-            // colIsActive
+            // colVendor
             // 
-            this.colIsActive.DataPropertyName = "IsActive";
-            this.colIsActive.HeaderText = "Active";
-            this.colIsActive.MinimumWidth = 60;
-            this.colIsActive.Name = "colIsActive";
-            this.colIsActive.ReadOnly = true;
-            this.colIsActive.Width = 60;
+            this.colVendor.DataPropertyName = "Vendor";
+            this.colVendor.HeaderText = "Vendor";
+            this.colVendor.Name = "colVendor";
+            this.colVendor.ReadOnly = true;
             // 
-            // frmMODRCList
+            // mcboProcess
+            // 
+            this.mcboProcess.FormattingEnabled = true;
+            this.mcboProcess.ItemHeight = 23;
+            this.mcboProcess.Location = new System.Drawing.Point(498, 66);
+            this.mcboProcess.Name = "mcboProcess";
+            this.mcboProcess.Size = new System.Drawing.Size(166, 29);
+            this.mcboProcess.TabIndex = 64;
+            this.mcboProcess.UseSelectable = true;
+            this.mcboProcess.SelectedIndexChanged += new System.EventHandler(this.mcboProcess_SelectedIndexChanged);
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(435, 71);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(53, 19);
+            this.metroLabel1.TabIndex = 65;
+            this.metroLabel1.Text = "Process";
+            // 
+            // frmWIPMT1List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(933, 591);
+            this.Controls.Add(this.metroLabel1);
+            this.Controls.Add(this.mcboProcess);
             this.Controls.Add(this.listTSFooter);
             this.Controls.Add(this.mgridList);
             this.Controls.Add(this.listTS);
-            this.Name = "frmMODRCList";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "frmWIPMT1List";
             this.Resizable = false;
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "MOD/RC";
-            this.Load += new System.EventHandler(this.frmMODRCList_Load);
+            this.Text = "WIP MT List";
+            this.Load += new System.EventHandler(this.frmWIPMT1List_Load);
             this.listTS.ResumeLayout(false);
             this.listTS.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mgridList)).EndInit();
@@ -381,24 +421,30 @@
         private System.Windows.Forms.ToolStripButton _toolStripButton2;
         private System.Windows.Forms.ToolStripButton _toolStripButton3;
         private System.Windows.Forms.ToolStripButton _toolStripButton4;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripTextBox toolStriptxtSearch;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
         private MetroFramework.Controls.MetroGrid mgridList;
         private System.Windows.Forms.ToolStrip listTSFooter;
-        private System.Windows.Forms.ToolStripButton toolStripButton9;
-        private System.Windows.Forms.ToolStripButton toolStripButton10;
+        private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripTextBox tstxtRowRange;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton toolStripButton11;
-        private System.Windows.Forms.ToolStripButton toolStripButton12;
+        private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private System.Windows.Forms.ToolStripButton toolStripButton9;
         private System.Windows.Forms.ToolStripLabel tslblRowCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRecID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSectionCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTime;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colIsActive;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPartNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPartName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUsage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVendor;
+        private MetroFramework.Controls.MetroComboBox mcboProcess;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+
+
     }
 }

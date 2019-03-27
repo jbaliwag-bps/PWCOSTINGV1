@@ -5,88 +5,92 @@ using System.Text;
 using System.Threading.Tasks;
 using PWCOSTING.BO._100;
 using PWCOSTING.DAL._100;
+
 namespace PWCOSTING.BAL._100
 {
-    public class WIPCCodeBAL
+    public class WIPMTBAL
     {
-        WIPCCodeDAL wipccdal;
-        public WIPCCodeBAL()
+        WIPMTDAL mtdal;
+        public WIPMTBAL()
         {
-            wipccdal = new WIPCCodeDAL();
+            mtdal = new WIPMTDAL();
         }
-        public List<tbl_100_WIP_COSTING_CC> GetAll()
+        public List<tbl_100_WIP_MT> GetAll()
         {
             try
             {
-                return wipccdal.GetAll();
+                return mtdal.GetAll();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public tbl_100_WIP_COSTING_CC GetByID(long recid)
+        public List<tbl_100_WIP_MT> GetByYear(int yearused)
         {
             try
             {
-                var exist = wipccdal.GetByID(recid);
-                return exist;
+                return mtdal.GetByYear(yearused);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public List<tbl_100_WIP_COSTING_CC> GetByYear(string itemno, int yearused)
+        public tbl_100_WIP_MT GetByID(int yearused, string partno)
         {
             try
             {
-                if (yearused == 0)
+                return mtdal.GetByID(yearused, partno);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Boolean Save(tbl_100_WIP_MT record)
+        {
+            try
+            {
+                if (record == null)
                 {
                     throw new Exception("Invalid Parameter!");
                 }
-                return wipccdal.GetByYear(itemno, yearused);
+                if (mtdal.IsExistID(record.YEARUSED, record.PartNo))
+                {
+                    throw new Exception("No. already taken!");
+                }
+                return mtdal.Save(record);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public Boolean Save(List<tbl_100_WIP_COSTING_CC> records)
+        public Boolean Update(tbl_100_WIP_MT record)
         {
             try
             {
-                if (records == null)
+                if (record == null)
                 {
                     throw new Exception("Invalid Parameter!");
                 }
-                return wipccdal.Save(records);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public Boolean Update(List<tbl_100_WIP_COSTING_CC> records)
-        {
-            try
-            {
-                if (records == null)
+                if (!mtdal.IsExistID(record.YEARUSED, record.PartNo))
                 {
-                    throw new Exception("Invalid Parameter!");
+                    throw new Exception("Record does not exist!");
                 }
-                return wipccdal.Update(records);
+                return mtdal.Update(record);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public Boolean Delete(List<tbl_100_WIP_COSTING_CC> records)
+        public Boolean Delete(tbl_100_WIP_MT record)
         {
             try
             {
-                return wipccdal.Delete(records);
+                return mtdal.Delete(record);
             }
             catch (Exception ex)
             {

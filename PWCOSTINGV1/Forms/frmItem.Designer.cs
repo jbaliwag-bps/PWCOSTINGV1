@@ -341,7 +341,7 @@
             this.mtcItem.Location = new System.Drawing.Point(19, 152);
             this.mtcItem.Multiline = true;
             this.mtcItem.Name = "mtcItem";
-            this.mtcItem.SelectedIndex = 0;
+            this.mtcItem.SelectedIndex = 2;
             this.mtcItem.Size = new System.Drawing.Size(1171, 402);
             this.mtcItem.TabIndex = 65;
             this.mtcItem.UseSelectable = true;
@@ -1625,7 +1625,7 @@
             // colSectionCode
             // 
             this.colSectionCode.DataPropertyName = "SectionCode";
-            this.colSectionCode.HeaderText = "Section Code";
+            this.colSectionCode.HeaderText = "Code";
             this.colSectionCode.MinimumWidth = 100;
             this.colSectionCode.Name = "colSectionCode";
             this.colSectionCode.ReadOnly = true;
@@ -1635,7 +1635,7 @@
             // 
             this.colSectionName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colSectionName.DataPropertyName = "SectionName";
-            this.colSectionName.HeaderText = "Section Name";
+            this.colSectionName.HeaderText = "Description";
             this.colSectionName.MinimumWidth = 150;
             this.colSectionName.Name = "colSectionName";
             this.colSectionName.ReadOnly = true;
@@ -2058,12 +2058,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colOPHC;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOPQTY;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSTDRATEperHour;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDocIDMPT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colYEARUSEDMPT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colItemNoMPT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSectionCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSectionName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colProductionTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDocIDPI;
         private System.Windows.Forms.DataGridViewTextBoxColumn colYEARUSEDPI;
         private System.Windows.Forms.DataGridViewTextBoxColumn colItemNo;
@@ -2086,5 +2080,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colACTSHHR;
         private System.Windows.Forms.DataGridViewTextBoxColumn colACTPCSHR;
         private System.Windows.Forms.DataGridViewTextBoxColumn colACTHC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDocIDMPT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colYEARUSEDMPT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItemNoMPT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSectionCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSectionName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colProductionTime;
     }
 }

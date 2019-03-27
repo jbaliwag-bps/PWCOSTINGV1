@@ -58,7 +58,7 @@ namespace PWCOSTING.BAL._000
                 {
                     throw new Exception("Description already taken!");
                 }
-                if (mrdal.IsExistID(record.MODRCCode))
+                if (mrdal.IsExistID(record.SectionCode))
                 {
                     throw new Exception("Code already taken!");
                 }
@@ -77,7 +77,7 @@ namespace PWCOSTING.BAL._000
                 {
                     throw new Exception("Invalid Parameter!");
                 }
-                if (!mrdal.IsExistID(record.MODRCCode))
+                if (!mrdal.IsExistID(record.SectionCode))
                 {
                     throw new Exception("Record does not exist!");
                 }
@@ -96,7 +96,7 @@ namespace PWCOSTING.BAL._000
                 {
                     throw new Exception("Invalid Parameter!");
                 }
-                if (!mrdal.IsExistID(record.MODRCCode))
+                if (!mrdal.IsExistID(record.SectionCode))
                 {
                     throw new Exception("Record does not exist!");
                 }

@@ -11,9 +11,22 @@ namespace PWCOSTING.BAL._000
     public class ItemBAL
     {
         ItemDAL itemdal;
+        ItemCompositionDAL itemcomdal;
+        ItemTabulationPIDAL itemPIdal;
+        ItemTabulationVPDAL itemVPdal;
+        ItemTabulationAssyDAL itemAssydal;
+        ItemMPTDAL itemMPTdal;
+        ItemFDCDAL itemFDCdal;
+
         public ItemBAL()
         {
             itemdal = new ItemDAL();
+            itemcomdal = new ItemCompositionDAL();
+            itemPIdal = new ItemTabulationPIDAL();
+            itemVPdal = new ItemTabulationVPDAL();
+            itemAssydal = new ItemTabulationAssyDAL();
+            itemMPTdal = new ItemMPTDAL();
+            itemFDCdal = new ItemFDCDAL();
         }
 
         public List<tbl_000_H_ITEM> GetAll()
@@ -27,11 +40,42 @@ namespace PWCOSTING.BAL._000
                 throw ex;
             }
         }
+        private tbl_000_H_ITEM GetSubDatas(int yearused, string itemno, tbl_000_H_ITEM exist)
+        {
+            exist.itemCom = itemcomdal.GetByNo(yearused, itemno);
+            exist.itemPI = itemPIdal.GetByNo(yearused, itemno);
+            exist.itemVP = itemVPdal.GetByNo(yearused, itemno);
+            exist.itemAssy = itemAssydal.GetByNo(yearused, itemno);
+            exist.itemMPT = itemMPTdal.GetByNo(yearused, itemno);
+            exist.itemFDC = itemFDCdal.GetByNo(yearused, itemno);
+
+            return exist;
+        }
         public tbl_000_H_ITEM GetByID(int yearused, string itemno)
         {
             try
             {
                 var exist = itemdal.GetByID(yearused, itemno);
+                if (exist != null)
+                {
+                    exist = GetSubDatas(exist.YEARUSED, exist.ItemNo, exist);
+                }
+                return exist;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public tbl_000_H_ITEM GetWithCat(int yearused, string itemno, string catcode)
+        {
+            try
+            {
+                var exist = itemdal.GetByYear(yearused).Where(w => w.ItemNo == itemno && w.CatCode == catcode).FirstOrDefault();
+                if (exist != null)
+                {
+                    exist = GetSubDatas(exist.YEARUSED, exist.ItemNo, exist);
+                }
                 return exist;
             }
             catch (Exception ex)

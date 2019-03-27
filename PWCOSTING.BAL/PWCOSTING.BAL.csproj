@@ -59,14 +59,13 @@
     <Compile Include="000\tmp_CompositionBAL.cs" />
     <Compile Include="000\tmp_StndrdCostngSummBAL.cs" />
     <Compile Include="000\VacuumPlatingBAL.cs" />
-    <Compile Include="100\WIPCCodeBAL.cs" />
-    <Compile Include="100\WIPCostingBAL.cs" />
-    <Compile Include="100\WIPCostingItemBAL.cs" />
+    <Compile Include="100\WIPBAL.cs" />
     <Compile Include="100\WIPLabAssyBAL.cs" />
     <Compile Include="100\WIPLabBaggingBAL.cs" />
     <Compile Include="100\WIPLabPIBAL.cs" />
     <Compile Include="100\WIPLabPlatingBAL.cs" />
-    <Compile Include="100\WIPMatBAL.cs" />
+    <Compile Include="100\WIPMaterialsBAL.cs" />
+    <Compile Include="100\WIPMTBAL.cs" />
     <Compile Include="Default\YearBAL.cs" />
     <Compile Include="000\SectionBAL.cs" />
     <Compile Include="Default\MenuBAL.cs" />

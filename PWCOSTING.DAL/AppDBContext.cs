@@ -58,14 +58,13 @@ namespace PWCOSTING.DAL
         public DbSet<tbl_tmp_H_ITEM_PART> tmp_ItemPartList { get; set; }
 
         //WIP
-        public DbSet<tbl_100_WIP_COSTING_MATERIALS> WIPMaterialList { get; set; }
+        public DbSet<tbl_100_WIP> WIPList { get; set; }
+        public DbSet<tbl_100_WIP_MT> WIPMTList { get; set; }
+        public DbSet<tbl_000_MODRC> MODRCList { get; set; }
+        public DbSet<tbl_100_WIP_Materials> WIPMaterialsList { get; set; }
         public DbSet<tbl_100_WIP_COSTING_LABOR_PI> WIPLaborPIList { get; set; }
         public DbSet<tbl_100_WIP_COSTING_LABOR_BAGG> WIPLaborBaggList { get; set; }
         public DbSet<tbl_100_WIP_COSTING_LABOR_ASSY> WIPLaborAssyList { get; set; }
         public DbSet<tbl_100_WIP_COSTING_LABOR_PLATED> WIPLaborPlatedList { get; set; }
-        public DbSet<tbl_100_WIP_COSTING_CC> WIPLaborColorCodeList { get; set; }
-        public DbSet<tbl_100_WIP_COSTING_ITEM> WIPCostingItemList { get; set; }
-        public DbSet<tbl_100_WIP_COST> WIPCostingList { get; set; }
-        public DbSet<tbl_000_MODRC> MODRCList { get; set; }
     }
 }

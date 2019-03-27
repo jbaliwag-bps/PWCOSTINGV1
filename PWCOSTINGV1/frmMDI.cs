@@ -162,7 +162,7 @@ namespace PWCOSTINGV1
         {
             frmUserPassword frm = new frmUserPassword();
             frm.MyCaller = this;
-            FormHelpers.ShowForm(frm);    
+            FormHelpers.ShowDialog(frm);    
         }
 
         public void AuthenticateUser()

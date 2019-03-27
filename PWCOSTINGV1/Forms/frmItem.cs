@@ -22,7 +22,7 @@ namespace PWCOSTINGV1.Forms
         PlasticInjectionBAL pibal;
         VacuumPlatingBAL vpbal;
         AssymblyBAL assybal;
-        SectionBAL sectbal;
+        MODRCBAL mrbal;
         ComponentBAL combal;
         CategoryBAL catbal;
         ItemBAL itembal;
@@ -36,7 +36,7 @@ namespace PWCOSTINGV1.Forms
         tbl_000_H_PI pi;
         tbl_000_H_VP vp;
         tbl_000_H_ASSY assy;
-        tbl_000_SECTION sect;
+        tbl_000_MODRC modrc;
         tbl_000_H_PART com;
 
         tbl_000_H_ITEM item;
@@ -118,9 +118,9 @@ namespace PWCOSTINGV1.Forms
             lblTotalSTDRateHour.Text = CalculateTotal(mgridListAssy, "colSTDRATEperHour").ToString();
             lblTotalAmount.Text = CalculateTotal(mgridListCL, "colAmount").ToString();
         }
-        private void MainItem()
+        private void AssignMain()
         {
-            item = itembal.GetByID(UserSettings.LogInYear, mtxtItemNo.Text);
+            item = itembal.GetByID(UserSettings.LogInYear, itemno);
             if (item == null)
             {
                 item = new tbl_000_H_ITEM();
@@ -224,38 +224,31 @@ namespace PWCOSTINGV1.Forms
             mtxtItemNo.AutoCompleteCustomSource = collection;
         }
         //End Assigning Subs
-        private void LoadItem(int subsyearused)
+        private void LoadItem(tbl_000_H_ITEM item)
         {
-
-            var item_comdata = item_combal.GetByNo(subsyearused, itemno).ToList();
-            bitem_comlist = new BindingList<tbl_000_H_ITEM_PART>(item_comdata);
+            bitem_comlist = new BindingList<tbl_000_H_ITEM_PART>(item.itemCom);
             mgridListCL.DataSource = bitem_comlist;
 
-            var item_pidata = item_pibal.GetByNo(subsyearused, itemno).ToList();
-            bitem_pilist = new BindingList<tbl_000_H_ITEM_TABULATION>(item_pidata);
+            bitem_pilist = new BindingList<tbl_000_H_ITEM_TABULATION>(item.itemPI);
             mgridListPI.DataSource = bitem_pilist;
 
-            var item_vpdata = item_vpbal.GetByNo(subsyearused, itemno).ToList();
-            bitem_vplist = new BindingList<tbl_000_H_ITEM_TABULATION_VP>(item_vpdata);
+            bitem_vplist = new BindingList<tbl_000_H_ITEM_TABULATION_VP>(item.itemVP);
             mgridListVP.DataSource = bitem_vplist;
 
-            var item_assydata = item_assybal.GetByNo(subsyearused, itemno).ToList();
-            bitem_assylist = new BindingList<tbl_000_H_ITEM_TABULATION_ASSY>(item_assydata);
+            bitem_assylist = new BindingList<tbl_000_H_ITEM_TABULATION_ASSY>(item.itemAssy);
             mgridListAssy.DataSource = bitem_assylist;
 
-            var item_mptdata = item_mptbal.GetByNo(subsyearused, itemno).ToList();
-            bitem_mptlist = new BindingList<tbl_000_H_ITEM_MPT>(item_mptdata);
+            bitem_mptlist = new BindingList<tbl_000_H_ITEM_MPT>(item.itemMPT);
             mgridListMPT.DataSource = bitem_mptlist;
 
-            var item_fdcdata = item_fdcbal.GetByNo(subsyearused, itemno).ToList();
-            bitem_fdclist = new BindingList<tbl_000_H_ITEM_FDC>(item_fdcdata);
+            bitem_fdclist = new BindingList<tbl_000_H_ITEM_FDC>(item.itemFDC);
             mgridListFDC.DataSource = bitem_fdclist;
         }
         private void AssignRecord(Boolean IsSave, Boolean IsNewItem)
         {
             try
             {
-                MainItem();
+                AssignMain();
                 if (IsSave)
                 {
                     //Composition List
@@ -508,7 +501,7 @@ namespace PWCOSTINGV1.Forms
                         int subsyearused = UserSettings.LogInYear;
                         if (!IsNewItem)
                             subsyearused = _yearused;
-                        LoadItem(subsyearused);
+                        LoadItem(item);
                     }
                 }
             }
@@ -565,7 +558,6 @@ namespace PWCOSTINGV1.Forms
                 FormHelpers.CursorWait(false);
             }
         }
-
         private Boolean IsValid()
         {
             try
@@ -749,13 +741,13 @@ namespace PWCOSTINGV1.Forms
         public void LoadGridMPT()
         {
             var newitem_mptlist = new List<tbl_000_H_ITEM_MPT>();
-            sect = sectbal.GetByID(sectioncode);
+            modrc = mrbal.GetByID(sectioncode);
             bool isExists = false;
             if (bitem_mptlist != null && bitem_mptlist.Count > 0)
             {
                 foreach (tbl_000_H_ITEM_MPT bimpt in bitem_mptlist)
                 {
-                    if (bimpt.SectionCode == sect.SECTIONCODE)
+                    if (bimpt.SectionCode == modrc.SectionCode)
                     {
                         MessageHelpers.ShowError("SectionCode " + bimpt.SectionCode + " was loaded already!");
                         isExists = true;
@@ -765,13 +757,14 @@ namespace PWCOSTINGV1.Forms
             }
             if (!isExists)
             {
-                if (sect != null)
+                if (modrc != null)
                 {
                     if (bitem_mptlist == null)
                     {
                         var itmmpt = new tbl_000_H_ITEM_MPT();
-                        itmmpt.SectionCode = sect.SECTIONCODE;
-                        itmmpt.SectionName = sect.SECTIONDESC;
+                        itmmpt.SectionCode = modrc.SectionCode;
+                        itmmpt.SectionName = modrc.Description;
+                        itmmpt.ProductionTime = modrc.Time;
                         newitem_mptlist.Add(itmmpt);
                         bitem_mptlist = new BindingList<tbl_000_H_ITEM_MPT>(newitem_mptlist);
                         mgridListMPT.DataSource = bitem_mptlist;
@@ -779,8 +772,9 @@ namespace PWCOSTINGV1.Forms
                     else
                     {
                         var newbitem_mptlist = bitem_mptlist.AddNew();
-                        newbitem_mptlist.SectionCode = sect.SECTIONCODE;
-                        newbitem_mptlist.SectionName = sect.SECTIONDESC;
+                        newbitem_mptlist.SectionCode = modrc.SectionCode;
+                        newbitem_mptlist.SectionName = modrc.Description;
+                        newbitem_mptlist.ProductionTime = modrc.Time;
                     }
                 }
             }
@@ -802,7 +796,7 @@ namespace PWCOSTINGV1.Forms
             pibal = new PlasticInjectionBAL();
             vpbal = new VacuumPlatingBAL();
             assybal = new AssymblyBAL();
-            sectbal = new SectionBAL();
+            mrbal = new MODRCBAL();
             combal = new ComponentBAL();
             catbal = new CategoryBAL();
             itembal = new ItemBAL();
@@ -816,7 +810,7 @@ namespace PWCOSTINGV1.Forms
             pi = new tbl_000_H_PI();
             vp = new tbl_000_H_VP();
             assy = new tbl_000_H_ASSY();
-            sect = new tbl_000_SECTION();
+            modrc = new tbl_000_MODRC();
             com = new tbl_000_H_PART();
             item = new tbl_000_H_ITEM();
             cat = new tbl_000_H_CATEGORY();
@@ -863,7 +857,7 @@ namespace PWCOSTINGV1.Forms
         }
         private void mbtnAddMPT_Click(object sender, EventArgs e)
         {
-            AddRow("MPT", "List of Sections");
+            AddRow("MPT", "List of MOD/RC");
         }
         private void mbtnAddCL_Click(object sender, EventArgs e)
         {

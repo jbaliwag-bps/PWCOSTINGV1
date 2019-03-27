@@ -71,14 +71,13 @@
     <Compile Include="000\tbl_SIGNATORY.cs" />
     <Compile Include="000\tbl_tmp_300_H_STANDARD_COSTING_Q01_SUMMARY.cs" />
     <Compile Include="000\tbl_tmp_H_ITEM_PART.cs" />
-    <Compile Include="100\tbl_100_WIP_COST.cs" />
-    <Compile Include="100\tbl_100_WIP_COSTING_CC.cs" />
-    <Compile Include="100\tbl_100_WIP_COSTING_ITEM.cs" />
+    <Compile Include="100\tbl_100_WIP.cs" />
     <Compile Include="100\tbl_100_WIP_COSTING_LABOR_ASSY.cs" />
     <Compile Include="100\tbl_100_WIP_COSTING_LABOR_BAGG.cs" />
     <Compile Include="100\tbl_100_WIP_COSTING_LABOR_PI.cs" />
     <Compile Include="100\tbl_100_WIP_COSTING_LABOR_PLATED.cs" />
-    <Compile Include="100\tbl_100_WIP_COSTING_MATERIALS.cs" />
+    <Compile Include="100\tbl_100_WIP_Materials.cs" />
+    <Compile Include="100\tbl_100_WIP_MT.cs" />
     <Compile Include="BaseStatusClass.cs" />
     <Compile Include="Default\tbl_YEAR.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

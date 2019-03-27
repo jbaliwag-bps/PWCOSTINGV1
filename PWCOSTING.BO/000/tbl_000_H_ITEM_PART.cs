@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using PWCOSTING.BO.Default;
 using System.ComponentModel;
+
 namespace PWCOSTING.BO._000
 {
     [Table("tbl_000_H_ITEM_PART")]

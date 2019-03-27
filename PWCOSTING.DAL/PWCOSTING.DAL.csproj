@@ -79,14 +79,13 @@
     <Compile Include="000\tmp_CompositionDAL.cs" />
     <Compile Include="000\tmp_StndrdCostngSummDAL.cs" />
     <Compile Include="000\VacuumPlatingDAL.cs" />
-    <Compile Include="100\WIPCCodeDAL.cs" />
-    <Compile Include="100\WIPCostingDAL.cs" />
-    <Compile Include="100\WIPCostingItemDAL.cs" />
+    <Compile Include="100\WIPDAL.cs" />
     <Compile Include="100\WIPLabAssyDAL.cs" />
     <Compile Include="100\WIPLabBaggingDAL.cs" />
     <Compile Include="100\WIPLabPIDAL.cs" />
     <Compile Include="100\WIPLabPlatingDAL.cs" />
-    <Compile Include="100\WIPMatDAL.cs" />
+    <Compile Include="100\WIPMaterialsDAL.cs" />
+    <Compile Include="100\WIPMTDAL.cs" />
     <Compile Include="BaseDAL.cs" />
     <Compile Include="Default\YearDAL.cs" />
     <Compile Include="000\SectionDAL.cs" />

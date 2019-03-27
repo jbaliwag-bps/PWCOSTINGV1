@@ -232,6 +232,7 @@
             this.Controls.Add(this.mtxtCode);
             this.Controls.Add(this.metroLabel1);
             this.Name = "frmMODRC";
+            this.Resizable = false;
             this.Text = "MODRC";
             this.Load += new System.EventHandler(this.MODRC_Load);
             this.ResumeLayout(false);

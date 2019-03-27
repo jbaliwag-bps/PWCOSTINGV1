@@ -33,11 +33,11 @@ namespace PWCOSTING.DAL._000
                 throw ex;
             }
         }
-        public tbl_000_MODRC GetByID(string modrccode)
+        public tbl_000_MODRC GetByID(string sectioncode)
         {
             try
             {
-                return db.MODRCList.Where(w => w.MODRCCode == modrccode).FirstOrDefault();
+                return db.MODRCList.Where(w => w.SectionCode == sectioncode).FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -101,7 +101,7 @@ namespace PWCOSTING.DAL._000
             {
                 try
                 {
-                    var existrecord = GetByID(record.MODRCCode);
+                    var existrecord = GetByID(record.SectionCode);
                     db.Entry(existrecord).GetDatabaseValues().SetValues(record);
                     db.SaveChanges();
                     dbContextTransaction.Commit();
@@ -120,7 +120,7 @@ namespace PWCOSTING.DAL._000
             {
                 try
                 {
-                    var existrecord = GetByID(record.MODRCCode);
+                    var existrecord = GetByID(record.SectionCode);
                     db.MODRCList.Remove(existrecord);
                     db.SaveChanges();
                     dbContextTranaction.Commit();

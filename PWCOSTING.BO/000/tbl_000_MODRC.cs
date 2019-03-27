@@ -13,7 +13,7 @@ namespace PWCOSTING.BO._000
         public Int64 RecID { get; set; }
         [Key]
         [Required]
-        public string MODRCCode { get; set; }
+        public string SectionCode { get; set; }
         public string Description { get; set; }
         public Decimal Time { get; set; }
         public Boolean IsCosting { get; set; }

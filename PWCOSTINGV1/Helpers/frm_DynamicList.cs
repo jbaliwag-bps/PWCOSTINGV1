@@ -34,8 +34,8 @@ namespace PWCOSTINGV1.Forms
         tbl_000_H_VP vp;
         AssymblyBAL assybal;
         tbl_000_H_ASSY assy;
-        SectionBAL sectbal;
-        tbl_000_SECTION sect;
+        MODRCBAL mrbal;
+        tbl_000_MODRC modrc;
         ItemBAL itembal;
         tbl_000_H_ITEM item;
         CategoryBAL catbal;
@@ -127,14 +127,15 @@ namespace PWCOSTINGV1.Forms
                     #endregion
                     #region MPT
                     case "MPT":
-                        var list_SECT = sectbal.GetAll().Select(i => new
+                        var list_MR = mrbal.GetAll().Select(i => new
                         {
-                            Code = i.SECTIONCODE,
-                            Description = i.SECTIONDESC,
+                            Code = i.SectionCode,
+                            Description = i.Description,
+                            Time = i.Time,
                             Active = i.IsActive,
-                            ISCOSTING = i.ISCOSTING
+                            IsCosting = i.IsCosting
                         }).Distinct().OrderBy(m => m.Code).ToList();
-                        this.mgridList.DataSource = list_SECT;
+                        this.mgridList.DataSource = list_MR;
                         break;
                     #endregion
                     #region Items
@@ -233,8 +234,8 @@ namespace PWCOSTINGV1.Forms
             vp = new tbl_000_H_VP();
             assybal = new AssymblyBAL();
             assy = new tbl_000_H_ASSY();
-            sectbal = new SectionBAL();
-            sect = new tbl_000_SECTION();
+            mrbal = new MODRCBAL();
+            modrc = new tbl_000_MODRC();
             itembal = new ItemBAL();
             item = new tbl_000_H_ITEM();
             catbal = new CategoryBAL();
